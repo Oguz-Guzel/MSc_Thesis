@@ -1,3 +1,3 @@
 # MSc_Thesis
 
-My MSc thesis
+My MSc thesis.

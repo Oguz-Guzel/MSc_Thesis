@@ -70,7 +70,8 @@
 \usepackage[absolute]{textpos}
 \usepackage{lscape} 										% Landscape package
 \usepackage{url}
-\usepackage{tikz-feynman}
+\usepackage{cancel}
+\usepackage{mathtools}
 
 %========================================= CAPTION SETTINGS =========================================
 \captionsetup [table]{position=top, aboveskip=0.3truecm, belowskip=6pt}

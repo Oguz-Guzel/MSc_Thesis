@@ -389,9 +389,42 @@ The most general form of the SM Lagrangian depends on 19 parameters. These param
 		\label{SMparameters}}
 \end{table*}
 
-\section{The Higgs Boson and the Tau Lepton}
+\section{The Higgs Boson Phenomenology and Experimental Status}
 
-The Higgs boson, with its zero spin, is different from any other particle in the Standard Model. It does not carry any electric or colour charge hence does not take part in the electromagnetic and strong interactions. Nonetheless, it interacts with fermions and heavy bosons including itself, since it carries weak isospin. The coupling strengths of the Higgs boson to those particles are derived in \autoref{higgsmechanismsection}. These couplings are solely dependent on the masses of the particles which Higgs couple to, resulting in stronger coupling strengths to heavier particles \cite{pdg}.
+The Higgs boson, with its zero spin, is different from any other particle in the Standard Model. It does not carry any electric or colour charge hence does not take part in the electromagnetic and strong interactions. Nonetheless, it interacts with fermions and heavy bosons including itself, since it carries weak isospin. The coupling strengths of the Higgs boson to those particles are derived in \autoref{higgsmechanismsection}. These couplings are solely dependent on the masses of the particles which Higgs couple to, resulting in stronger coupling strengths to heavier particles\cite{pdg}.
+
+The discovery of the Higgs Boson in 2012 was made with the data collected at the Run-1 of the CMS and ATLAS Detectors at $\sqrt{s} = 7$ and $8$ TeV with the integrated luminosity of about $5 fb^{-1}$ in its decays to $H\rightarrow bb$, $H\rightarrow ZZ$, $H\rightarrow \gamma\gamma$, $H\rightarrow WW$ and $H\rightarrow \tau\tau$. Further data at $\sqrt{s} = 13$ TeV collected with the same detectors at Run-2 confirmed the discovery, shown in \autoref{higgs-13tev}. The mass of the Higgs boson is given by the Particle Data Group\cite{pdg} as,
+\be
+m_H = 125.25\pm0.17 ,
+\ee
+and a summary of the mass measurements resulting to this value is shown in \autoref{higgsmasssummary}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{higgsmasscombined.png}
+	\caption[Summary of the CMS and ATLAS Higgs mass measurements in the $\gamma\gamma$ and $ZZ$ channels in Run I and Run II.]{Summary of the CMS and ATLAS Higgs mass measurements in the $\gamma\gamma$ and $ZZ$ channels in Run I and Run II\cite{pdg}.}
+	\label{higgsmasssummary}
+\end{figure}
+
+The Higgs boson was also shown to have a spin-parity, $J^P=0^+$ \cite{higgs-spin}. The results of the Higgs boson searches showed good agreement with the Standard Model predictions. 
+
+\begin{figure*}[ht]
+        \centering
+        \begin{subfigure}[b]{0.475\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{MSc_Thesis/fig/cms-higgs-13tev.png}
+            \firstsubcaption{$m_{4l}$}
+        \end{subfigure}
+        \hspace{0.2cm}
+        \begin{subfigure}[b]{0.475\textwidth}  
+            \centering 
+            \includegraphics[width=\textwidth]{MSc_Thesis/fig/atlas-higgs-13tev.png}
+            \firstsubcaption{$m_{\gamma\gamma}$}
+        \end{subfigure}
+        \caption[Four-lepton mass distribution, $m_{4l}$ with 2 GeV bin size obtained from the data collected at the CMS Detector on the left, and diphoton invariant mass distribution obtained from the data collected at the ATLAS Detector on the right, both at $\sqrt{s}=13$ TeV in Run II.]
+        {\small Four-lepton mass distribution, $m_{4l}$ with 2 GeV bin size obtained from the data collected at the CMS Detector\cite{cms-higgs-13tev} on the left, and diphoton invariant mass distribution obtained from the data collected at the ATLAS Detector\cite{atlas-higgs-13tev} on the right, both at $\sqrt{s}=13$ TeV in Run II.} 
+        \label{higgs-13tev}
+\end{figure*}
 
 The phenomenology of the Higgs boson at the LHC (the LHC is explained in \autoref{Ch2}), has been thoroughly studied \cite{higg-phen-1,higg-phen-2,higg-phen-3}. Four main production modes of the Higgs boson at the hadron colliders have been discovered. Their Feynman diagrams are shown in \autoref{HiggsFeynman}. The production modes other than these four have very small cross sections.
 
@@ -460,13 +493,70 @@ In \emph{the gluon fusion production} mode, shown at \autoref{GGFH}, two gluons 
 
 WH and ZH associated production mechanism of the Higgs boson, or \emph{Higgs strahlung}, is the process of producing a $W^\pm$ or Z boson where a Higgs boson is radiated away. This production mode has a cross section of 2.25 pb at $\sqrt{13}$ TeV. The vector boson in the final state is a good signature for signal and background separation when decayed leptonically.
 
-The fourth and final production mode that we look at is the \emph{associated production with top quark pair}. This production mechanism is a rare process in pp collisions with a cross section of 0.5 pb at $\sqrt{13}$ TeV. The final state objects of this production, top pair and the Higgs boson, can be identified by the large multiplicity of jets and leptons, however due to the lower cross section and the complex final state objects, this production mode is usually not included in the analyses and the same is valid for this thesis. When all of the standard model processes considered, the total cross section for the Higgs boson production makes it a rare process.
+The fourth and final production mode that we look at is the \emph{associated production with top quark pair}. This production mechanism is a rare process in pp collisions with a cross section of 0.5 pb at $\sqrt{13}$ TeV. This production mechanism is observed at the CMS Experiment in 2018 \cite{ttH-higgs}. The final state objects in this production mode, the top pair and the Higgs boson, can be identified by the large multiplicity of jets and leptons, however due to the lower cross section and the complex final state objects, this production mode is usually not included in the analyses and the same is valid for this thesis. When all of the standard model processes considered, the total cross section for the Higgs boson production makes it a rare process.
 
-The decay modes of the standard model Higgs boson is proportional to the coupling strengths, such as,
+The cross sections of these production modes as a function of $\sqrt{s}$ is shown in \autoref{higgs-xsec-vs-sqrtS}.
 
-\be
-g
-\ee
+\begin{figure*}[ht]
+        \centering
+        \begin{subfigure}[b]{0.475\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{MSc_Thesis/fig/higgs-xsec-vs-sqrtS.png}
+            \firstsubcaption{$\sigma_H$}
+            \label{higgs-xsec-vs-sqrtS}
+        \end{subfigure}
+        \hspace{0.2cm}
+        \begin{subfigure}[b]{0.475\textwidth}  
+            \centering 
+            \includegraphics[width=\textwidth]{MSc_Thesis/fig/higgs-br-vs-mH.png}
+            \firstsubcaption{$m_H$}
+            \label{higgs-br-vs-mH}
+        \end{subfigure}
+        \caption[Higgs boson production cross section as a function of different production mechanisms (on the left). Branching fractions the Higgs boson as a function of $m_H$ .The theoretical uncertainties are indicated as bands in both plots.]
+        {\small Higgs boson production cross section as a function of different production mechanisms\cite{higg-phen-3} (on the left). Branching fractions the Higgs boson as a function of $m_H$\cite{higgs-br-vs-mH}.The theoretical uncertainties are indicated as bands in both plots.}
+\end{figure*}
+
+The decay modes of the standard model Higgs boson around its mass is shown in \autoref{higgs-br-vs-mH}, and branching fractions are given in \autoref{HiggsBRtable}. The decay of Higgs boson to fermion has been first established in the $\tau^+\tau^-$ decay mode\cite{CMS-PAS-HIG-16-043}, further confirming the combined results from the ATLAS and CMS Experiments \cite{Aad2016}. In the recent years, the decay of the Higgs boson to a muon pair has been studied and an excess of events is observed in data corresponding to an integrated luminosity of $137 fb^{-1}$ with a significance of 3.0 standard deviations\cite{CMS-PAS-HIG-19-006}, see in \autoref{htomumu.png}.
+
+\begin{table*}[ht]
+	{\setlength{\tabcolsep}{14pt}
+		\caption[The branching ratios and the relative uncertainty for a SM Higgs boson with $m_H$ = 125 GeV.]{The branching ratios and the relative uncertainty for a SM Higgs boson with $m_H$ = 125 GeV\cite{higgs-br-vs-mH, higg-phen-3}.}
+		\begin{center}
+			\vspace{-6mm}
+			\begin{tabular}{lcr}
+				\hline \\[-2.45ex] \hline \\[-2.1ex]
+				Decay channel & Branching fraction & Rel. Uncertainty \\
+				\hline \\[-1.8ex]
+                $H\rightarrow \gamma\gamma$ & $2.27x10^{-3}$ & $2.1\%$\\
+                $H\rightarrow ZZ$ & $2.62x10^{-2}$ & $\pm 1.5\%$\\
+                $H\rightarrow W^+W^-$ & $2.14x10^{-1}$ &$\pm 1.5\%$ \\
+                $H\rightarrow \tau^+\tau^-$ & $6.27x10^{-2}$ &$\pm 1.6\%$ \\
+                $H\rightarrow b\bar b$ & $5.82x10^{-1}$ & $^{+1.2\%}_{-1.3\%}$\\
+                $H\rightarrow c \bar c$ & $2.89x10^{-2}$ &$^{+5.5\%}_{-2.0\%}$ \\
+                $H\rightarrow Z\gamma$ & $1.53x10^{-3}$ & $\pm 5.8\%$\\
+                $H\rightarrow \mu^+\mu^-$ & $2.18x10^{-4}$ &$\pm 1.7\%$ \\
+				\hline
+			\end{tabular}
+			\vspace{-6mm}
+		\end{center}
+		\label{HiggsBRtable}}
+\end{table*}
+
+Since the decay channels of the Higgs is strictly dependent on its mass, the branching ratios vary too much as can be seen in \autoref{higgs-br-vs-mH-complete}. At high Higgs masses, the decys into the $W^\pm$ and $Z$ bosons dominate the spectrum. On the other hand, the decays in the lower mass region where $m_H \le 200\; GeV$ ... 
+
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{higgs-br-vs-mH-complete.png}
+	\caption[Branching ratio of the Higgs boson decaying into various final states as a function of the Higgs boson mass.]{Branching ratio of the Higgs boson decaying into various final states as a function of the Higgs boson mass\cite{higg-phen-3}.}
+	\label{higgs-br-vs-mH-complete}
+\end{figure}
+
+
+
+
+
+
 
 
 

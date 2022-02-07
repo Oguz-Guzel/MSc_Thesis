@@ -267,7 +267,7 @@ where $v$ is called the \textbf{\emph{vacuum expectation value}} which is measur
 \vspace{6pt}
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=\textwidth]{mexicanhat.png}
+	\includegraphics[scale=0.4]{mexicanhat.png}
 	\vspace{-0.25cm}
 	\vspace{6pt}
 	\caption{The Higgs potential V in the case that $\mu^2 > 0$. Choosing any point at the bottom of the potential breaks spontaneously the rotational U(1) symmetry.}
@@ -427,14 +427,14 @@ The phenomenology of the Higgs boson at the LHC (the LHC is explained in \autore
 
 \begin{table*}[ht]
 	{\setlength{\tabcolsep}{14pt}
-		\caption{Cross section (in pb) of the Higgs boson production at different centre-of-mass ($\sqrt{s}$) energies for $m_H=125$ GeV.}
+		\caption[Cross section (in pb) of the Higgs boson production at different centre-of-mass ($\sqrt{s}$) energies for $m_H=125$ GeV. The theoretical uncertainties can be found in the reference.]{Cross section (in pb) of the Higgs boson production at different centre-of-mass ($\sqrt{s}$) energies for $m_H=125$ GeV. The theoretical uncertainties can be found in \cite{pdg}.}
 		\begin{center}
 			\vspace{-6mm}
 			\begin{tabular}{cccccc}
 				\hline \\[-2.45ex] \hline \\[-2.1ex]
 				$\sqrt{s}$ (TeV) &&&Production mode&&\\
 				\hline \\[-1.8ex]
-				& $ggF$ & $VBF$ & $VH$ & $t\bar tH$ & total \\
+				& $ggF$ & $VBF$ & $VH$ & $t\bar tH$ & Total \\
 				\hline \\[-1.8ex]
                 1.96 & 0.95 & 0.065 & 0.209 & 0.004 & 1.23 \\
                 7 & 16.9 & 1.24 & 0.92 & 0.09 & 19.1 \\
@@ -559,7 +559,7 @@ The tau pair decay of the Higgs boson, with a branching ratio of $6.27x10^{-2}$,
 
 The trilinear self-coupling of the Higgs boson was studied long before its discovery in 1988 \cite{GLOVER1988282}, emphasising that it can be measured from the Higgs boson pair production. There are other processes that contribute to the double Higgs boson production via different production mechanism. The Higgs boson pairs are produced at the LHC by the similar mechanism as the Higgs boson productions. 
 
-The \textbf{gluon fusion}, similar to the to the Higgs production mechanism explained in \autoref{higgs-status}, starts with two gluons producing a Higgs boson via either i) a heavy quark loop, which finally produces a Higgs boson pair through the trilinear self-coupling (triangle type) or ii) two on-shell Higgs bosons emerge from the heavy quark loop (box type), as can be seen in \autoref{ggF-HH}. The relative contribution of these two processes can bee seen in \autoref{triangle-box-relative}.
+The \textbf{gluon fusion}, similar to the to the single Higgs gluon fusion production mechanism explained in \autoref{higgs-status}, starts with two gluons producing a Higgs boson via either i) a heavy quark loop, which finally produces a Higgs boson pair through the trilinear self-coupling (triangle type) or ii) two on-shell Higgs bosons emerge from the heavy quark loop (box type), as can be seen in \autoref{ggF-HH}. The relative contribution of these two processes can bee seen in \autoref{triangle-box-relative}. The cross section for this production mode is calculated up to next-to-next-to-leading order (NNLO) in QCD perturbation theory\cite{deFlorian2016}.
 
 \begin{figure*}[ht]
         \centering
@@ -577,7 +577,7 @@ The \textbf{gluon fusion}, similar to the to the Higgs production mechanism expl
             \firstsubcaption{Box type}
         \end{subfigure}
         \caption[]
-        {\small Feynman diagrams of the double Higgs bosons production via gluon fusion mechanism.}
+        {\small Feynman diagrams contributing at the leading order to Higgs boson pair production through (a) the self coupling of the Higgs boson and (b) through a top or bottom quark loop.}
         \label{ggF-HH}
 \end{figure*}
 
@@ -588,7 +588,7 @@ The \textbf{gluon fusion}, similar to the to the Higgs production mechanism expl
 	\label{triangle-box-relative}
 \end{figure}
 
-The \textbf{vector boson fusion}, 
+The \textbf{vector boson fusion}, is the second production mechanism of double Higgs in terms of cross section. This production mechanism is dominated by t-channel W and Z boson exchange, similar to the single Higgs vector boson production mode. Three main Feynman diagrams contribute to this production; two Higgs radiations off the virtual W or Z boson shown in \autoref{vbfHH1} and \autoref{vbfHH2}, and a single off-shell Higgs boson splits into a Higgs pair \autoref{vbfHH3}. This production mechanism allows, in addition to the Higgs trilinear self-coupling, direct access to the Higgs boson coupling to a vector boson pair ($c_{2v}$) as well as to the Higgs boson coupling to two a single vector boson ($c_v$). Two back-to-back jets with high transverse momentum is the characteristic of this production mechanism analogous to the single Higgs vector boson fusion production. Other production mechanism of Higgs pair involve double Higgs strahlung, associated production with a top quark or a top quark pair, whose cross sections are very small. The cross sections of these production mechanisms at different centre-of-mass energies are given in \autoref{HHxsecTable} and as a function of the centre-of-mass-energy \autoref{HHxsecfigure}.
 
 \begin{figure*}[ht]
         \centering
@@ -597,21 +597,110 @@ The \textbf{vector boson fusion},
             \includegraphics[width=\textwidth]{MSc_Thesis/fig/vbf1.png}
             \vspace{-0.5cm}
             \firstsubcaption{$c_{2v}$}
+            \label{vbfHH1}
         \end{subfigure}
         \begin{subfigure}[b]{0.3\textwidth}  
             \centering 
             \includegraphics[width=\textwidth]{MSc_Thesis/fig/vbf2.png}
             \vspace{-0.5cm}
             \firstsubcaption{$c_{v}$}
+            \label{vbfHH2}
         \end{subfigure}
         \begin{subfigure}[b]{0.35\textwidth}  
             \centering 
             \includegraphics[width=\textwidth]{MSc_Thesis/fig/vbf3.png}
             \vspace{-0.5cm}
             \firstsubcaption{$\kappa_\lambda$}
+            \label{vbfHH3}
         \end{subfigure}
         \caption[]
         {\small Feynman diagrams of the double Higgs bosons production via vector boson fusion mechanism.}
 \end{figure*}
 
-\section{Beyond the Standard Model}
+\begin{table*}[ht]
+	{\setlength{\tabcolsep}{14pt}
+		\caption[Cross section (in pb) of the double Higgs boson production at different centre-of-mass ($\sqrt{s}$) energies for $m_H=125$ GeV. The theoretical uncertainties including the QCD factorisation and renormalisation scale ($\alpha_S$) uncertainties, Parton Distribution Function (PDF) uncertainty and effects from the top quark mass at NNLO can be found in the reference.]{Cross section (in pb) of the double Higgs boson production at different centre-of-mass ($\sqrt{s}$) energies for $m_H=125$ GeV. The theoretical uncertainties including the QCD factorisation and renormalisation scale ($\alpha_S$) uncertainties, Parton Distribution Function (PDF) uncertainty and effects from the top quark mass at NNLO can be found in \cite{higgs-br-vs-mH}.}
+		\begin{center}
+			\vspace{-6mm}
+			\begin{tabular}{cccccc}
+				\hline \\[-2.45ex] \hline \\[-2.1ex]
+				$\sqrt{s}$ (TeV) &&&Production mode&&\\
+				\hline \\[-1.8ex]
+				& $ggF$ & $VBF$ & $t\bar tHH$ & $VHH$ & Total \\
+				\hline \\[-1.8ex]
+                8 & 10.15 & 0.459 & 0.174 & 0.355 & 11.14 \\
+                13 & 33.49 & 1.62 & 0.772 & 0.864 & 36.74 \\
+                14 & 39.59 & 1.95 & 0.949 & 0.979 & 44.47 \\
+				\hline
+			\end{tabular}
+			\vspace{-6mm}
+		\end{center}
+		\label{HHxsecTable}}
+\end{table*}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.6]{MSc_Thesis/fig/HHxsecfigure.png}
+	\vspace{2mm}
+	\caption[Total cross section of double Higgs production mechanisms as a function of the centre-of-mass energy with $m_H = 125$ GeV within the SM. The gluon fusion remains the dominant production mode at high energies. The VBF continues to be the second dominant production mode while $t\bar tHH$ contribution starts to be in the order of VBF at about 100 TeV. The width of the lines shows indicate the total uncertainties coming from the scale and PDF + $\alpha_S$ uncertainties.]
+	{Total cross section of double Higgs production mechanisms as a function of the centre-of-mass energy with $m_H = 125$ GeV within the SM. The gluon fusion remains the dominant production mode at high energies. The VBF continues to be the second dominant production mode while $t\bar tHH$ contribution starts to be in the order of VBF at about 100 TeV. The width of the lines shows indicate the total uncertainties coming from the scale and PDF + $\alpha_S$ uncertainties\cite{DiMicco:2690841}.}
+	\label{HHxsecfigure}
+\end{figure}
+
+The double Higgs boson production is very rare at the LHC, hence the experimental searches include only the first two dominant production mechanism, as the same is valid for this thesis. The latter allows the direct access to both the Higgs trilinear self-coupling and the Higgs coupling to vector bosons. The destructive interference of the vector boson fusion production along with the restricted phase space of the double Higgs, makes the double Higgs production very sensitive to BSM physics from which the contributions may add changes to the theory which can be observed at the LHC data at hand. In this regards, the scans of $c_v$ and $c_{2v}$ couplings are aimed in this thesis as a test for the SM and a probe of BSM physics.
+
+The SM expectations or the BSM models can be verified/rejected depending on the results of the decay mode searches of double Higgs production. The ATLAS and CMS Collaborations have discovered a rich variety of channels of double Higgs production. At Run I, these two collaborations have searched for both resonant and non-resonant productions in the following channels: $b\bar b\gamma\gamma$, $b\bar b\tau^+\tau^-$, $b\bar b\bar b$, $b\bar b4l$, $WW^*\gamma\gamma$, $\tau^+\tau^-\gamma\gamma$ and in some other final states \cite{pdg}. Most of these channel are updated in Run II both by ATLAS\cite{Aad2020} and CMS\cite{Sirunyan2019}.
+
+The HH production processes are very rich in final states given the SM Higgs boson decays. The possible final states for HH processes are shown in \autoref{HHdecaymodes} by a simple combination calculation using branching ratios of single Higgs boson. Searches for double Higgs at the LHC focus on decay channels with large branching ratios since the HH production process itself has a rather small cross section at the pp colliders. A similar search is performed by the CMS experiment using Run II dataset and resulted in an upper limit as 22.2 times the SM cross section, shown in \autoref{HHupperlimit}. However other decay channels, such as $WW\gamma\gamma$, $WWWW$, $\tau\tau\tau\tau$, and $\tau\tau\gamma\gamma$ which is the main focus of this thesis, can be probed and is needed to set up a tighter upper limit on the cross section calculations using collision data to broaden our knowledge on this process. 
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.4]{MSc_Thesis/fig/HHdecaymodes.png}
+	\vspace{2mm}
+	\caption[Branching ratio of major double Higgs boson decay channels assuming a Standard Model Higgs boson. From top to bottom and left to right, less possible decay mode combinations are depicted. The logarithmic scale bar on the left indicates the branching ratio along with colours.]
+	{Branching ratios of major double Higgs boson decay channels assuming a Standard Model Higgs boson\cite{Gouzevitch2020}. From top to bottom and left to right, less possible decay mode combinations are depicted. The logarithmic scale bar on the left indicates the branching ratio along with colours.}
+	\label{HHdecaymodes}
+\end{figure}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.4]{MSc_Thesis/fig/HHupperlimit.png}
+	\vspace{2mm}
+	\caption[The 95\% CL upper limits on the signal strength $\mu = \sigma_{HH} / \sigma_{HH}^{SM}$ for $b\bar b$($VV/b\bar b/\tau^+\tau^-/\gamma\gamma$) channels along with with combined result. The inner green bands show 68\% and the outer yellow bands show the 95\% CL upper limits on $\mu$ under the background-only hypothesis.]
+	{The 95\% CL upper limits on the signal strength $\mu = \sigma_{HH} / \sigma_{HH}^{SM}$ for $b\bar b$($VV/b\bar b/\tau^+\tau^-/\gamma\gamma$) channels along with with combined result. The inner green bands show 68\% and the outer yellow bands show the 95\% CL upper limits on $\mu$ under the background-only hypothesis\cite{Sirunyan2019}.}
+	\label{HHupperlimit}
+\end{figure}
+
+% The searches regarding the self-coupling of the Higgs boson provided bounds on the $\kappa_\lambda$ parameter for the $b\bar b\gamma\gamma$ channel alone by ATLAS and CMS, such that,
+
+% \be
+% \begin{aligned}
+% (ATLAS) -1.5 < \kappa_\lambda < 6.7 (observed), -2.4 < \kappa_\lambda < 7.7 (expected),\\
+% (CMS) -3.3<\kappa_\lambda<8.5 (observed), -2.4<\kappa_\lambda<8.2(expected)
+% \end{aligned}
+% \ee
+% where $\kappa_\lambda$ is the ratio between the Higgs trilinear coupling and its SM expectation.
+
+
+\subsection{Beyond the Standard Model}
+
+It is well known that the SM is one of the most successful theories in physics. However, the experiments show that there are some phenomena which the SM cannot explain. The main topics that are beyond the SM can be given in three main section.
+
+The first phenomenon is the existence of three generations/families of fermions. These families of particles are identical under many aspects however the Higgs couplings to them differ in several orders of magnitude and the SM is incapable of answering to this imbalance. The second phenomenon is the mass of the Higgs boson itself. It is dependent on the radiative corrections and is not stabilised by any fundamental theory. Finally, the effectiveness of the theory up to the Planck scale can only be assured as far as the Higgs potential is bounded below for the vacuum to be stable. The stability of the potential at high energies is also associated with its conceivable role in the inflation theory of the Universe\cite{Bezrukov2008}. The model of Higgs as an inflation and the stability of the vacuum depend on the shape of the Higgs potential which is determined by the running parameter $\lambda$, the self-coupling parameters. Therefore, it is reasonable to regard the SM as a manifestation of an unfolded embracing theory. The existence of the BSM physics could bring a solution to these problems.
+
+Double Higgs boson production in this regard is a good handle to test our understanding of the Nature. If the new physics is at the energy scale of the LHC, new heavy states can be observed which then decay to a Higgs boson pair. This type of the production mechanisms is called the \textbf{\textit{resonant production}} and it shall manifest itself as an increase in the double Higgs cross section at a particular double Higgs boson invariant mass. The theories involving the existence of such particles are subject to modify the Higgs boson couplings. A considerable outcome is expected for such theories; the multiplet extension of the scalar Higgs field\cite{Dawson2017}, extra Higgs doublet models, namely Two-Higgs-Doublet Model (2HDM)\cite{Branco2012, BluscaMato2017}, and composite Higgs models \cite{Grber2011, contino2010tasi, JHEP08-2014-095}.
+
+The \textbf{\textit{non-resonant production}} of Higgs pairs in the BSM models can contribute in the quantum loops in the Feynman diagrams for HH production hence can modify the kinematics of the process and increase the cross section, but without causing a resonance that decays to a Higgs boson pair, shown in \autoref{resonantHH}.
+
+I WILL EXPAND THIS SECTION IF I INCLUDE THE KAPPA LAMBDA SCAN IN THE ANALYSIS.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{MSc_Thesis/fig/resonantHH.png}
+	\vspace{2mm}
+	\caption[Feynman diagrams that contribute to HH non-resonant production at LO with pure BSM effects.]
+	{Feynman diagrams that contribute to HH non-resonant production at LO with pure BSM effects.}
+	\label{resonantHH}
+\end{figure}
+
+\newpage

@@ -168,7 +168,7 @@ Two EM pre-shower (ES) sampling sub-detectors are installed in the front sides o
 
 The energy resolution of the ECAL barrel was measured in 7 TeV data using electron from $Z \rightarrow e^+e^-$ decays, resulting an energy resolution better than 2\% in $|\eta|<0.8$ and ranging from 2 to 5\% in other regions \cite{ecalm}. 
 
-\subsection{Hadronic calorimeter}
+\subsection{Hadron calorimeter}
 
 The HCAL\cite{CMS:1997xji} is designed to absorb hadrons coming from the collisions which usually pass the ECAL without being stopped. The energy of the hadrons are measured from their showers in the HCAL, which is a more difficult task than the one made in ECAL about the electrons and photons because of rare effects in the shower generation where many undetectable particles may be produced from nuclear and hadronic interactions. These effects reduces the energy resolution of the hadrons detected in the HCAL, on the other hand the particle flow reconstruction techniques can improve the resolution offline, explained in \autoref{ch3}.
 
@@ -187,3 +187,26 @@ Another part of the hadronic calorimetry system is the very forward calorimeter 
 \end{figure}
 
 \subsection{Muon system}
+
+The typical energy of muons allow them to pass the ECAL, the HCAL and the solenoid without being stoppped. The muon sub-detectors constitute the outermost part of the CMS detector, and identify the radiating muons and measure their properties such as $p_T$ and charge. It also provides a powerful trigger for events that involve muons and accurate time measurement of the bunch crossing \cite{Layter:343814}.
+
+The muon system is positioned just outside of the solenoid magnet covering the $|\eta| < 2.4$ region, and is interspersed with the iron return yokes in order to bend the trajectory of muons hence to measure their $p_T$, with the 3.8 T magnetic field inside the solenoid and the 1.8 T average return field. Additionally, the muon systems are well protected from the charged particles other than muons due to the presence of a large amount of material including the solenoid.
+
+The  muon system consists of three types of gaseous detectors; Drift Tubes (DTs), Cathode Strip Chambers (CSCs) and Resistive Plate Chambers (RPCs). The DTs are placed within $|\eta| < 1.2$ region in the barrel, the CSCs in $\0.9<|eta|<2.4$ in the endcaps and the RPCs in both barrel and endcaps, shown in \autoref{muon1}. Each of these gaseous detectors is placed in a particular region in the detector due to their different rate capabilities which is a parameter related with the time needed for the material to receive the next particle, and due to the ability to work inside a magnetic field.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{MSc_Thesis/fig/muon1.png}
+	\vspace{2mm}
+	\caption[R-z cross section of a quadrant of the CMS detector. The bottom left corner indicates the interaction point. Various muon stations and the steel flux-return disks are shown. The drift tube stations (DTs) are labelled MB (Muon Barrel) and the cathod strip chambers (CSCs) are labelled ME (Muon Endcap). The resistive plate chambers in the barrel and in the endcaps are shown RB and RE, respectively.]{R-z cross section of a quadrant of the CMS detector. The bottom left corner indicates the interaction point. Various muon stations and the steel flux-return disks are shown. The drift tube stations (DTs) are labelled MB (Muon Barrel) and the cathod strip chambers (CSCs) are labelled ME (Muon Endcap). The resistive plate chambers in the barrel and in the endcaps are shown RB and RE, respectively\cite{muon1}.}
+	\label{muon1}
+\end{figure}
+
+
+These limitations require the \emph{\textbf{Drift Tubes}}, which do not have a high rate capability, to be placed only in the barrel region. Also the DTs require the trajectory of the particles traversing them modified as small as possible. This makes the barrel is a good choice, where the residual magnetic field is low. Another advantage of placing DTs in the barrel is that the muon and neutron induced background rates are low. The Muon Barrel (MB) detectors consist of four stations in coaxial cylinderical layouts around the beamline interspersed with the iron yoke. These clinderical stations make up the five wheels of stations aligned in the beamline direction with five wheels of return yokes placed in between. This region consists 250 drift chambers.
+
+The basic consitituent of a DT is the drift cell, shown in \autoref{}.  CONTINUE HERE
+
+Contrarily, the CSCs are placed in the endcaps where a higher residual magnetic field and larger particle rate is present since they are more robust for the radiative situation and magnetic field. Both the DTs and the CSCs yield a high spatial resolution for the $p_T$ measurement of the charged particles.
+
+Additionally, the RPCs are installed in both barrel and endcaps in order to provide a redundancy in the muon chambers. These gaseous detectors primarily contribute to the trigger with their accurate timing. Moreover, each of these gaseous detectors has varying sensitivity to the background which is dominated by the secondary muons produced in $\pi$ and $K$ decays, punch-through hadrons (the hadron shower remnants reaching the muon system by penetrating through the calorimeters) or low energy electrons coming from the slow neutron capture by nuclei.

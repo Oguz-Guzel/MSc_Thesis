@@ -204,7 +204,7 @@ The  muon system consists of three types of gaseous detectors; Drift Tubes (DTs)
 
 These limitations require the \emph{\textbf{Drift Tubes}}, which do not have a high rate capability, to be placed only in the barrel region. Also the DTs require the trajectory of the particles traversing them modified as small as possible. This makes the barrel is a good choice, where the residual magnetic field is low. Another advantage of placing DTs in the barrel is that the muon and neutron induced background rates are low. The Muon Barrel (MB) detectors consist of four stations in coaxial cylindrical layouts around the beamline interspersed with the iron yoke. These cylindrical stations make up the five wheels of stations aligned in the beamline direction with five wheels of return yokes placed in between. This region consists 250 drift chambers.
 
-The basic constituent of a DT is the drift cell, shown in \autoref{drifttubes}, is a tube of rectangular cross section and filled with $Ar/CO_2$ gas mixture. An anod wire is placed in each of the cells, while the cathode strips are positioned along the small sides. When a charged particle is passed through the cell, the atoms of the contained gas becomes ionised and the resulting electrons of the gas atoms drift towards the anod wire. The geometry of the cell provides a uniform electric field inside which allows the drift velocity to be constant and precise, it is possible to measure the drift time of the electrons therefore the position of the ionising particle \cite{Sirunyan_2018}.
+The basic constituent of a DT is the drift cell, shown in \autoref{drifttubes}, is a tube of rectangular cross section and filled with $Ar/CO_2 (85/15)$ gas mixture. An anode wire is placed in each of the cells, while the cathode strips are positioned along the small sides. When a charged particle is passed through the cell, the atoms of the contained gas becomes ionised and the resulting electrons of the gas atoms drift towards the anode wire. The geometry of the cell provides a uniform electric field inside which allows the drift velocity to be constant and precise, it is possible to measure the drift time of the electrons therefore the position of the ionising particle \cite{Sirunyan_2018}.
 
 \begin{figure}[ht]
 	\centering
@@ -216,6 +216,38 @@ The basic constituent of a DT is the drift cell, shown in \autoref{drifttubes}, 
 
 A single drift cell, with a $42 x 13\; mm^2$ cross section and $2-3$ m of wire length, ensures a drift time of about $400\; ns$ and a resolution of about $200\;\mu m$ resulting in $80-120\;ns$ of resolution for the global chamber measurement. Four stacked layers of drift cell constitute a super-layer, and two or three super-layers make up a drift tube. The orientation of the anode wire differs; in the outer super-layers they are parallel to the beamline, while they are orthogonal for the inner ones. This arrangement allows to provide information regarding different coordinates; a track measurement is performed in the ($r, \phi$) plane in the outer super-layers where the residual magnetic field is low, while the inner part measures the z coordinate.
 
-Contrary to the DTs, the \emph{\textbf{Cathode Strip Chambers}} are placed in the endcaps where a higher residual magnetic field and larger particle rate is present since they are more robust for the radiative situation and the magnetic field. Both the DTs and the CSCs yield a high spatial resolution for the $p_T$ measurement of the charged particles. The main task of the CSCs is the tracking of the 
+Contrary to the DTs, the \emph{\textbf{Cathode Strip Chambers}} are placed in the endcaps where a higher residual magnetic field and larger particle rate is present, since they are more robust for the radiative environment and the magnetic field. Both the DTs and the CSCs yield a high spatial resolution for the $p_T$ measurement of the charged particles. The main task of the CSCs is the tracking measurement of the muons, formed as four stations at each endcap. Each CSC is composed of a multi-wire proportional chamber, where the cathode plane is divided into sections of strips that are perpendicular to the wire direction. The chambers are filled with the $Ar/CO_2/CF_4 (40/50/10)$ gas mixture, they have a trapezoidal shape that is made up of seven cathode planes stacked with a 10 mm gas gap between and contain planes of anode wires, shown in \autoref{csc}. When a muon passes through one of the CSCs, it produces an avalanche of electron-ion pairs in the gas and induces signals on the cathode strip wires. The information is then used to acquire the position of the ionising particle, with the radial component being measured with the wires and the z component via the cathode planes \cite{Sirunyan_2018}.
 
-Additionally, the RPCs are installed in both barrel and endcaps in order to provide a redundancy in the muon chambers. These gaseous detectors primarily contribute to the trigger with their accurate timing. Moreover, each of these gaseous detectors has varying sensitivity to the background which is dominated by the secondary muons produced in $\pi$ and $K$ decays, punch-through hadrons (the hadron shower remnants reaching the muon system by penetrating through the calorimeters) or low energy electrons coming from the slow neutron capture by nuclei.
+\begin{figure*}[ht]
+	\centering
+	\begin{subfigure}[b]{0.475\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{MSc_Thesis/fig/csc1.png}
+		\vspace{-0.75cm}
+		\firstsubcaption{CSC}
+		\label{csc1}
+	\end{subfigure}
+	\hspace{0.2cm}
+	\begin{subfigure}[b]{0.475\textwidth}  
+		\centering 
+		\includegraphics[width=\textwidth]{MSc_Thesis/fig/csc2.png}
+		\vspace{-0.75cm}
+		\firstsubcaption{CMS Endcap}
+		\label{csc2}
+	\end{subfigure}
+	\caption[Schematic view of a CSC (a) and a photo of the ME+2 disk with its stations of CSCs.]
+	{\small (a) Schematic view of a CSC and, (b) a photo of the ME+2 disk with its stations of CSCs\cite{Acosta2008}.}
+	\label{csc}
+\end{figure*}
+
+Finally, the \emph{\textbf{Resistive Plate Chambers}} are installed in both barrel and endcaps in order to provide a redundancy in the muon chambers with their fast trigger signal. The RPCs constitute 1056 parallel-plate gas detectors with a moderate spatial resolution of 0.8 - 1.2 cm, but a distinguished time resolution on the orders of ns. However, the electronics system records the RPC hit information at each bunch crossing that is 25 ns, reducing the full timing resolution of the RPC. Each RPC consists of 2 mm of two parallel planes of Bakelite, which is a very resistive resin, coated with graphite. These two plates are separated by 2mm and and filled with the $C_2H_2F_4/i-C_4H_{10}/SF_6 (96.2, 3.5, 0.3)$ gas mixture. The RPC detectors are used as couples in order to improve the efficiency of particle detection. The charged particles that pass through the RPC dual generate an avalanche of ions and the signal coming from these are collected on a set of readout aluminium strips installed between the dual, shown in \autoref{rpc}. RPCs can function in two different modes: the \emph{streamer mode} where a strong electric field that produces localised gas discharges near the regions of the trajectory of the ionising particle, and an \emph{avalanche mode}, where the electric field is weaker to allow a higher counting capacity per area because of a reduced charge generated in the ionisation. The RPCs at the CMS muon system operates in avalanche mode allowing to provide higher rates \cite{Sirunyan_2018}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{MSc_Thesis/fig/rpc.png}
+	\vspace{2mm}
+	\caption[Schematic view of a dual RPC detector.]{Schematic view of a dual RPC detector \cite{IanCrotty}.}
+	\label{rpc}
+\end{figure}
+
+\subsection{Trigger system}

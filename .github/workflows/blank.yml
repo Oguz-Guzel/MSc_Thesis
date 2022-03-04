@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Edit here with the names of your latex file and directory (can use ".")
-      DIR: ./MSc_Thesis/
+      DIR: ./MSc_Thesis
       FILE: thesis.tex
     steps:
       - name: Checkout
@@ -16,7 +16,7 @@ jobs:
         working-directory: ${{ env.DIR }}
         run: pdflatex ${{ env.FILE }}
       - name: move
-        run: mkdir -p github_artifacts && mv ${{ env.DIR }}/${{ env.FILE }}.pdf ./github_artifacts/
+        run: mkdir -p github_artifacts && mv ${{ env.DIR }}/thesis.pdf ./github_artifacts/
       - name: Upload pdf as artifact
         uses: actions/upload-artifact@v2
         with:

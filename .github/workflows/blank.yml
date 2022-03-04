@@ -20,7 +20,7 @@ jobs:
       - name: Upload pdf as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ env.FILE }}.pdf
+          name: thesis.pdf
           path: ./github_artifacts
   deploy:
     # Edit here if compiling multiple papers

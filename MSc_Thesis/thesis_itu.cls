@@ -445,7 +445,7 @@
         \setlength{\evensidemargin}{-0.4mm}     %% Sayfa Solu = 1 in (25.4 mm) - 0.4mm = 25 mm - SBÖ
         %\setlength{\topmargin}{-3.0mm}   
         \setlength{\topmargin}{0mm}             %% To set the bottom text not to be less than 25mm from the bottom - SBÖ  
-        \setlength{\headheight}{0mm}         	%% Sayfa Başlığı (Numarası) = 0 mm
+        \setlength{\headheight}{15pt} %Oguz changed it from 0         	%% Sayfa Başlığı (Numarası) = 0 mm
         \setlength{\headsep}{0mm}               %% Sayfa Başlığı ile Sayfa Metni Arası Boşluk
         \setlength{\textheight}{247mm}          %% Sayfa Metni Yüksekliği = 297mm - 25mm - 25mm = 247mm - SBÖ     
         \setlength{\textwidth}{145mm}           %% Sayfa Metni Genişliği = 210mm - 25mm - 40mm = 145mm

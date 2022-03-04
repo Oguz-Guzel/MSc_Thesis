@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Edit here with the names of your latex file and directory (can use ".")
-      DIR: MSc_Thesis
+      DIR: ./MSc_Thesis/
       FILE: thesis.tex
     steps:
       - name: Checkout

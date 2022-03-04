@@ -10,8 +10,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Install pdflatex
-        run: sudo apt install texlive-latex-base
+      - name: Install texlive-full
+        run: sudo apt install texlive-full
       - name: LaTeX compile
         working-directory: ${{ env.DIR }}
         run: pdflatex ${{ env.FILE }}

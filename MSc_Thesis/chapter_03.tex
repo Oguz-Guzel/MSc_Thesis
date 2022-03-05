@@ -6,7 +6,7 @@ The first section of this chapter includes an overview of the simulation of the 
 
 Simulation of a pp collision starts by describing the hard interactions which is done by Monte Carlo (MC) simulations. A number of different methods are used in these simulations in order to model the matrix element, consequently the cross section of the process of interest. 
 
-\subsection{Event Generation}
+\subsection{Event generation}
 
 The event generation is the first step of the simulation of the high energy collisions. The Monte Carlo techniques are used to simulate the events which happen in the actual collider experiments. The collisions between the protons at the LHC, takes place in fact between the constituents of the protons, called partons to denote the quark and gluon content. In the pp collisions, not only two partons from different protons collide, which produces an interesting event to study, but also two partons can interact but not hardly. The different types of interactions that may occur in the collisions are shown in \autoref{eventtypes}. The \emph{\bf{hard scattering}} processes occur by the high exchange of momentum between the constituents of two colliding protons. The products of this type of interaction usually have high transverse momenta. The high energetic partons may also emit radiation in the initial and final states, creating parton showers which is a considerable effect and taken into account in the event generation process.
 
@@ -31,23 +31,86 @@ Various theoretical, phenomenological and experimental inputs are injected in to
 
 where $f_i(x)$ in the probability density that a parton of type $i$ has a fraction x of the hadron's energy.
 
-The overall chain of calculating a process includes; i) the PDF, which is basically the phenomenological interpretations calculated with the information coming from the experiments, ii) the hard scattering, calculated in perturbative orders, iii) the parton shower process, the radiations in perturbative QCD, iv) the hadronization, lays out the forming of colourless hadrons from coloured partons based on phenomenological models, and v) the decay of unstable particles treated using experimental data. The first two steps are usually calculated in Matrix Elements generators, while the rest is usually calculated in parton shower software. MC techniques are used in both sides and the transition is made in a manner to avoid double counting of the QCD radiation.
+The overall chain of calculating a process includes;
+\begin{itemize}
+    \item the PDF, which is basically the phenomenological interpretations calculated with the information coming from the experiments
+    \item the hard scattering, calculated in perturbative orders
+    \item the parton shower process, the radiations in perturbative QCD
+    \item the hadronization, lays out the forming of colourless hadrons from coloured partons based on phenomenological models
+    \item the decay of unstable particles treated using experimental data
+\end{itemize}
+The first two steps are usually calculated in Matrix Elements generators, while the rest is usually calculated in parton shower software. MC techniques are used in both sides and the transition is made in a manner to avoid double counting of the QCD radiation.
 
-\subsection{Detector Simulation}
+The MC event generators used in this thesis is explained later in \autoref{samples_section}.
 
-The detector simulation is a crucial step of the simulation of the high energy collisions. It computes the interactions between the particles and the detectors material just as in the actual detector. The final state particles simulated in MC event generators are fed into detector simulations to perform the event reconstruction. There are several detector simulations for high energy collisions. Geometry and Tracking (GEANT4) simulation software \cite{Agostinelli2003}, includes a complete and accurate description of the CMS detector along with materials.However, the full simulation of the detector is a long task with high CPU consumption. The CMS Collaboration has developed a faster detector simulation software as an alternative to GEANT4-based simulation \cite{Sekmen:2242542}. In this thesis, all signal and background samples are simulated with the Phase II upgraded CMS detector geometry using DELPHES 3 fast simulation \cite{Selvaggi:2014mya}  with an average pile-up of 200 interactions at $\sqrt{s}=14$ TeV.
+\subsection{Detector simulation}\label{detector_sim_subsection}
 
-DELPHES 3 aims at simulating multipurpose detector response which includes a track propagations system in the presence of magnetic field, calorimeters and a muon system. It uses the input from the most popular event generators and mimics the detector response. In order to achieve this, long-lived particles coming from the hard scattering are propagated through the electromagnetic and hadronic calorimeters where a uniform magnetic field is defined. Final observables of photons and charged leptons are calculated by smearing the initial momenta of such particles corresponding to the resolution of the pertinent sub-detector. High level objects such as jets and missing transverse energy is computed either from the calorimeter deposits or by the \emph{\bf{particle flow}} reconstruction (PF) whose philosophy is to use a maximum amount of information obtained from the sub-detectors.
+The detector simulation is a crucial step of the simulation of the high energy collisions. It computes the interactions between the particles and the detectors material just as in the actual detector. The final state particles simulated in MC event generators are fed into detector simulations to perform the event reconstruction. There are several detector simulations for high energy collisions. Geometry and Tracking (GEANT4) simulation software \cite{Agostinelli2003}, includes a complete and accurate description of detectors. However, the full simulation of the detector is a long task with high CPU consumption, and in order to cope with the limited computing resources and still allow th use of large samples, the LHC experiments have developed fast simulation software with novel techniques \cite{Sekmen:2242542, Lukas:2012kua} with two to three orders of magnitude faster than GEANT software. In this thesis, all signal and background samples are simulated with the Phase II upgraded CMS detector geometry using DELPHES 3 fast simulation \cite{Selvaggi:2014mya} with an average pile-up of 200 interactions at $\sqrt{s}=14$ TeV.
 
-The PF reconstruction, adopted for some experiments \cite{CMS-PAS-PFT-09-001, ALEPH:1994ayc}, is implemented in DELPHES with a basic approach based on the tracker and the calorimeters. In the experiments, the tracker provides a higher resolution than the calorimeters up to some energy scale, therefore DELPHES uses the tracker information to calculate the charged particle momenta. The PF algorithm creates two set of 4-vectors; \emph{particle flow tracks} and {particle flow towers}. For each calorimeter tower, the algorithm calculates the total energy deposited in ECAL and HCAL, denoted $E_{ECAL}$ and $E_{HCAL}$ respectively,...
+DELPHES 3 aims at simulating multipurpose detector response which includes a track propagation system in the presence of magnetic field, calorimeters and a muon system. It uses the input from the most common event generators and mimics the detector response. In order to achieve this, long-lived particles coming from the hard scattering are propagated through the electromagnetic and hadronic calorimeters withing a uniform magnetic field parallel to the beam line. If the particle is neutral, its trajectory is defined as a straight line from the interaction point to a calorimeter cell. The user may specify the calorimeter segmentation and the magnitude of the magnetic field. After the propagation step, long-lived particles reach the calorimeters, ECAL and HCAL depositing a fixed fraction of their energy. ECAL and HCAL are overlaid and assumed to have same granularity, hence a particle reaches one ECAL and one HCAL cell. These two cells are grouped in a calorimeter tower which is computed as the geometrical centre of the cells. The photons and electrons are defined to deposit all their energy in ECAL with the fraction $f_{ECAL}$, and hadrons in HCAL with $f_{HCAL}$ although in reality hadrons deposit some energy also in ECAL. Muons, neutrinos and neutralinos leave the calorimeters intact and some other particles such as Kaons are treated in a way that they leave their energy in calorimeters instead of decaying. The ECAL and HCAL energy deposits are independently smeared by a log-normal distribution and the energy of each particle is concentrated in one single tower, with the following formula,
+\be
+E_{tower} = \sum_{particles} ln\mathcal{N} \left( f_{ECAL} \; x \; E,\sigma_{ECAL} \right) + ln\mathcal{N} \left( f_{HCAL} \; x \; E,\sigma_{HCAL} \right) \; ,
+\ee
+where $ln\mathcal{N}\left(m,s\right)$ is the log-normal distribution with mean $m$ and variance $s$, and the parameters $\sigma_{ECAL}$ and $\sigma_{HCAL}$ are the ECAL and HCAL resolutions given in \autoref{res_eq_ecal}, respectively. The energy of each particle is summed over for a given single tower. High level objects such as jets and missing transverse energy is computed either from the calorimeter deposits or by the particle flow (PF).
 
-\subsection{Reconstruction of Physics Objects}
+\subsection{Particle Flow algorithm}\label{pf_section}
+
+The PF reconstruction, whose philosophy is to use a maximum amount of information obtained from the sub-detectors, is adopted for some experiments including CMS \cite{CMS-PAS-PFT-09-001} and ALEPH \cite{ALEPH:1994ayc}, and is implemented in DELPHES with a basic approach based on the tracker and the calorimeter information. In the experiments, the tracker provides a higher resolution than the calorimeters up to some energy scale, therefore DELPHES uses the tracker information to calculate the charged particle momenta. The PF algorithm creates two set of 4-vectors; \emph{particle flow tracks} and {particle flow towers. For each calorimeter tower, the algorithm sums the energy deposited in ECAL and HCAL, denoted $E_{ECAL}$ and $E_{HCAL}$ respectively. The total energy deposited by the charged particles for which the tracks have been reconstructed, $E_{ECAL,trk}$ and $E_{HCAL,trk}$ are used in the algorithm to define,
+
+\be
+\Delta_{ECAL} = E_{ECAL} - E_{ECAL,trk} \; , \; \Delta_{HCAL} = E_{HCAL} - E_{HCAL,trk} \; ,
+\ee
+\be
+E_{tower} = max(0, \Delta_{ECAL}) + max(0, \Delta_{HCAL})
+\label{towerenergy}
+\ee
+
+then the algorithm creates a particle flow track for each reconstructed track, and if $E_{tower} > 0$, creates a particle flow tower with $E_{tower}$. In order to illustrate the algorithm with few examples, we can think of a single photon with energy deposited in ECAL with $E_{ECAL}$. A particle flow tower is created for the photon with the deposited energy and no track is created. Another example can be a charged pion with a a track energy $E_{HCAL,trk}$ and with an energy deposit of $E_{HCAL}$. If \autoref{towerenergy} yields zero or a negative value that is $E_{HCAL}\leq E_{HCAL,trk}$, then only a particle flow track with energy $E_{HCAL,trk}$ is created. If $E_{HCAL}\geq E_{HCAL,trk}$, a particle flow track with energy $E_{HCAL,trk}$ along with a particle tower of energy $E_{HCAL}$ is created.
+
+In brief, the particle flow tracks define the charged particles with a good resolution, and particle flow towers define both charged and neutral particles with no relevant tracks characterised by a lower resolution. This approach can be useful for pile-up mitigation, and providing high-resolution input for jet and MET reconstructions. Despite being very plain compared to actual experiments, the PF algorithm is shown to have a good performance at pp collisions \cite{deFavereau2014}. 
+
+\subsection{Reconstruction of physics objects}
+
+DELPHES implements the reconstruction and identification of objects based on a set of approximations to reduce the computation time but still keeping a good efficiency.
+
+The \emph{\bf{photon}} reconstruction depends only on the ECAL, and the final energy of the photons is calculated by using the ECAL resolution function presented in \autoref{ecalsubsection}. The photons and electrons that reach ECAL and do not have tracks, are reconstructed as photons in DELPHES.
+
+The reconstruction of \emph{\bf{electrons}} is usually performed with the combined information from the tracking system and the ECAL. However, DELPHES parametrises the combined reconstruction efficiency as a function of the energy and pseudorapidity instead of dealing with the usual complex reconstruction. The electron reconstruction efficiency drops to zero outside the tracker's geometrical acceptance and below some energy threshold. The energy resolution for the electrons are computed with the combination of tracker resolution at low energies and ECAL resolution at high energies.
+
+The probability for a \emph{\bf{muon}} to be reconstructed in DELPHES depends on the user-specified efficiency parametrisation. The probability drops to zero outside the tracker acceptance and below some momenta threshold. The final momentum is computed by a Gaussian smearing of the initial 4 momentum vector of the muon. The resolution is specified by the user as a function of transverse momentum and pseudorapidity.
+
+\emph{\bf{Tau}} leptons decay before being detected, and hereafter, the lepton term is used for electrons and muons. The reconstruction of the hadronically decaying taus will be explained along with jets later.
+
+A photon, electron or muons is said to be isolated if there are small amount of particles around it. The definition of such feature is important since an isolated object is not likely to originate from a jet. Various definitions are available for the isolation of an object. DELPHES implements a simple definition that fits well to hadron collisions. An \emph{\bf{isolation}} variable is defined for electrons, muons and photons, as the ratio of the sum of $p_T$ above a threshold in a cone of radius $R$ around a given particle, to the $p_T$ of the particle of interest. The values close to zero signifies that the particle is \emph{isolated}. The user is set free to define parameters of the isolation; $p_T$, $R$ or a minimum isolation, where the default values are $0.1 \; GeV$, 0.5 and 0.1, respectively.
+
+\emph{\bf{Jets}} are produced from three different input collections in DELPHES. The \emph{generated jets} are the clusters of generator level long-lived particles after parton- shower and hadronization. The \emph{calorimeter jets} are produced using calorimeter towers explained in \autoref{detector_sim_subsection}. Finally the \emph{particle flow jets} are the clusters produced fopm the particle flow tracks and towers defined in \autoref{pf_section}. Additionally, the user is set free to specify a minimum jet $p_T$ for the final jet collection, and a jet clustering algorithm with special parameters with The FASTJET package \cite{Cacciari2012} implemented in DELPHES, supporting the most common jet clustering algorithms. A default reconstruction step is defined in DELPHES that removes the jet from the event if it has been already reconstructed as a lepton or a photon assuring the double counting of objects.
+
+The jets originating from $\tau$ decays or from the the hadronization of heavy quarks e.g. b or c quarks, should be identified in pp collisions. DELPHES tags a jet as b or $\tau$ jet, if the b or $\tau$ is found within some close distance $\Delta R$ of the jet axis, respectively. The user is set free to specify the tagging efficiency which affects the probability of being identified as b or $\tau$. Additionally, a mis-tagging efficiency, that is the probability that a particle other than b or $\tau$ is identified falsely as b or $\tau$.
+
+DELPHES is also capable of computing the missing transverse energy $E_T^{miss}$ and scalar transverse energy sum $H_T$.
+
+\subsection{High level corrections and validation}
+
+The reconstructed objects need to be corrected for residual effects before being used in the final analysis. \emph{\bf{Jet energy scale correction}} (JEC) is applied in order to meet the deficit between the average momenta of the reconstructed objects and that of their generator-level equivalent. This deficiency is common for complex objects such as jets, because the total smearing is ambiguous as a result of the loss of generator-level objects such as neutrinos and muons. The JEC is applied therefore applied only on jets, where the user can specify it as a function of $\eta$ and $p_T$ of the reconstructed jet.
+
+The pile-up effects are simulated using a pre-generated QCD, and randomly placed on the beamline with a number obtained from a Poisson distribution. Pile-up has direct effect on the performance of jets, $E_T^{miss}$ and isolation however pile-up mitigation on $E_T^{miss}$ is a demanding task and is not implemented in DELPHES. Instead, \emph{\bf{pile-up subtraction}} is applied on jets and the isolation with two methods. \emph{Charged pile-up subtraction} assumes the track reconstruction efficiency does not depend on the vertex position, and if the PF algorithm is used, the PF tracks that originate from pile-up are cleared and do not enter the jet clustering and isolation algorithms. Some other residual effects, e.g. the particles that are in close proximity of the hard interaction vertex, the charged particles that are outside the geometrical acceptance of the tracker, or the neutral particles need to be removed. In order to do this, an average contamination is defined in the \emph{residual pile-up subtraction} which then removed from the jet energies and the isolation variable.
+
+All in all, DELPHES has been validated in many use cases, and is a good simulation to be used in pp collisions. \autoref{delphesvalidation} shows a validation plots using photons and electrons vs CMS performance.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.5]{delphesvalidation.png}
+	\vspace{2mm}
+	\caption[Energy resolution of photons and electrons as a function of energy for a CMS detector configuration.  The energy resolution formula of the CMS ECAL, and the samples used for the study along with their generator are given. The CMS electron distribution is taken from . The electron and photon resolutions are identical at high energies since both objects are dominated by ECAL, however at low energies, the electron resolution differs widely because of the finer tracker resolution.]
+	{Energy resolution of photons and electrons as a function of energy for a CMS detector configuration.  The energy resolution formula of the CMS ECAL, and the samples used for the study along with their generator are given. The CMS electron distribution is taken from \cite{CMS:2013hoa}. The electron and photon resolutions are identical at high energies since both objects are dominated by ECAL, however at low energies, the electron resolution differs widely because of the finer tracker resolution \cite{deFavereau2014}.}
+	\label{delphesvalidation}
+\end{figure}
+
+\section{Higgs boson pair analysis}
 
 
 
-\section{Analysis}
-
-\subsection{Signal and Background Samples}
+\subsection{Signal and background samples}\label{samples_section}
 
 In this thesis, signal ($gg \rightarrow HH$) samples are generated using Powheg v2 \cite{Nason2004, Frixione2007, Alioli2010, Heinrich2019} at next-to-leading order (NLO) in QCD including the full top mass dependence with SM parameters, and subsequent decays of the Higgs boson pairs into $\tau\tau$, $WW$ and $ZZ$ each with a photon pair is implemented using PYTHIA 8.212 \cite{Sjstrand2015}. The signal samples for three separate final states of \wwgg channel are produced while a single sample including all possible decays of taus are used.
 
@@ -55,14 +118,14 @@ The analysis is overwhelmed by non-resonant backgrounds with continuum \mgg spec
 
 Several SM processes contribute to the continuum background. A large portion of the dominant backgrounds across all final states comes from the $\gamma\gamma+$jets processes that are modelled with SHERPA v.2.2.1 generator \cite{10.21468/SciPostPhys.7.3.034}while QCD-induced processes, $\gamma+$jets and WW processes are modelled with PYTHIA 8 generator. W production in association with photons and jets, and Drell-Yan processes are modelled with MadGraph5 version-2.7 at LO, $t\bar t$ with Powheg v2, and $t\bar tW$, $t\bar t\gamma$, $t\bar t\gamma\gamma$, $Z\gamma$ processes with Madgraph5\_aMCatNLO.
 
-\subsection{Object Selection}
+\subsection{Object selection}
 
-\subsection{Event Selection and Categorisation}
+\subsection{Event selection and categorisation}
 
-\subsection{Bamboo Framework}
+\subsection{Bamboo framework}
 
-\subsection{Deep Neural Network Employment}
+\subsection{Deep Neural Network employment}
 
-\subsection{Systematic Uncertainties}
+\subsection{Systematic uncertainties}
 
 \section{Results}

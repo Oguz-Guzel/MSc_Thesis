@@ -121,7 +121,7 @@ The analysis flow is shown in \autoref{analysisflow}.
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.5]{analysisflow.png}
+	\includegraphics[width=\textwidth]{analysisflow.png}
 	\vspace{2mm}
 	\caption{Analysis flow chart.}
 	\label{analysisflow}
@@ -133,7 +133,62 @@ In this thesis, signal ($gg \rightarrow HH$) samples are generated using \textsc
 
 The analysis is overwhelmed by non-resonant backgrounds with continuum \mgg spectra and by single Higgs boson productions. The sample generation for single Higgs productions is performed via \textsc{MadGraph5\_aMC@NLO} \cite{Alwall2014, Artoisenet2013} with the FxFx merging scheme \cite{Frederix2012} for the gluon fusion (ggFH), vector boson fusion (VBFH), associated production with a vector boson (VH) and associated production with a top quark pair (ttH), while the top quark associated production  with a Higgs boson (tHq) was performed using \textsc{MadGraph} version-2.7 at LO.
 
-Several SM processes contribute to the continuum background. A large portion of the dominant backgrounds across all final states comes from the $\gamma\gamma+$jets processes that are modelled with \textsc{Sherpa} v.2.2.1 generator \cite{10.21468/SciPostPhys.7.3.034} while QCD-induced processes, $\gamma+$jets and WW processes are modelled with \textsc{Pythia} 8 generator. W production in association with photons and jets, and Drell-Yan processes are modelled with \textsc{MadGraph5} version-2.7 at LO, $t\bar t$ with \textsc{Powheg} v2, and $t\bar tW$, $t\bar t\gamma$, $t\bar t\gamma\gamma$, $Z\gamma$ processes with \textsc{MadGraph5\_aMC@NLO}.
+Several SM processes contribute to the continuum background. A large portion of the dominant backgrounds across all final states comes from the $\gamma\gamma+$jets processes that are modelled with \textsc{Sherpa} v.2.2.1 generator \cite{10.21468/SciPostPhys.7.3.034} while QCD-induced processes, $\gamma+$jets and WW processes are modelled with \textsc{Pythia} 8 generator. W production in association with photons and jets, and Drell-Yan processes are modelled with \textsc{MadGraph5} version-2.7 at LO, $t\bar t$ with \textsc{Powheg} v2, and $t\bar tW$, $t\bar t\gamma$, $t\bar t\gamma\gamma$, $Z\gamma$ processes with \textsc{MadGraph5\_aMC@NLO}. A complete list of samples used in the analysis is shown in \autoref{MCSamples}.
+
+\begin{table}[h!]
+    \resizebox{\textwidth}{!}{
+      \begin{tabular}{lcc}
+        \hline \hline
+        Dataset & Nevents & X-section $\times$ BR (fb)\\
+        \hline
+        \multicolumn{3}{c}{Signal} \\
+        \hline
+      $GluGluToHHTo2G2Tau\_node\_cHHH1\_TuneCP5\_14TeV$-$powheg$-$pythia8\_200PU$ & 1999866 & 0.00104441\\
+      $GluGluToHHTo2G2Qlnu\_node\_cHHH1\_TuneCP5\_14TeV$-$powheg$-$pythia8\_200PU$ & 1898894 & 0.0156981\\
+      $GluGluToHHTo2G2l2nu\_node\_cHHH1\_TuneCP5\_14TeV$-$powheg$-$pythia8\_200PU$ & 1885835 & 0.0037234\\
+      \multicolumn{3}{c}{Resonant Background} \\
+      \hline
+
+      $VHToGG\_M125\_TuneCP5\_14TeV$-$amcatnloFXFX$-$madspin$-$pythia8\_200PU$ & 1830426 & 5.44326\\
+      $ttHJetToGG\_M125\_TuneCP5\_14TeV$-$amcatnloFXFX$-$madspin$-$pythia8\_200PU$ & 5971707 & 1.393764\\
+      $GluGluHToGG\_M125\_TuneCP5\_14TeV$-$amcatnloFXFX$-$pythia8\_200PU$ & 444658 & 114.798\\
+      $VBFHToGG\_M125\_TuneCP5\_14TeV$-$amcatnlo$-$pythia8\_200PU$ & 1712900 & 9.51216\\
+      $THQ\_ctcvcp\_HToGG\_M125\_TuneCUETP8M1\_14TeV$-$madgraph$-$pythia8\_200PU$ & 789129.0 & 0.205428 \\ 
+      
+      \multicolumn{3}{c}{Continuum Background} \\
+      \hline
+      $DiPhotonJetsBox\_MGG$-$40to80\_14TeV$-$Sherpa\_200PU$ & 20677034.0 & 332804\\ 
+      $DiPhotonJetsBox\_MGG$-$80toInf\_14TeV$-$Sherpa\_200PU$ & 19933297 & 98670\\
+      $GJet\_Pt$-$20toInf\_DoubleEMEnriched\_MGG$-$40to80\_TuneCUEP8M2T4\_14TeV\_pythia8\_200PU$ & 19985496 & 3901000\\
+      $GJet\_Pt$-$40toInf\_DoubleEMEnriched\_MGG$-$80toInf\_TuneCUEP8M2T4\_14TeV\_Pythia8\_200PU$ & 20033932 & 998100\\
+      $GJet\_Pt$-$20to40\_DoubleEMEnriched\_MGG$-$80toInf\_TuneCP5\_14TeV$-$pythia8\_200PU$ & 14313734 & 260850\\
+      $QCD\_Pt$-$30toInf\_DoubleEMEnriched\_MGG$-$40to80\_TuneCUEP8M2T4\_14TeV\_Pythia8\_200PU$ & 19581853 & 295700000\\
+      $QCD\_Pt$-$40toInf\_DoubleEMEnriched\_MGG$-$80toInf\_TuneCUEP8M2T4\_14TeV\_Pythia8\_200PU$ & 7141716 & 141200000\\
+      $QCD\_Pt$-$30to40\_DoubleEMEnriched\_MGG$-$80toInf\_TuneCUEP8M2T4\_14TeV\_Pythia8\_200PU$ & 30793791 & 16510000\\
+      
+      $TT\_TuneCUETP8M2T4\_14TeV$-$powheg$-$pythia8\_200PU$ & 49398942 & 864400\\
+      $TTWJetsToLNu\_TuneCUETP8M1\_14TeV$-$amcatnloFXFX$-$madspin$-$pythia8\_200PU$ & 5040836.0 & 225.3 \\ 
+      $TTGamma\_Dilept\_TuneCUETP8M2T4\_14TeV$-$madgraph$-$pythia8\_200PU$ & 2999843 & 623.1\\
+      $TTGamma\_Hadronic\_TuneCUETP8M2T4\_14TeV$-$madgraph$-$pythia8\_200PU$ & 2999836 & 799\\
+      $TTGamma\_SingleLeptFromT\_TuneCUETP8M2T4\_14TeV$-$madgraph$-$pythia8\_200PU$ & 2939839 & 770.9\\
+      $TTGamma\_SingleLeptFromTbar\_TuneCUETP8M2T4\_14TeV$-$madgraph$-$pythia8\_200PU$ & 2939844 & 769\\
+      $TTGG\_0Jets\_TuneCUETP8M1\_14TeV\_amcatnlo\_madspin\_pythia8\_200PU$ & 1101895 & 18.64\\
+      
+      $DYJets\_incl\_MLL$-$50\_TuneCUETP8M1\_14TeV$-$madgraphMLM$-$pythia8\_200PU$ & 76952612.0 & 5711000 \\ 
+      $W1JetsToLNu\_TuneCUETP8M1\_14TeV$-$madgraphMLM$-$pythia8\_200PU$ & 77486992.0 & 10370000  \\ 
+      $W2JetsToLNu\_TuneCUETP8M1\_14TeV$-$madgraphMLM$-$pythia8\_200PU$ & 43222285.0 & 2965000  \\ 
+      $W3JetsToLNu\_TuneCUETP8M1\_14TeV$-$madgraphMLM$-$pythia8\_200PU$ & 5674591.0 & 1268000 \\ 
+      $WGToLNuG\_PtG$-$40\_TuneCUETP8M1\_14TeV$-$madgraphMLM$-$pythia8\_200PU$ & 11776400 & 18790\\
+      $ZGTo2LG\_TuneCUETP8M1\_14TeV$-$amcatnloFXFX$-$pythia8\_200PU$ & 30301987 & 145200\\
+      $WGGJets\_TuneCP5\_14TeV\_madgraphMLM\_pythia8\_200PU$ & 1981569.0 & 1884 \\ 
+      $WGJJToLNu\_EWK\_QCD\_TuneCP5\_14TeV$-$madgraph$-$pythia8\_200PU$ & 1801596.0 & 6032 \\ 
+      $WW\_TuneCUETP8M1\_14TeV$-$pythia8\_200PU$ & 99484471.0 & 70440\\ 
+      \hline
+      \end{tabular}
+       }
+        \caption{MC samples used in the analysis.}
+        \label{MCSamples}
+    \end{table}
 
 In this thesis, all signal and background samples are simulated with the Phase II upgraded CMS detector geometry using \textsc{Delphes} 3 fast simulation \cite{Selvaggi:2014mya} with an average pile-up of 200 interactions at $\sqrt{s}=14$ TeV. An Ntupliser is used to produce flat Ntuples using the outputs from \textsc{Delphes}, whose form is shown in \autoref{flattree}.
 
@@ -176,9 +231,59 @@ Electrons are required to have transverse momenta above 10 GeV within $|\eta|<3$
 
 \subsection{Event selection and categorisation}
 
-\subsection{Bamboo framework}
+All events in the analysis are required to have the invariant mass of two good photons within $100<\mgg<180$ GeV as a preselection for all final states. The analysis is performed in several non-overlaping (orthogonal) final states targeting the decays of the W bosons referred to as \emph{semi-leptonic} and \emph{fully-leptonic} final states for \wwgg, and 1$\tau$ and 2$\tau$ final states for \ttgg. Full hadronic final state of \wwgg is not included in this thesis due to modelling difficulties in QCD induced background samples.
 
-\subsection{Deep Neural Network employment}
+In the \emph{\bf{semi-leptonic final state}}, the events that contain at least one good photon pair (the preselection) and exactly one good electron or good muon are selected. This final state is expected to be the most sensitive of the two \wwgg final states due to the mix of a high energy lepton from the $W\rightarrow l\nu$ decay with the relatively large branching fraction of the $W\rightarrow qq$ leg of the decay.
+
+In order to separate the Higgs pair signal from the resonant background (Single Higgs boson production for our case) and the continuum background, two multiclass \emph{\bf{Deep Neural Networks}} (DNN) are employed. Due to the imbalance between the two classes caused by the dataset, event weights are first scaled to the expected cross sections, then reweighted so that the learning weight in the classes became similar. This assured the nueral networks to focus on categorising the two classes with equal improtance. In order to avoid training bias in the DNN, the data is divided into almost two equal parts based on the fifth decimal place of the leading good photon's $\phi$ value. The output sets are labelled as \emph{even} and \emph{odd} according to the chosen decimal, and the DNN performed with the even set is applied on the odd set.
+
+The framework choise for the DNN is the \textsc{TensorFlow} \cite{tensorflow}, which is an open source software library for machine learning that can be used in a wide variety of programming languages; Python, Javascript, C++, and Java. \textsc{Keras} \cite{keras} is the interface chosen to be used with \textsc{TensorFlow}. The reason to choose these software is that they are compatible with \textsc{Python} programming language. Additionally, both systems can run on both CPU and GPU which makes them very fast, and there is a large community working on them which makes it easy to find solutions to the problems encountered in the DNN training. Another reason to use these software is the compatibility between them and the analysis framework called \textsc{Bamboo} \cite{bamboo}. It is a high-level HEP analysis library built on top of \textsc{Root}'s \emph{RDataFrame} class. \emph{RDataFrame} offers a modern, high-level interface for analysis of data stored in TTree other data formats, in Python or C++. TTree is the data format of our samples, and since \textsc{Bamboo} is built using \textsc{Python} language, the whole analysis and DNN frameworks work in good harmony. 
+
+The feature variables used as input ot train the DNN include the kinematic variables such as \pt, $\eta$, $\phi$ and energy values of objects along with the reweighted variables. The full list of input features is given in \autoref{dnninputs}. The resulting DNN score distribution is shown in \autoref{..}.
+
+\begin{table}[h!]
+    \caption{Input features used to train semi-leptonic final state DNN.}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{ l | l }
+    \hline
+    Feature & Description \\
+    \hline
+    Leading Photon p$_T$ / \mgg& \pt of the leading good photon scaled to diphoton mass. \\
+    Leading Photon $\eta$ & Pseudorapidity of the leading good photon \\
+    Leading Photon $\phi$ & Direction in the transverse plane of the leading good photon\\
+    Leading Photon E / \mgg& Energy of the leading good photon scaled to diphoton mass. \\
+    Sub-leading Photon p$_T$  / \mgg& \pt of the sub-leading good photon scaled to diphoton mass.\\
+    Sub-leading Photon $\eta$ & Pseudorapidity of the sub-leading good photon\\
+    Sub-leading Photon $\phi$ & Direction in the transverse plane of the sub-leading good photon\\
+    Sub-leading Photon E / \mgg & Energy of the sub-leading good photon scaled to diphoton mass. \\
+    Jet Multiplicity & Number of selected jets in the event (flavour inclusive) \\
+    Leading Jet p$_T$ & \pt of the leading good jet \\
+    Leading Jet $\eta$ & Pseudorapidity of the leading good jet \\
+    Leading Jet $\phi$ & Direction in the transverse plane of the leading good jet \\
+    Leading Jet E & Energy of the leading good jet \\
+    Leading Jet btag & b-tag discriminator of the leading good jet \\
+    Sub-leading Jet p$_T$ & \pt of the sub-leading good jet \\
+    Sub-leading Jet $\eta$ & Pseudorapidity of the sub-leading good jet \\
+    Sub-leading Jet $\phi$ & Direction in the transverse plane of the sub-leading good jet \\
+    Sub-leading Jet E & Energy of the sub-leading good jet \\
+    Sub-leading Jet btag & b-tag discriminator score of the sub-leading good jet \\
+    Electron p$_{T}$ & \pt of the selected electron \\ 
+    Electron $\eta$ & Pseudorapidity of the selected electron \\ 
+    Electron $\phi$ & Direction in the transverse plane of the selected electron \\ 
+    Electron E & Energy of the selected electron  \\ 
+    Muon p$_{T}$ & \pt of the selected muon \\ 
+    Muon $\eta$ & Pseudorapidity of the selected muon \\ 
+    Muon $\phi$ & Direction in the transverse plane of the selected muon \\ 
+    Muon E & Energy of the selected muon \\ 
+    MET & Missing transverse energy in the event \\ 
+    $m_{j_{0},j_{1}}$ & The invariant mass of the leading and sub-leading jets \\ 
+    \hline
+    \end{tabular}
+    }
+    \label{dnninputs}
+\end{table}
+
+
 
 \subsection{Systematic uncertainties}
 

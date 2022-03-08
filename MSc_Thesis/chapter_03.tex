@@ -11,11 +11,11 @@ The interactions at the level of partons as well as other subatomic particles, a
 \be
 \Gamma_{i\rightarrow f} = \frac{2\pi}{\hbar}|\mathcal{M}|^2 \rho \; ,
 \ee
-where $\mathcal{M}$ is the \emph{\bf{Matrix Element}} and is defined as $\langle f|V_i|i\rangle$ for an interaction potential $V_i$. The matrix element describes all the dynamics of the transition and is calculated by evaluating the corresponding Feynman diagrams using the Feynman rules convenient to the interaction of interest. The second ingredient in the recipe is the \emph{phase space} available, also called the \emph{density of final states}, is exclusively kinematic and depends on the masses, energies and momenta of the incident particles. The term represent the phenomenon that the interaction in question is more likely to happen given more space in the final state.
+where $\mathcal{M}$ is the \emph{\textbf{Matrix Element}} and is defined as $\langle f|V_i|i\rangle$ for an interaction potential $V_i$. The matrix element describes all the dynamics of the transition and is calculated by evaluating the corresponding Feynman diagrams using the Feynman rules convenient to the interaction of interest. The second ingredient in the recipe is the \emph{phase space} available, also called the \emph{density of final states}, is exclusively kinematic and depends on the masses, energies and momenta of the incident particles. The term represent the phenomenon that the interaction in question is more likely to happen given more space in the final state.
 
 The Golden Rule can be used to cross sections in addition to decay rates. The lowest order term in the perturbation theory calculation for cross section has the highest contribution which is signified as \emph{Leading Order} (LO) and contains only the LO Feynman diagrams. Today, the cross sections are computed using \emph{next-to-leading order} (NLO) calculations in MC event generators which include one-loop diagrams, initial and final state radiations. However, the NLO calculations consume more processor power and time. 
 
-The event generation is the first step of the simulation of the high energy collisions. The Monte Carlo techniques are used to simulate the events which happen in the actual collider experiments. The collisions between the protons at the LHC, takes place in fact between the constituents of the protons, called partons to denote the quark and gluon content. In the pp collisions, not only two partons from different protons collide, which produces an interesting event to study, but also two partons can interact but not hardly. The different types of interactions that may occur in the collisions are shown in \autoref{eventtypes}. The \emph{\bf{hard scattering}} processes occur by the high exchange of momentum between the constituents of two colliding protons. The products of this type of interaction usually have high transverse momenta. The high energetic partons may also emit radiation in the initial and final states, creating parton showers (PS) which is a considerable effect and taken into account in the event generation process.
+The event generation is the first step of the simulation of the high energy collisions. The Monte Carlo techniques are used to simulate the events which happen in the actual collider experiments. The collisions between the protons at the LHC, takes place in fact between the constituents of the protons, called partons to denote the quark and gluon content. In the pp collisions, not only two partons from different protons collide, which produces an interesting event to study, but also two partons can interact but not hardly. The different types of interactions that may occur in the collisions are shown in \autoref{eventtypes}. The \emph{\textbf{hard scattering}} processes occur by the high exchange of momentum between the constituents of two colliding protons. The products of this type of interaction usually have high transverse momenta. The high energetic partons may also emit radiation in the initial and final states, creating parton showers (PS) which is a considerable effect and taken into account in the event generation process.
 
 \begin{figure}[ht]
 	\centering
@@ -26,9 +26,9 @@ The event generation is the first step of the simulation of the high energy coll
 	\label{eventtypes}
 \end{figure}
 
-An \emph{\bf{underlying event}} is a soft interaction that occurs between the residue of the protons which have not taken place in the hard interaction. The partons may also radiate gauge bosons before or after interacting with each other, called initial state radiation and final state radiation, respectively. Additionally, partons can emit radiation via the strong interactions which create jets close to the direction of the initial particles.
+An \emph{\textbf{underlying event}} is a soft interaction that occurs between the residue of the protons which have not taken place in the hard interaction. The partons may also radiate gauge bosons before or after interacting with each other, called initial state radiation and final state radiation, respectively. Additionally, partons can emit radiation via the strong interactions which create jets close to the direction of the initial particles.
 
-At the LHC, bunches including $10^{11}$ protons are collided and pile-up processes, any type of interactions outside the hard scatterings, constitute a significant effect in the event generation. Another aspect of the pp collisions that needs to be considered in MC simulations is the hadronisation process. It is the merger process of quarks and gluons to form colourless, and seen in the final states. The hadronisation process occurs if the partons reach the energy scale of about 1 GeV. The creation of a colourless primary hadrons from partons is described in two different models. The \emph{\bf{cluster model}} describes the forming of the colourless hadrons by the gluons that are split into quark-antiquark pairs which then combines as colourless groups. The states clustered in this manner usually possess a large invariant mass which consequently decay to lower mass states convenient to create hadrons \cite{Webber1984}. In the \emph{\bf{string model}}, the gluons are thought to be split into quark pairs that move away from each other where a string-like configuration is formed between them. As the string is stretched, its potential energy increases lowering the kinetic energy. The string eventually breaks in two creating a quark-antiquark pair. The mechanism is repeated until there is no energy left for another quark pair to be created \cite{Andersson1983}.
+At the LHC, bunches including $10^{11}$ protons are collided and pile-up processes, any type of interactions outside the hard scatterings, constitute a significant effect in the event generation. Another aspect of the pp collisions that needs to be considered in MC simulations is the hadronisation process. It is the merger process of quarks and gluons to form colourless, and seen in the final states. The hadronisation process occurs if the partons reach the energy scale of about 1 GeV. The creation of a colourless primary hadrons from partons is described in two different models. The \emph{\textbf{cluster model}} describes the forming of the colourless hadrons by the gluons that are split into quark-antiquark pairs which then combines as colourless groups. The states clustered in this manner usually possess a large invariant mass which consequently decay to lower mass states convenient to create hadrons \cite{Webber1984}. In the \emph{\textbf{string model}}, the gluons are thought to be split into quark pairs that move away from each other where a string-like configuration is formed between them. As the string is stretched, its potential energy increases lowering the kinetic energy. The string eventually breaks in two creating a quark-antiquark pair. The mechanism is repeated until there is no energy left for another quark pair to be created \cite{Andersson1983}.
 
 Various theoretical, phenomenological and experimental inputs are injected in to MC simulations in order to produce a consistent description of the pp collisions. Different approaches are utilised, for example in order to describe the QCD induced processes which have varying phenomenology with the changing energy scale \cite{skands2012qcd}. The hadronic cross section $\sigma_{pp}$ is calculated using the QCD factorisation theorem, which describing it as a convolution integral of the partonic cross section $\hat\sigma_{ij}$ with the parton distribution functions $f_i(x)$:
 
@@ -80,17 +80,17 @@ In brief, the particle flow tracks define the charged particles with a good reso
 
 \textsc{Delphes} implements the reconstruction and identification of objects based on a set of approximations to reduce the computation time but still keeping a good efficiency.
 
-The \emph{\bf{photon}} reconstruction depends only on the ECAL, and the final energy of the photons is calculated by using the ECAL resolution function presented in \autoref{ecalsubsection}. The photons and electrons that reach ECAL and do not have tracks, are reconstructed as photons in \textsc{Delphes}.
+The \emph{\textbf{photon}} reconstruction depends only on the ECAL, and the final energy of the photons is calculated by using the ECAL resolution function presented in \autoref{ecalsubsection}. The photons and electrons that reach ECAL and do not have tracks, are reconstructed as photons in \textsc{Delphes}.
 
-The reconstruction of \emph{\bf{electrons}} is usually performed with the combined information from the tracking system and the ECAL. However, \textsc{Delphes} parametrises the combined reconstruction efficiency as a function of the energy and pseudorapidity instead of dealing with the usual complex reconstruction. The electron reconstruction efficiency drops to zero outside the tracker's geometrical acceptance and below some energy threshold. The energy resolution for the electrons are computed with the combination of tracker resolution at low energies and ECAL resolution at high energies.
+The reconstruction of \emph{\textbf{electrons}} is usually performed with the combined information from the tracking system and the ECAL. However, \textsc{Delphes} parametrises the combined reconstruction efficiency as a function of the energy and pseudorapidity instead of dealing with the usual complex reconstruction. The electron reconstruction efficiency drops to zero outside the tracker's geometrical acceptance and below some energy threshold. The energy resolution for the electrons are computed with the combination of tracker resolution at low energies and ECAL resolution at high energies.
 
-The probability for a \emph{\bf{muon}} to be reconstructed in \textsc{Delphes} depends on the user-specified efficiency parametrisation. The probability drops to zero outside the tracker acceptance and below some momenta threshold. The final momentum is computed by a Gaussian smearing of the initial 4 momentum vector of the muon. The resolution is specified by the user as a function of transverse momentum and pseudorapidity.
+The probability for a \emph{\textbf{muon}} to be reconstructed in \textsc{Delphes} depends on the user-specified efficiency parametrisation. The probability drops to zero outside the tracker acceptance and below some momenta threshold. The final momentum is computed by a Gaussian smearing of the initial 4 momentum vector of the muon. The resolution is specified by the user as a function of transverse momentum and pseudorapidity.
 
-\emph{\bf{Tau}} leptons decay before being detected, and hereafter, the lepton term is used for electrons and muons. The reconstruction of the hadronically decaying taus will be explained along with jets later.
+\emph{\textbf{Tau}} leptons decay before being detected, and hereafter, the lepton term is used for electrons and muons. The reconstruction of the hadronically decaying taus will be explained along with jets later.
 
-A photon, electron or muons is said to be isolated if there are small amount of particles around it. The definition of such feature is important since an isolated object is not likely to originate from a jet. Various definitions are available for the isolation of an object. \textsc{Delphes} implements a simple definition that fits well to hadron collisions. An \emph{\bf{isolation}} variable is defined for electrons, muons and photons, as the ratio of the sum of $p_T$ above a threshold in a cone of radius $R$ around a given particle, to the $p_T$ of the particle of interest. The values close to zero signifies that the particle is \emph{isolated}. The user is set free to define parameters of the isolation; $p_T$, $R$ or a minimum isolation, where the default values are $0.1 \; GeV$, 0.5 and 0.1, respectively.
+A photon, electron or muons is said to be isolated if there are small amount of particles around it. The definition of such feature is important since an isolated object is not likely to originate from a jet. Various definitions are available for the isolation of an object. \textsc{Delphes} implements a simple definition that fits well to hadron collisions. An \emph{\textbf{isolation}} variable is defined for electrons, muons and photons, as the ratio of the sum of $p_T$ above a threshold in a cone of radius $R$ around a given particle, to the $p_T$ of the particle of interest. The values close to zero signifies that the particle is \emph{isolated}. The user is set free to define parameters of the isolation; $p_T$, $R$ or a minimum isolation, where the default values are $0.1 \; GeV$, 0.5 and 0.1, respectively.
 
-\emph{\bf{Jets}} are produced from three different input collections in \textsc{Delphes}. The \emph{generated jets} are the clusters of generator level long-lived particles after parton- shower and hadronisation. The \emph{calorimeter jets} are produced using calorimeter towers explained in \autoref{detector_sim_subsection}. Finally the \emph{particle flow jets} are the clusters produced fopm the particle flow tracks and towers defined in \autoref{pf_section}. Additionally, the user is set free to specify a minimum jet $p_T$ for the final jet collection, and a jet clustering algorithm with special parameters with The FASTJET package \cite{Cacciari2012} implemented in \textsc{Delphes}, supporting the most common jet clustering algorithms. A default reconstruction step is defined in \textsc{Delphes} that removes the jet from the event if it has been already reconstructed as a lepton or a photon assuring the double counting of objects.
+\emph{\textbf{Jets}} are produced from three different input collections in \textsc{Delphes}. The \emph{generated jets} are the clusters of generator level long-lived particles after parton- shower and hadronisation. The \emph{calorimeter jets} are produced using calorimeter towers explained in \autoref{detector_sim_subsection}. Finally the \emph{particle flow jets} are the clusters produced fopm the particle flow tracks and towers defined in \autoref{pf_section}. Additionally, the user is set free to specify a minimum jet $p_T$ for the final jet collection, and a jet clustering algorithm with special parameters with The FASTJET package \cite{Cacciari2012} implemented in \textsc{Delphes}, supporting the most common jet clustering algorithms. A default reconstruction step is defined in \textsc{Delphes} that removes the jet from the event if it has been already reconstructed as a lepton or a photon assuring the double counting of objects.
 
 The jets originating from $\tau$ decays or from the the hadronisation of heavy quarks e.g. b or c quarks, should be identified in pp collisions. \textsc{Delphes} tags a jet as b or $\tau$ jet, if the b or $\tau$ is found within some close distance $\Delta R$ of the jet axis, respectively. The user is set free to specify the tagging efficiency which affects the probability of being identified as b or $\tau$. Additionally, a mis-tagging efficiency, that is the probability that a particle other than b or $\tau$ is identified falsely as b or $\tau$.
 
@@ -98,9 +98,9 @@ The jets originating from $\tau$ decays or from the the hadronisation of heavy q
 
 \subsection{High level corrections and validation}
 
-The reconstructed objects need to be corrected for residual effects before being used in the final analysis. \emph{\bf{Jet energy scale correction}} (JEC) is applied in order to meet the deficit between the average momenta of the reconstructed objects and that of their generator-level equivalent. This deficiency is common for complex objects such as jets, because the total smearing is ambiguous as a result of the loss of generator-level objects such as neutrinos and muons. The JEC is applied therefore applied only on jets, where the user can specify it as a function of $\eta$ and $p_T$ of the reconstructed jet.
+The reconstructed objects need to be corrected for residual effects before being used in the final analysis. \emph{\textbf{Jet energy scale correction}} (JEC) is applied in order to meet the deficit between the average momenta of the reconstructed objects and that of their generator-level equivalent. This deficiency is common for complex objects such as jets, because the total smearing is ambiguous as a result of the loss of generator-level objects such as neutrinos and muons. The JEC is applied therefore applied only on jets, where the user can specify it as a function of $\eta$ and $p_T$ of the reconstructed jet.
 
-The pile-up effects are simulated using a pre-generated QCD, and randomly placed on the beamline with a number obtained from a Poisson distribution. Pile-up has direct effect on the performance of jets, $E_T^{miss}$ and isolation however pile-up mitigation on $E_T^{miss}$ is a demanding task and is not implemented in \textsc{Delphes}. Instead, \emph{\bf{pile-up subtraction}} is applied on jets and the isolation with two methods. \emph{Charged pile-up subtraction} assumes the track reconstruction efficiency does not depend on the vertex position, and if the PF algorithm is used, the PF tracks that originate from pile-up are cleared and do not enter the jet clustering and isolation algorithms. Some other residual effects, e.g. the particles that are in close proximity of the hard interaction vertex, the charged particles that are outside the geometrical acceptance of the tracker, or the neutral particles need to be removed. In order to do this, an average contamination is defined in the \emph{residual pile-up subtraction} which then removed from the jet energies and the isolation variable.
+The pile-up effects are simulated using a pre-generated QCD, and randomly placed on the beamline with a number obtained from a Poisson distribution. Pile-up has direct effect on the performance of jets, $E_T^{miss}$ and isolation however pile-up mitigation on $E_T^{miss}$ is a demanding task and is not implemented in \textsc{Delphes}. Instead, \emph{\textbf{pile-up subtraction}} is applied on jets and the isolation with two methods. \emph{Charged pile-up subtraction} assumes the track reconstruction efficiency does not depend on the vertex position, and if the PF algorithm is used, the PF tracks that originate from pile-up are cleared and do not enter the jet clustering and isolation algorithms. Some other residual effects, e.g. the particles that are in close proximity of the hard interaction vertex, the charged particles that are outside the geometrical acceptance of the tracker, or the neutral particles need to be removed. In order to do this, an average contamination is defined in the \emph{residual pile-up subtraction} which then removed from the jet energies and the isolation variable.
 
 All in all, \textsc{Delphes} has been validated in many use cases, and is a good simulation to be used in pp collisions. \autoref{delphesvalidation} shows a validation plot using photons and electrons vs CMS performance.
 
@@ -192,7 +192,7 @@ Several SM processes contribute to the continuum background. A large portion of 
 
 In this thesis, all signal and background samples are simulated with the Phase II upgraded CMS detector geometry using \textsc{Delphes} 3 fast simulation \cite{Selvaggi:2014mya} with an average pile-up of 200 interactions at $\sqrt{s}=14$ TeV. An Ntupliser is used to produce flat Ntuples using the outputs from \textsc{Delphes}, whose form is shown in \autoref{flattree}.
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{flattree.png}
 	\vspace{2mm}
@@ -231,15 +231,37 @@ Electrons are required to have transverse momenta above 10 GeV within $|\eta|<3$
 
 \subsection{Event selection and categorisation}
 
-All events in the analysis are required to have the invariant mass of two good photons within $100<\mgg<180$ GeV as a preselection for all final states. The analysis is performed in several non-overlaping (orthogonal) final states targeting the decays of the W bosons referred to as \emph{semi-leptonic} and \emph{fully-leptonic} final states for \wwgg, and 1$\tau$ and 2$\tau$ final states for \ttgg. Full hadronic final state of \wwgg is not included in this thesis due to modelling difficulties in QCD induced background samples.
+All events in the analysis are required to have the invariant mass of two good photons within $100<\mgg<180$ GeV as a preselection for all final states. The di-photon invariant mass distributions before and after this common preselection is shown in \autoref{diphotondist}. The analysis is performed in several non-overlapping (orthogonal) final states targeting the decays of the W bosons referred to as \emph{semi-leptonic} and \emph{fully-leptonic} final states for \wwgg, and 1$\tau$ and 2$\tau$ final states for \ttgg. Full hadronic final state of \wwgg is not included in this thesis due to modelling difficulties in QCD induced background samples.
 
-In the \emph{\bf{semi-leptonic final state}}, the events that contain at least one good photon pair (the preselection) and exactly one good electron or good muon are selected. This final state is expected to be the most sensitive of the two \wwgg final states due to the mix of a high energy lepton from the $W\rightarrow l\nu$ decay with the relatively large branching fraction of the $W\rightarrow qq$ leg of the decay.
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{replace.png}
+        \vspace{-0.5cm}
+        \firstsubcaption{No selection}
+    \end{subfigure}
+    \hspace{0.2cm}
+    \begin{subfigure}[b]{0.475\textwidth}  
+        \centering 
+        \includegraphics[width=\textwidth]{replace.png}
+        \vspace{-0.5cm}
+        \firstsubcaption{Preselection}
+    \end{subfigure}
+    \caption[]
+    {\small \mgg distributions before (left) and after (right) the common preselection.}
+    \label{diphotondist}
+\end{figure*}
 
-In order to separate the Higgs pair signal from the resonant background (Single Higgs boson production for our case) and the continuum background, two multiclass \emph{\bf{Deep Neural Networks}} (DNN) are employed. Due to the imbalance between the two classes caused by the dataset, event weights are first scaled to the expected cross sections, then reweighted so that the learning weight in the classes became similar. This assured the nueral networks to focus on categorising the two classes with equal improtance. In order to avoid training bias in the DNN, the data is divided into almost two equal parts based on the fifth decimal place of the leading good photon's $\phi$ value. The output sets are labelled as \emph{even} and \emph{odd} according to the chosen decimal, and the DNN performed with the even set is applied on the odd set.
+\textbf{Semi-leptonic Final State}
 
-The framework choise for the DNN is the \textsc{TensorFlow} \cite{tensorflow}, which is an open source software library for machine learning that can be used in a wide variety of programming languages; Python, Javascript, C++, and Java. \textsc{Keras} \cite{keras} is the interface chosen to be used with \textsc{TensorFlow}. The reason to choose these software is that they are compatible with \textsc{Python} programming language. Additionally, both systems can run on both CPU and GPU which makes them very fast, and there is a large community working on them which makes it easy to find solutions to the problems encountered in the DNN training. Another reason to use these software is the compatibility between them and the analysis framework called \textsc{Bamboo} \cite{bamboo}. It is a high-level HEP analysis library built on top of \textsc{Root}'s \emph{RDataFrame} class. \emph{RDataFrame} offers a modern, high-level interface for analysis of data stored in TTree other data formats, in Python or C++. TTree is the data format of our samples, and since \textsc{Bamboo} is built using \textsc{Python} language, the whole analysis and DNN frameworks work in good harmony. 
+In the semi-leptonic final state, the events that contain at least one good photon pair (the preselection) and exactly one good electron or good muon are selected. This final state is expected to be the most sensitive of the two \wwgg final states due to the mix of a high energy lepton from the $W{\rightarrow}l\nu$ decay with the relatively large branching fraction of the $W{\rightarrow}qq$ leg of the decay.
 
-The feature variables used as input ot train the DNN include the kinematic variables such as \pt, $\eta$, $\phi$ and energy values of objects along with the reweighted variables. The full list of input features is given in \autoref{dnninputs}. The resulting DNN score distribution is shown in \autoref{..}.
+In order to separate the Higgs pair signal from the resonant background (Single Higgs boson production for our case) and the continuum background, two multi-class \emph{\textbf{Deep Neural Networks}} (DNN) are employed. Due to the imbalance between the two classes caused by the dataset, event weights are first scaled to the expected cross sections, then re-weighted so that the learning weight in the classes became similar. This assured the neural networks to focus on categorising the two classes with equal importance. In order to avoid training bias in the DNN, the data is divided into almost two equal parts based on the fifth decimal place of the leading good photon's $\phi$ value. The output sets are labelled as \emph{even} and \emph{odd} according to the chosen decimal, and the DNN performed with the even set is applied on the odd set.
+
+The framework choice for the DNN is the \textsc{TensorFlow} \cite{tensorflow}, which is an open source software library for machine learning that can be used in a wide variety of programming languages; Python, Javascript, C++, and Java. \textsc{Keras} \cite{keras} is the interface chosen to be used with \textsc{TensorFlow}. The reason to choose these software is that they are compatible with \textsc{Python} programming language. Additionally, both systems can run on both CPU and GPU which makes them very fast, and there is a large community working on them which makes it easy to find solutions to the problems encountered in the DNN training. Another reason to use these software is the compatibility between them and the analysis framework called \textsc{Bamboo} \cite{bamboo}. It is a high-level HEP analysis library built on top of \textsc{Root}'s \emph{RDataFrame} class. \emph{RDataFrame} offers a modern, high-level interface for analysis of data stored in TTree other data formats, in Python or C++. TTree is the data format of the samples used in this thesis, and since \textsc{Bamboo} is built using \textsc{Python} language, the whole analysis and DNN frameworks work in good harmony. 
+
+The feature variables used as input to train the DNN include the kinematic variables such as \pt, $\eta$, $\phi$ and energy values of objects along with the re-weighted variables. The full list of input features is given in \autoref{dnninputs}. The resulting DNN score distribution along with some of the input distribution and the di-photon mass in the final state are shown in \autoref{hasOneL_plots}. The events are then categorised into four making used of the DNN score distribution such that the expected significance is maximised, shown in \autoref{hasOneL_dnncategories}. The categorisation allows to deal with different signal-to-background scenarios, and the Category 4 provides the best signal purity and significance.
 
 \begin{table}[h!]
     \caption{Input features used to train semi-leptonic final state DNN.}
@@ -266,7 +288,7 @@ The feature variables used as input ot train the DNN include the kinematic varia
     Sub-leading Jet $\eta$ & Pseudorapidity of the sub-leading good jet \\
     Sub-leading Jet $\phi$ & Direction in the transverse plane of the sub-leading good jet \\
     Sub-leading Jet E & Energy of the sub-leading good jet \\
-    Sub-leading Jet btag & b-tag discriminator score of the sub-leading good jet \\
+    Sub-leading Jet btag & btag discriminator score of the sub-leading good jet \\
     Electron p$_{T}$ & \pt of the selected electron \\ 
     Electron $\eta$ & Pseudorapidity of the selected electron \\ 
     Electron $\phi$ & Direction in the transverse plane of the selected electron \\ 
@@ -283,7 +305,103 @@ The feature variables used as input ot train the DNN include the kinematic varia
     \label{dnninputs}
 \end{table}
 
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{DNN_Score_WW_logy.pdf}
+        \vspace{-0.5cm}
+        \firstsubcaption{DNN score}
+        \label{GGFH}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.475\textwidth}  
+        \centering 
+        \includegraphics[width=\textwidth]{WWgg_1L_prefit_log_unblinded_False_HL.pdf}
+        \vspace{-0.5cm}
+        \firstsubcaption{Di-photon mass}  
+        \label{VBFH}
+    \end{subfigure}
+    \vskip\baselineskip
+    \begin{subfigure}[b]{0.475\textwidth}   
+        \centering 
+        \includegraphics[width=\textwidth]{replace.png}
+        \vspace{-0.5cm}
+        \firstsubcaption{Leading Jet \pt}    
+        \label{VH}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.475\textwidth}   
+        \centering 
+        \includegraphics[width=\textwidth]{replace.png}
+        \vspace{-0.5cm}
+        \firstsubcaption{$E_T^{miss}$}   
+        \label{ttH}
+    \end{subfigure}
+    \vskip\baselineskip
+    \begin{subfigure}[b]{0.475\textwidth}   
+        \centering 
+        \includegraphics[width=\textwidth]{replace.png}
+        \vspace{-0.5cm}
+        \firstsubcaption{$m_{j_0,j_1}$}    
+        \label{5}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.475\textwidth}   
+        \centering 
+        \includegraphics[width=\textwidth]{replace.png}
+        \vspace{-0.5cm}
+        \firstsubcaption{Jet multiplicity}   
+        \label{6}
+    \end{subfigure}
+    \caption{\small DNN score (a), di-photon invariant mass (b) and some of the DNN input distributions.} 
+    \label{hasOneL_plots}
+\end{figure*}
 
+\begin{table}[h!]
+    \centering
+    \caption{One Lepton final state DNN score categories.}
+    \begin{tabular}{ c c }
+    \hline
+    Category & Definition \\
+    \hline
+    Category 1 & $0.1 < DNN score < 0.6 $ \\
+    Category 2 & $0.6 < DNN score < 0.8 $ \\
+    Category 3 & $0.8 < DNN score < 0.92 $ \\
+    Category 4 & $0.92 < DNN score < 1 $ \\
+    \hline
+    \end{tabular}
+    \label{hasOneL_dnncategories}
+\end{table}
+
+\textbf{Fully-leptonic Final State}
+
+A cut-based analysis is performed in this final state. The events are required to have at least two oppositely charged good leptons ($e^+e^-$, $\mu^+\mu^-$, $e^\pm\mu^\mp$). These two leptons are separated from each other by an angular distance of at least $0.4$. The lepton pair that have invariant mass value between $80-100$ GeV, and the invariant mass of the leading electron and the leading photon in 5 GeV vicinity of Z boson mass in the events that have at least one electron are removed in order to suppress the Z boson contribution (Z veto). The full list of requirements in this final state is shown in \autoref{hasTwoL_cuts}. The di-photon invariant mass distribution in this final state is shown in \autoref{hasTwoL_InvM}.
+
+\begin{table}[!h]
+    \centering
+        \caption{Requirements of the Two Lepton Channel.}
+        \begin{tabular}{c|c}
+            Variable & Selection \\ \hline
+            $\Delta R(l,l)$ & $> 0.4$ \\
+            \pt of the leading lepton & $> 20$ GeV\\
+            \pt of sub-leading lepton & $> 10$ GeV \\
+            $E_T^{miss}$ & $> 20 $ GeV \\
+            $p_T^{\gamma\gamma} $ & $> 91 $ GeV \\
+            $m_{ll}$ & $<80$ GeV or $>100 $ GeV \\
+            number of medium btagged jets & $ = 0 $ \\
+            $|m_{e\gamma} - m_{z}|$ & $ > 5 $ GeV \\
+            Third lepton veto (No third lepton with \pt) & $> 10 $ GeV \\
+        \end{tabular}
+    \label{hasTwoL_cuts}
+\end{table}
+
+\begin{figure}[h!]
+	\includegraphics[scale=0.7]{replace.png}
+	\vspace{2mm}
+	\caption{}
+	\label{hasTwoL_InvM}
+\end{figure}
 
 \subsection{Systematic uncertainties}
 

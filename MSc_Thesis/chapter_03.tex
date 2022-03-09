@@ -135,61 +135,6 @@ The analysis is overwhelmed by non-resonant backgrounds with continuum \mgg spec
 
 Several SM processes contribute to the continuum background. A large portion of the dominant backgrounds across all final states comes from the $\gamma\gamma+$jets processes that are modelled with \textsc{Sherpa} v.2.2.1 generator \cite{10.21468/SciPostPhys.7.3.034} while QCD-induced processes, $\gamma+$jets and WW processes are modelled with \textsc{Pythia} 8 generator. W production in association with photons and jets, and Drell-Yan processes are modelled with \textsc{MadGraph5} version-2.7 at LO, $t\bar t$ with \textsc{Powheg} v2, and $t\bar tW$, $t\bar t\gamma$, $t\bar t\gamma\gamma$, $Z\gamma$ processes with \textsc{MadGraph5\_aMC@NLO}. A complete list of samples used in the analysis is shown in \autoref{MCSamples}.
 
-\begin{table}[h!]
-    \resizebox{\textwidth}{!}{
-      \begin{tabular}{lcc}
-        \hline \hline
-        Dataset & Nevents & X-section $\times$ BR (fb)\\
-        \hline
-        \multicolumn{3}{c}{Signal} \\
-        \hline
-      $GluGluToHHTo2G2Tau\_node\_cHHH1\_TuneCP5\_14TeV$-$powheg$-$pythia8\_200PU$ & 1999866 & 0.00104441\\
-      $GluGluToHHTo2G2Qlnu\_node\_cHHH1\_TuneCP5\_14TeV$-$powheg$-$pythia8\_200PU$ & 1898894 & 0.0156981\\
-      $GluGluToHHTo2G2l2nu\_node\_cHHH1\_TuneCP5\_14TeV$-$powheg$-$pythia8\_200PU$ & 1885835 & 0.0037234\\
-      \multicolumn{3}{c}{Resonant Background} \\
-      \hline
-
-      $VHToGG\_M125\_TuneCP5\_14TeV$-$amcatnloFXFX$-$madspin$-$pythia8\_200PU$ & 1830426 & 5.44326\\
-      $ttHJetToGG\_M125\_TuneCP5\_14TeV$-$amcatnloFXFX$-$madspin$-$pythia8\_200PU$ & 5971707 & 1.393764\\
-      $GluGluHToGG\_M125\_TuneCP5\_14TeV$-$amcatnloFXFX$-$pythia8\_200PU$ & 444658 & 114.798\\
-      $VBFHToGG\_M125\_TuneCP5\_14TeV$-$amcatnlo$-$pythia8\_200PU$ & 1712900 & 9.51216\\
-      $THQ\_ctcvcp\_HToGG\_M125\_TuneCUETP8M1\_14TeV$-$madgraph$-$pythia8\_200PU$ & 789129.0 & 0.205428 \\ 
-      
-      \multicolumn{3}{c}{Continuum Background} \\
-      \hline
-      $DiPhotonJetsBox\_MGG$-$40to80\_14TeV$-$Sherpa\_200PU$ & 20677034.0 & 332804\\ 
-      $DiPhotonJetsBox\_MGG$-$80toInf\_14TeV$-$Sherpa\_200PU$ & 19933297 & 98670\\
-      $GJet\_Pt$-$20toInf\_DoubleEMEnriched\_MGG$-$40to80\_TuneCUEP8M2T4\_14TeV\_pythia8\_200PU$ & 19985496 & 3901000\\
-      $GJet\_Pt$-$40toInf\_DoubleEMEnriched\_MGG$-$80toInf\_TuneCUEP8M2T4\_14TeV\_Pythia8\_200PU$ & 20033932 & 998100\\
-      $GJet\_Pt$-$20to40\_DoubleEMEnriched\_MGG$-$80toInf\_TuneCP5\_14TeV$-$pythia8\_200PU$ & 14313734 & 260850\\
-      $QCD\_Pt$-$30toInf\_DoubleEMEnriched\_MGG$-$40to80\_TuneCUEP8M2T4\_14TeV\_Pythia8\_200PU$ & 19581853 & 295700000\\
-      $QCD\_Pt$-$40toInf\_DoubleEMEnriched\_MGG$-$80toInf\_TuneCUEP8M2T4\_14TeV\_Pythia8\_200PU$ & 7141716 & 141200000\\
-      $QCD\_Pt$-$30to40\_DoubleEMEnriched\_MGG$-$80toInf\_TuneCUEP8M2T4\_14TeV\_Pythia8\_200PU$ & 30793791 & 16510000\\
-      
-      $TT\_TuneCUETP8M2T4\_14TeV$-$powheg$-$pythia8\_200PU$ & 49398942 & 864400\\
-      $TTWJetsToLNu\_TuneCUETP8M1\_14TeV$-$amcatnloFXFX$-$madspin$-$pythia8\_200PU$ & 5040836.0 & 225.3 \\ 
-      $TTGamma\_Dilept\_TuneCUETP8M2T4\_14TeV$-$madgraph$-$pythia8\_200PU$ & 2999843 & 623.1\\
-      $TTGamma\_Hadronic\_TuneCUETP8M2T4\_14TeV$-$madgraph$-$pythia8\_200PU$ & 2999836 & 799\\
-      $TTGamma\_SingleLeptFromT\_TuneCUETP8M2T4\_14TeV$-$madgraph$-$pythia8\_200PU$ & 2939839 & 770.9\\
-      $TTGamma\_SingleLeptFromTbar\_TuneCUETP8M2T4\_14TeV$-$madgraph$-$pythia8\_200PU$ & 2939844 & 769\\
-      $TTGG\_0Jets\_TuneCUETP8M1\_14TeV\_amcatnlo\_madspin\_pythia8\_200PU$ & 1101895 & 18.64\\
-      
-      $DYJets\_incl\_MLL$-$50\_TuneCUETP8M1\_14TeV$-$madgraphMLM$-$pythia8\_200PU$ & 76952612.0 & 5711000 \\ 
-      $W1JetsToLNu\_TuneCUETP8M1\_14TeV$-$madgraphMLM$-$pythia8\_200PU$ & 77486992.0 & 10370000  \\ 
-      $W2JetsToLNu\_TuneCUETP8M1\_14TeV$-$madgraphMLM$-$pythia8\_200PU$ & 43222285.0 & 2965000  \\ 
-      $W3JetsToLNu\_TuneCUETP8M1\_14TeV$-$madgraphMLM$-$pythia8\_200PU$ & 5674591.0 & 1268000 \\ 
-      $WGToLNuG\_PtG$-$40\_TuneCUETP8M1\_14TeV$-$madgraphMLM$-$pythia8\_200PU$ & 11776400 & 18790\\
-      $ZGTo2LG\_TuneCUETP8M1\_14TeV$-$amcatnloFXFX$-$pythia8\_200PU$ & 30301987 & 145200\\
-      $WGGJets\_TuneCP5\_14TeV\_madgraphMLM\_pythia8\_200PU$ & 1981569.0 & 1884 \\ 
-      $WGJJToLNu\_EWK\_QCD\_TuneCP5\_14TeV$-$madgraph$-$pythia8\_200PU$ & 1801596.0 & 6032 \\ 
-      $WW\_TuneCUETP8M1\_14TeV$-$pythia8\_200PU$ & 99484471.0 & 70440\\ 
-      \hline
-      \end{tabular}
-       }
-        \caption{MC samples used in the analysis.}
-        \label{MCSamples}
-    \end{table}
-
 In this thesis, all signal and background samples are simulated with the Phase II upgraded CMS detector geometry using \textsc{Delphes} 3 fast simulation \cite{Selvaggi:2014mya} with an average pile-up of 200 interactions at $\sqrt{s}=14$ TeV. An Ntupliser is used to produce flat Ntuples using the outputs from \textsc{Delphes}, whose form is shown in \autoref{flattree}.
 
 \begin{figure}[h!]
@@ -204,9 +149,9 @@ For the Phase II upgraded CMS detector configuration in \textsc{Delphes} input c
 
 \subsection{Object selection}
 
-Photons used in this analysis are required to have a $p_T$ above 25 GeV and be in the geometrical acceptance that is $|\eta| < 3$. The photon with the highest \pt in the events, namely the leading photon is required to have a \pt of at least 35 GeV. The relative isolation ISO, defined as the sum of transverse momenta of all the particles within a particular size of cone divided by the \pt of the particle of interest, is required to be less than 0.3 for photon candidates. A bit-wise criteria, 1, 3, 7 for loose, medium, tight, respectively, is applied in order to select the loose-ID photons. The photons that pass all these selections are called \emph{good photons} hereafter.
+Photons used in this analysis are required to have a $p_T$ above 25 GeV and be in the geometrical acceptance that is $|\eta| < 2.5$. The photon with the highest \pt in the events, namely the leading photon is required to have a \pt of at least 35 GeV. The relative isolation ISO, defined as the sum of transverse momenta of all the particles within a particular size of cone divided by the \pt of the particle of interest, is required to be less than 0.3 for photon candidates. A bit-wise criteria, 1, 3, 7 for loose, medium, tight, respectively, is applied in order to select the loose-ID photons. The photons that pass all these selections are called \emph{good photons} hereafter.
 
-Electrons are required to have transverse momenta above 10 GeV within $|\eta|<3$ region. The electrons and good photons are isolated from each other with an angular separation of at least 0.4. The muons that have at least 10 GeV \pt and in $|\eta|<2.8$ have been selected and they are isolated from the good electrons and good muons with an angular separation greater than 0.2. Tau leptons with $p_T > 20$ GeV are used in $|\eta|<3$ and are cleaned with respect to good photons/electrons/muons. PUPPI-jets that have $p_T > 30$ GeV with $|\eta|<5$ are used with an angular separation of 0.4 with respect to good photons/electrons/muons/taus. A list of all selections is shown in \autoref{seltable}.
+Electrons are required to have transverse momenta above 10 GeV within $|\eta|<2.5$ region. The electrons and good photons are isolated from each other with an angular separation of at least 0.4. The muons that have at least 10 GeV \pt and in $|\eta|<2.5$ have been selected and they are isolated from the good electrons and good muons with an angular separation greater than 0.2. Tau leptons with $p_T > 20$ GeV are used in $|\eta|<2.5$ and are cleaned with respect to good photons/electrons/muons. PUPPI-jets that have $p_T > 30$ GeV with $|\eta|<5$ are used with an angular separation of 0.4 with respect to good photons/electrons/muons/taus. A list of all selections is shown in \autoref{seltable}.
 
 \begin{table*}[ht]
 	{\setlength{\tabcolsep}{14pt}
@@ -233,130 +178,15 @@ Electrons are required to have transverse momenta above 10 GeV within $|\eta|<3$
 
 All events in the analysis are required to have the invariant mass of two good photons within $100<\mgg<180$ GeV as a preselection for all final states. The di-photon invariant mass distributions before and after this common preselection is shown in \autoref{diphotondist}. The analysis is performed in several non-overlapping (orthogonal) final states targeting the decays of the W bosons referred to as \emph{semi-leptonic} and \emph{fully-leptonic} final states for \wwgg, and 1$\tau$ and 2$\tau$ final states for \ttgg. Full hadronic final state of \wwgg is not included in this thesis due to modelling difficulties in QCD induced background samples.
 
-\begin{figure*}[h!]
-    \centering
-    \begin{subfigure}[b]{0.475\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{replace.png}
-        \vspace{-0.5cm}
-        \firstsubcaption{No selection}
-    \end{subfigure}
-    \hspace{0.2cm}
-    \begin{subfigure}[b]{0.475\textwidth}  
-        \centering 
-        \includegraphics[width=\textwidth]{replace.png}
-        \vspace{-0.5cm}
-        \firstsubcaption{Preselection}
-    \end{subfigure}
-    \caption[]
-    {\small \mgg distributions before (left) and after (right) the common preselection.}
-    \label{diphotondist}
-\end{figure*}
-
-\textbf{Semi-leptonic Final State}
+\textbf{Semi-leptonic Final State of $HH\rightarrow{WW\gamma\gamma}$}
 
 In the semi-leptonic final state, the events that contain at least one good photon pair (the preselection) and exactly one good electron or good muon are selected. This final state is expected to be the most sensitive of the two \wwgg final states due to the mix of a high energy lepton from the $W{\rightarrow}l\nu$ decay with the relatively large branching fraction of the $W{\rightarrow}qq$ leg of the decay.
 
-In order to separate the Higgs pair signal from the resonant background (Single Higgs boson production for our case) and the continuum background, two multi-class \emph{\textbf{Deep Neural Networks}} (DNN) are employed. Due to the imbalance between the two classes caused by the dataset, event weights are first scaled to the expected cross sections, then re-weighted so that the learning weight in the classes became similar. This assured the neural networks to focus on categorising the two classes with equal importance. In order to avoid training bias in the DNN, the data is divided into almost two equal parts based on the fifth decimal place of the leading good photon's $\phi$ value. The output sets are labelled as \emph{even} and \emph{odd} according to the chosen decimal, and the DNN performed with the even set is applied on the odd set.
+In order to separate the Higgs pair signal from the resonant background (Single Higgs boson production for our case) and the continuum background, two multi-class \emph{\textbf{Deep Neural Networks}} (DNN) are employed. Due to the imbalance between the two classes caused by the dataset, event weights are first scaled to the expected cross sections, then re-weighted so that the learning weight in the classes became similar. This assured the neural networks to focus on categorising the two classes with equal importance. In order to avoid training bias in the DNN, the data is divided into almost two equal parts based on, by choice, the fifth decimal place of the leading good photon's $\phi$ value. The output sets are labelled as \emph{even} and \emph{odd} according to the chosen decimal, and the DNN performed with the even set is applied on the odd set and vice versa.
 
 The framework choice for the DNN is the \textsc{TensorFlow} \cite{tensorflow}, which is an open source software library for machine learning that can be used in a wide variety of programming languages; Python, Javascript, C++, and Java. \textsc{Keras} \cite{keras} is the interface chosen to be used with \textsc{TensorFlow}. The reason to choose these software is that they are compatible with \textsc{Python} programming language. Additionally, both systems can run on both CPU and GPU which makes them very fast, and there is a large community working on them which makes it easy to find solutions to the problems encountered in the DNN training. Another reason to use these software is the compatibility between them and the analysis framework called \textsc{Bamboo} \cite{bamboo}. It is a high-level HEP analysis library built on top of \textsc{Root}'s \emph{RDataFrame} class. \emph{RDataFrame} offers a modern, high-level interface for analysis of data stored in TTree other data formats, in Python or C++. TTree is the data format of the samples used in this thesis, and since \textsc{Bamboo} is built using \textsc{Python} language, the whole analysis and DNN frameworks work in good harmony. 
 
-The feature variables used as input to train the DNN include the kinematic variables such as \pt, $\eta$, $\phi$ and energy values of objects along with the re-weighted variables. The full list of input features is given in \autoref{dnninputs}. The resulting DNN score distribution along with some of the input distribution and the di-photon mass in the final state are shown in \autoref{hasOneL_plots}. The events are then categorised into four making used of the DNN score distribution such that the expected significance is maximised, shown in \autoref{hasOneL_dnncategories}. The categorisation allows to deal with different signal-to-background scenarios, and the Category 4 provides the best signal purity and significance.
-
-\begin{table}[h!]
-    \caption{Input features used to train semi-leptonic final state DNN.}
-    \resizebox{\textwidth}{!}{
-    \begin{tabular}{ l | l }
-    \hline
-    Feature & Description \\
-    \hline
-    Leading Photon p$_T$ / \mgg& \pt of the leading good photon scaled to diphoton mass. \\
-    Leading Photon $\eta$ & Pseudorapidity of the leading good photon \\
-    Leading Photon $\phi$ & Direction in the transverse plane of the leading good photon\\
-    Leading Photon E / \mgg& Energy of the leading good photon scaled to diphoton mass. \\
-    Sub-leading Photon p$_T$  / \mgg& \pt of the sub-leading good photon scaled to diphoton mass.\\
-    Sub-leading Photon $\eta$ & Pseudorapidity of the sub-leading good photon\\
-    Sub-leading Photon $\phi$ & Direction in the transverse plane of the sub-leading good photon\\
-    Sub-leading Photon E / \mgg & Energy of the sub-leading good photon scaled to diphoton mass. \\
-    Jet Multiplicity & Number of selected jets in the event (flavour inclusive) \\
-    Leading Jet p$_T$ & \pt of the leading good jet \\
-    Leading Jet $\eta$ & Pseudorapidity of the leading good jet \\
-    Leading Jet $\phi$ & Direction in the transverse plane of the leading good jet \\
-    Leading Jet E & Energy of the leading good jet \\
-    Leading Jet btag & b-tag discriminator of the leading good jet \\
-    Sub-leading Jet p$_T$ & \pt of the sub-leading good jet \\
-    Sub-leading Jet $\eta$ & Pseudorapidity of the sub-leading good jet \\
-    Sub-leading Jet $\phi$ & Direction in the transverse plane of the sub-leading good jet \\
-    Sub-leading Jet E & Energy of the sub-leading good jet \\
-    Sub-leading Jet btag & btag discriminator score of the sub-leading good jet \\
-    Electron p$_{T}$ & \pt of the selected electron \\ 
-    Electron $\eta$ & Pseudorapidity of the selected electron \\ 
-    Electron $\phi$ & Direction in the transverse plane of the selected electron \\ 
-    Electron E & Energy of the selected electron  \\ 
-    Muon p$_{T}$ & \pt of the selected muon \\ 
-    Muon $\eta$ & Pseudorapidity of the selected muon \\ 
-    Muon $\phi$ & Direction in the transverse plane of the selected muon \\ 
-    Muon E & Energy of the selected muon \\ 
-    MET & Missing transverse energy in the event \\ 
-    $m_{j_{0},j_{1}}$ & The invariant mass of the leading and sub-leading jets \\ 
-    \hline
-    \end{tabular}
-    }
-    \label{dnninputs}
-\end{table}
-
-\begin{figure*}[h!]
-    \centering
-    \begin{subfigure}[b]{0.475\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{DNN_Score_WW_logy.pdf}
-        \vspace{-0.5cm}
-        \firstsubcaption{DNN score}
-        \label{GGFH}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.475\textwidth}  
-        \centering 
-        \includegraphics[width=\textwidth]{WWgg_1L_prefit_log_unblinded_False_HL.pdf}
-        \vspace{-0.5cm}
-        \firstsubcaption{Di-photon mass}  
-        \label{VBFH}
-    \end{subfigure}
-    \vskip\baselineskip
-    \begin{subfigure}[b]{0.475\textwidth}   
-        \centering 
-        \includegraphics[width=\textwidth]{replace.png}
-        \vspace{-0.5cm}
-        \firstsubcaption{Leading Jet \pt}    
-        \label{VH}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.475\textwidth}   
-        \centering 
-        \includegraphics[width=\textwidth]{replace.png}
-        \vspace{-0.5cm}
-        \firstsubcaption{$E_T^{miss}$}   
-        \label{ttH}
-    \end{subfigure}
-    \vskip\baselineskip
-    \begin{subfigure}[b]{0.475\textwidth}   
-        \centering 
-        \includegraphics[width=\textwidth]{replace.png}
-        \vspace{-0.5cm}
-        \firstsubcaption{$m_{j_0,j_1}$}    
-        \label{5}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.475\textwidth}   
-        \centering 
-        \includegraphics[width=\textwidth]{replace.png}
-        \vspace{-0.5cm}
-        \firstsubcaption{Jet multiplicity}   
-        \label{6}
-    \end{subfigure}
-    \caption{\small DNN score (a), di-photon invariant mass (b) and some of the DNN input distributions.} 
-    \label{hasOneL_plots}
-\end{figure*}
+The DNNs are trained using skimmed signal and background samples and are evaluated on the full samples in order to perform categorisation. The feature variables used as input to train the DNN include the kinematic variables such as \pt, $\eta$, $\phi$ and energy values of objects along with the re-weighted variables. The full list of input features is given in \autoref{dnninputs}. During the training, events in the signal MC samples are given a target value of 1 and events in the background MC samples are given a target value of 0. The resulting DNN score distribution along with some of the input distribution and ROC curves are shown in \autoref{hasOneL_plots}. The events are then categorised into four making used of the DNN score distribution such that the expected significance is maximised, as shown in \autoref{hasOneL_dnncategories}. The DNN hyper-parameter settings in this final state is given in \auttoref{dnnpars1}. A cut-flow table, showing the number of events in the semi-leptonic channel and its DNN score categories is given in \autoref{semileptonic_cutflow} along with the number of events before any selection.
 
 \begin{table}[h!]
     \centering
@@ -374,11 +204,52 @@ The feature variables used as input to train the DNN include the kinematic varia
     \label{hasOneL_dnncategories}
 \end{table}
 
-\textbf{Fully-leptonic Final State}
+\begin{table}[h!]
+    \centering
+    \caption{Hyper-parameter settings for the DNN performed for semi-leptonic channel.}
+    \begin{tabular}{ l l }
+    \hline
+    Hyper-paramter & Setting \\
+    \hline
+    Epochs & 200 \\
+    Batch size & 256 \\
+    Learning rate & 0.001 \\
+    Optimiser & Adam \\
+    Loos function & Categorical Cross Entropy \\
+    Hidden layer activation functions & ReLU \\
+    Output layer activation function & sigmoid \\
+    \hline
+    \end{tabular}
+    \label{hasOneL_dnncategories}
+\end{table}
 
-A cut-based analysis is performed in this final state. The events are required to have at least two oppositely charged good leptons ($e^+e^-$, $\mu^+\mu^-$, $e^\pm\mu^\mp$). These two leptons are separated from each other by an angular distance of at least $0.4$. The lepton pair that have invariant mass value between $80-100$ GeV, and the invariant mass of the leading electron and the leading photon in 5 GeV vicinity of Z boson mass in the events that have at least one electron are removed in order to suppress the Z boson contribution (Z veto). The full list of requirements in this final state is shown in \autoref{hasTwoL_cuts}. The di-photon invariant mass distribution in this final state is shown in \autoref{hasTwoL_InvM}.
+The categorisation allows to deal with different signal-to-background scenarios, and the Category 4 provides the best signal purity and significance. Di-photon mass distributions in a single combined plot is shown in \autoref{diphotondist}.
 
-\begin{table}[!h]
+\begin{figure*}[h!]
+    \centering
+    \begin{subfigure}[b]{0.475\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Inv_mass_gghasZeroL_logy.pdf}
+        \vspace{0.1cm}
+        %\firstsubcaption{No selection}
+    \end{subfigure}
+    \hspace{0.2cm}
+    \begin{subfigure}[b]{0.475\textwidth}  
+        \centering 
+        \includegraphics[width=\textwidth]{semi-leptonic-mgg-cats.png}
+        \vspace{0.1cm}
+        %\firstsubcaption{Preselection}
+    \end{subfigure}
+    \caption[]
+    {\small \mgg distribution in the semi-leptonic final state (left) and in the DNN categories (right).}
+    \label{diphotondist}
+\end{figure*}
+
+\textbf{Fully-leptonic Final State of $HH\rightarrow{WW\gamma\gamma}$}
+
+A cut-based analysis is performed in this final state. The events are required to have at least two oppositely charged good leptons ($e^+e^-$, $\mu^+\mu^-$, $e^\pm\mu^\mp$). These two leptons are separated from each other by an angular distance of at least $0.4$. Since W boson decay to neutrinos along with leptons in this final state, a relatively larger missing transverse energy cut is applied. The lepton pair that have invariant mass value between $80-100$ GeV, and the invariant mass of the leading electron and the leading photon in 5 GeV vicinity of Z boson mass in the events that have at least one electron are removed in order to suppress the Z boson contribution (Z veto). These cut is shown as a in \autoref{hasTwoL_cuts}. The di-photon invariant mass distribution in this final state is shown in \autoref{hasTwoL_InvM}. A cut-flow report is provided in \autoref{fullyleptonic-cutflow}.
+
+\begin{table}[h!]
     \centering
         \caption{Requirements of the Two Lepton Channel.}
         \begin{tabular}{c|c}
@@ -390,18 +261,32 @@ A cut-based analysis is performed in this final state. The events are required t
             $p_T^{\gamma\gamma} $ & $> 91 $ GeV \\
             $m_{ll}$ & $<80$ GeV or $>100 $ GeV \\
             number of medium btagged jets & $ = 0 $ \\
-            $|m_{e\gamma} - m_{z}|$ & $ > 5 $ GeV \\
-            Third lepton veto (No third lepton with \pt) & $> 10 $ GeV \\
+            $\m_{e\gamma} - m_{z}|$ & $ > 5 $ GeV \\
         \end{tabular}
     \label{hasTwoL_cuts}
 \end{table}
 
 \begin{figure}[h!]
+    \centering
 	\includegraphics[scale=0.7]{replace.png}
 	\vspace{2mm}
-	\caption{}
+	\caption{\mgg distribution in the fully-leptonic final state.}
 	\label{hasTwoL_InvM}
 \end{figure}
+
+\textbf{1$\tau$ Final State of $HH\rightarrow{\tau\tau\gamma\gamma}$}
+
+In this final state, two multi-class DNNs are trained following the same strategy as in semi-leptonic final state of the \wwgg leg of the decay. The input variables are shown in \autoref{dnninputs_1tau}. The information of $\tau$ leptons are added to the training while removing the electron, muon and some jet information in this final state. Full distributions are given in \autoref{dnninputDists_tau} along with the training weights and the ROC curves. The resulting categorisation is shown in \autoref{onetau-cats}.
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{c|c}
+         &  \\
+         & 
+    \end{tabular}
+    \caption{Caption}
+    \label{tab:my_label}
+\end{table}
 
 \subsection{Systematic uncertainties}
 

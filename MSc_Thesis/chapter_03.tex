@@ -145,7 +145,7 @@ In this thesis, all signal and background samples are simulated with the Phase I
 	\label{flattree}
 \end{figure}
 
-For the Phase II upgraded CMS detector configuration in \textsc{Delphes} input card \cite{delphescard}, the isolation (ISO) and identification (ID) variables for photons and electrons are defined in different bit-wise working points (WP); loose, medium and tight (LMT) based on the MVA trained ID and ISO variables in full simulation of CMS (FullSim). Similar ID and ISO variables are defined for muons and taus, and a \emph{btag} value in bit-wise LMT WPs is also defined for jets.
+For the Phase II upgraded CMS detector configuration in \textsc{Delphes} input card \cite{delphescard}, the isolation (ISO) and identification (ID) variables for photons and electrons are defined in different bit-wise working points (WP); loose, medium and tight (LMT) based on the MVA trained ID and ISO variables in full simulation of CMS (FullSim). Similar ID and ISO variables are defined for muons and taus, and a \emph{btag} value in bit-wise LMT WPs is also defined for jets. The python code that is used to define object, event selection and categorisations is given in Appendix \autoref{bamboocode}.
 
 \subsection{Object selection}
 
@@ -184,13 +184,21 @@ In the semi-leptonic final state, the events that contain at least one good phot
 
 In order to separate the Higgs pair signal from the resonant background (Single Higgs boson production for our case) and the continuum background, two multi-class \emph{\textbf{Deep Neural Networks}} (DNN) are employed. Due to the imbalance between the two classes caused by the dataset, event weights are first scaled to the expected cross sections, then re-weighted so that the learning weight in the classes became similar. This assured the neural networks to focus on categorising the two classes with equal importance. In order to avoid training bias in the DNN, the data is divided into almost two equal parts based on, by choice, the fifth decimal place of the leading good photon's $\phi$ value. The output sets are labelled as \emph{even} and \emph{odd} according to the chosen decimal, and the DNN performed with the even set is applied on the odd set and vice versa.
 
-The framework choice for the DNN is the \textsc{TensorFlow} \cite{tensorflow}, which is an open source software library for machine learning that can be used in a wide variety of programming languages; Python, Javascript, C++, and Java. \textsc{Keras} \cite{keras} is the interface chosen to be used with \textsc{TensorFlow}. The reason to choose these software is that they are compatible with \textsc{Python} programming language. Additionally, both systems can run on both CPU and GPU which makes them very fast, and there is a large community working on them which makes it easy to find solutions to the problems encountered in the DNN training. Another reason to use these software is the compatibility between them and the analysis framework called \textsc{Bamboo} \cite{bamboo}. It is a high-level HEP analysis library built on top of \textsc{Root}'s \emph{RDataFrame} class. \emph{RDataFrame} offers a modern, high-level interface for analysis of data stored in TTree other data formats, in Python or C++. TTree is the data format of the samples used in this thesis, and since \textsc{Bamboo} is built using \textsc{Python} language, the whole analysis and DNN frameworks work in good harmony. 
+The framework choice for the DNN is the \textsc{TensorFlow} \cite{tensorflow}, which is an open source software library for machine learning that can be used in a wide variety of programming languages; Python, Javascript, C++, and Java. \textsc{Keras} \cite{keras} is the interface chosen to be used with \textsc{TensorFlow}. The reason to choose these software is that they are compatible with \textsc{Python} programming language. Additionally, both systems can run on both CPU and GPU which makes them very fast, and there is a large community working on them which makes it easy to find solutions to the problems encountered in the DNN training. Another reason to use these software is the compatibility between them and the analysis framework called \textsc{Bamboo} \cite{bamboo}. It is a high-level HEP analysis library built on top of \textsc{Root}'s \emph{RDataFrame} class. \emph{RDataFrame} offers a modern, high-level interface for analysis of data stored in TTree other data formats, in Python or C++. TTree is the data format of the samples used in this thesis, and since \textsc{Bamboo} is built using \textsc{Python} language, the whole analysis and DNN frameworks work in good harmony. The DNN setup codes is given in Appendix \autoref{dnncode}.
 
-The DNNs are trained using skimmed signal and background samples and are evaluated on the full samples in order to perform categorisation. The feature variables used as input to train the DNN include the kinematic variables such as \pt, $\eta$, $\phi$ and energy values of objects along with the re-weighted variables. The full list of input features is given in \autoref{dnninputs}. During the training, events in the signal MC samples are given a target value of 1 and events in the background MC samples are given a target value of 0. The resulting DNN score distribution along with some of the input distribution and ROC curves are shown in \autoref{hasOneL_plots}. The events are then categorised into four making used of the DNN score distribution such that the expected significance is maximised, as shown in \autoref{hasOneL_dnncategories}. The DNN hyper-parameter settings in this final state is given in \auttoref{dnnpars1}. A cut-flow table, showing the number of events in the semi-leptonic channel and its DNN score categories is given in \autoref{semileptonic_cutflow} along with the number of events before any selection.
+The DNNs are trained using skimmed signal and background samples and are evaluated on the full samples in order to perform categorisation. The feature variables used as input to train the DNN include the kinematic variables such as \pt, $\eta$, $\phi$ and energy values of objects along with the re-weighted variables. The full list of input features is given in \autoref{dnninputs}. During the training, events in the signal MC samples are given a target value of 1 and events in the background MC samples are given a target value of 0. The resulting DNN performance plots along with the input distribution and ROC curves are shown in \autoref{hasOneL_plots}. The ROC curves, receiver operating characteristic curves show the performance of the DNN classification model and which allow to decide on categorisation with the significance plotted in the back is simply the approximation $\sigma\approx\frac{S}{\sqrt{B}}$ \cite{soverb}. The events are then categorised into four making used of the DNN score distribution such that the expected significance is maximised, as shown in \autoref{dnnscore1} and \autoref{hasOneL_dnncategories}. The DNN hyper-parameter settings in this final state is given in \autoref{hasOneL_dnnpars}. A cut-flow table, showing the number of events in the semi-leptonic channel and its DNN score categories is given in \autoref{semileptonic_cutflow} along with the number of events before any selection.
 
-\begin{table}[h!]
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{DNN_Score_WW_logy.pdf}
+	\vspace{2mm}
+	\caption{DNN score distribution in the semi-leptonic final state.}
+\label{dnnscore1}
+\end{figure}
+
+\begin{table}[h]
     \centering
-    \caption{One Lepton final state DNN score categories.}
+    \caption{Semi-leptonic final state DNN score categories.}
     \begin{tabular}{ c c }
     \hline
     Category & Definition \\
@@ -199,25 +207,6 @@ The DNNs are trained using skimmed signal and background samples and are evaluat
     Category 2 & $0.6 < DNN score < 0.8 $ \\
     Category 3 & $0.8 < DNN score < 0.92 $ \\
     Category 4 & $0.92 < DNN score < 1 $ \\
-    \hline
-    \end{tabular}
-    \label{hasOneL_dnncategories}
-\end{table}
-
-\begin{table}[h!]
-    \centering
-    \caption{Hyper-parameter settings for the DNN performed for semi-leptonic channel.}
-    \begin{tabular}{ l l }
-    \hline
-    Hyper-paramter & Setting \\
-    \hline
-    Epochs & 200 \\
-    Batch size & 256 \\
-    Learning rate & 0.001 \\
-    Optimiser & Adam \\
-    Loos function & Categorical Cross Entropy \\
-    Hidden layer activation functions & ReLU \\
-    Output layer activation function & sigmoid \\
     \hline
     \end{tabular}
     \label{hasOneL_dnncategories}
@@ -249,45 +238,113 @@ The categorisation allows to deal with different signal-to-background scenarios,
 
 A cut-based analysis is performed in this final state. The events are required to have at least two oppositely charged good leptons ($e^+e^-$, $\mu^+\mu^-$, $e^\pm\mu^\mp$). These two leptons are separated from each other by an angular distance of at least $0.4$. Since W boson decay to neutrinos along with leptons in this final state, a relatively larger missing transverse energy cut is applied. The lepton pair that have invariant mass value between $80-100$ GeV, and the invariant mass of the leading electron and the leading photon in 5 GeV vicinity of Z boson mass in the events that have at least one electron are removed in order to suppress the Z boson contribution (Z veto). These cut is shown as a in \autoref{hasTwoL_cuts}. The di-photon invariant mass distribution in this final state is shown in \autoref{hasTwoL_InvM}. A cut-flow report is provided in \autoref{fullyleptonic-cutflow}.
 
-\begin{table}[h!]
+\begin{table}[h]
     \centering
-        \caption{Requirements of the Two Lepton Channel.}
+        \caption{Post-selections of the Fuly-leptonic channel of $HH\rightarrow{WW\gamma\gamma}$.}
         \begin{tabular}{c|c}
             Variable & Selection \\ \hline
             $\Delta R(l,l)$ & $> 0.4$ \\
-            \pt of the leading lepton & $> 20$ GeV\\
-            \pt of sub-leading lepton & $> 10$ GeV \\
-            $E_T^{miss}$ & $> 20 $ GeV \\
             $p_T^{\gamma\gamma} $ & $> 91 $ GeV \\
+            $E_T^{miss}$ & $> 20 $ GeV \\
             $m_{ll}$ & $<80$ GeV or $>100 $ GeV \\
             number of medium btagged jets & $ = 0 $ \\
-            $\m_{e\gamma} - m_{z}|$ & $ > 5 $ GeV \\
+            $|m_{e\gamma} - m_{z}|$ & $ > 5 $ GeV \\
         \end{tabular}
     \label{hasTwoL_cuts}
 \end{table}
 
 \begin{figure}[h!]
     \centering
-	\includegraphics[scale=0.7]{replace.png}
+	\includegraphics[scale=0.5]{hastwoL_mgg_logy.pdf}
 	\vspace{2mm}
 	\caption{\mgg distribution in the fully-leptonic final state.}
 	\label{hasTwoL_InvM}
 \end{figure}
 
-\textbf{1$\tau$ Final State of $HH\rightarrow{\tau\tau\gamma\gamma}$}
+\textbf{Single $\tau$ Final State of $HH\rightarrow{\tau\tau\gamma\gamma}$}
 
-In this final state, two multi-class DNNs are trained following the same strategy as in semi-leptonic final state of the \wwgg leg of the decay. The input variables are shown in \autoref{dnninputs_1tau}. The information of $\tau$ leptons are added to the training while removing the electron, muon and some jet information in this final state. Full distributions are given in \autoref{dnninputDists_tau} along with the training weights and the ROC curves. The resulting categorisation is shown in \autoref{onetau-cats}.
+In this final state, two multi-class DNNs are trained following the same strategy as in semi-leptonic final state of the \wwgg leg of the decay. The input variables are shown in \autoref{dnninputs_1tau}. The information of $\tau$ leptons are added to the training while removing the electron, muon and some jet information in this final state. Full distributions are given in \autoref{dnninputDists_tau} along with the training weights and the ROC curves. A cut-flow report showing the number of events in each category per sample is given in \autoref{singletau-cutflow}. The resulting categorisation is shown in \autoref{onetau-cats} and the DNN score in \autoref{dnnscore-singletau}. The di-photon mass distributions in each category is given in \autoref{mgg-fulltaus}.
 
-\begin{table}[]
+\begin{figure}[h!]
     \centering
-    \begin{tabular}{c|c}
-         &  \\
-         & 
+	\includegraphics[scale=0.6]{DNN_Score_tt_logy.pdf}
+	\vspace{2mm}
+	\caption{DNN score distribution in the single $\tau$ final state.}
+	\label{dnnscore-singletau}
+\end{figure}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{cc}
+    \hline
+        Categories  &   Definition \\
+        \hline
+        Category 1 & $ 0.1< $ DNN score $ <0.65$ \\
+        Category 2 & $ 0.65 $ DNN score $ <1 $\\
+         \hline
     \end{tabular}
-    \caption{Caption}
-    \label{tab:my_label}
+    \caption{Single $\tau$ final state DNN categories.}
+    \label{onetau-cats}
 \end{table}
+
+\textbf{Double $\tau$ Final State of $HH\rightarrow{\tau\tau\gamma\gamma}$}
+
+A cut-based analysis is performed in this final state. The events that pass the di-photon preselection and have at least one oppositely charged $\tau$ lepton pair are included. A Z veto is applied such that the events with di-photon invariant mass in the 80-100 GeV range are rejected. The di-photon invariant mass distribution is shown in \autoref{mgg-fulltaus} and a cut-flow report is given in \autoref{cutflow-doubletau}.
+
+\begin{figure}[h!]
+    \centering
+	\includegraphics[scale=0.6]{mgg-fulltaus.png}
+	\vspace{2mm}
+	\caption{\mgg distributions in the DNN categories of single $\tau$ final state and double $\tau$ final state.}
+	\label{mgg-fulltaus}
+\end{figure}
 
 \subsection{Systematic uncertainties}
 
-\section{Results}
+The theoretical and experimental systematic uncertainties are shown in two different tables, \autoref{ThUncertainties2} and \autoref{expUncertainties}, respectively. The theoretical systematic uncertainties are applied on the signal samples and tthe single Higgs boson production processes and the experimental systematic uncertainties are the recommended values described in the Yellow Report for HL-LHC studies \cite{YRSystematics}.
+
+\begin{table}[htb!]
+    \centering
+    \caption{Theoretical uncertainties considered on ggHH signal and single Higgs processes.}
+    \begin{tabular}{l|l|l|l}
+      \hline 
+      %\multicolumn{4}{c}{Theoretical uncertainties considered on ggHH signal yields}\\
+      \hline
+       Process & \multicolumn{3}{c}{Uncertainty Source} \\
+      \hline
+        & PDF $+ \alpha_s$ (\%) & QCD Scale (\%) & $m_{top}$ (\%)  \\
+      \hline
+      \hline
+      ggHH & $\pm$ 3 & +2.1/-4.9 & +4.0/-18 \\
+      \hline
+      
+      ggH & +4.6/-6.7 & $\pm$ 3.2 & - \\ 
+      VBFH & +0.5/-0.3  & $\pm$ 2.1 & - \\
+      VH & +0.4/-0.7  & $\pm$ 1.8 & - \\
+      ttH & +6/-9.2  &  $\pm$ 3.5 & - \\
+      tHq & +6.4/-14.7  & $\pm$ 3.6 & - \\
+    \end{tabular}
+    \label{ThUncertainties2}
+\end{table}
+
+
+\begin{table}[htb!]
+    \centering
+    \caption{Experimental uncertainties considered in this study.}
+    \begin{tabular}{ll}
+      \hline 
+      \hline
+      Uncertainty Source & Input (\%) \\
+      \hline
+      Luminosity & 1 \\ 
+      Diphoton trigger & 2 \\ 
+      \mgg resolution & 5 \\ 
+      PhotonID & 0.5/photon \\ 
+      electronID & 0.5/electron \\
+      muonID & 0.5/muon \\
+      tauID & 2.5/tau\\
+      Jet energy Scale  & 1\\
+      \hline
+    \end{tabular}
+    \label{expUncertainties}
+\end{table}

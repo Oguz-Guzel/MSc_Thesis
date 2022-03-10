@@ -1,0 +1,729 @@
+\begin{lstlisting}[language=Python, caption=Python module of the analysis used in Bamboo framework, label={bamboocode}]
+import logging
+from bamboo.analysisutils import loadPlotIt
+import os.path
+import copy
+from bamboo.analysismodules import AnalysisModule, /
+HistogramsModule
+
+
+class SnowmassExample(CMSPhase2SimRTBHistoModule):
+    def addArgs(self, parser):
+        super().addArgs(parser)
+        parser.add_argument("--mvaSkim",
+                            action="store_true", help="Produce skims")
+        parser.add_argument("--datacards", action="store_true",
+                            help="Produce histograms for datacards")
+        parser.add_argument("--mvaEval", action="store_true",
+                            help="Import MVA model and evaluate it")
+
+    def definePlots(self, t, noSel, sample=None, sampleCfg=None):
+        from bamboo.plots import Plot, CutFlowReport, SummedPlot
+        from bamboo.plots import EquidistantBinning as EqB
+        from bamboo import treefunctions as op
+
+        plots = []
+
+        if 'HH' in sample:
+            noSel = noSel.refine("weightfix", cut=[t.genweight < 300])
+
+        noSel = noSel.refine("genweight",  weight=t.genweight)
+
+        # yields
+        yields_OneL = CutFlowReport(
+            "yields_OneL", recursive=True, printInLog=True)
+        yields_TwoL = CutFlowReport(
+            "yields_TwoL", recursive=True, printInLog=True)
+        yields_ZeroL = CutFlowReport(
+            "yields_ZeroL", recursive=True, printInLog=True)
+        yields_OneTau = CutFlowReport(
+            "yields_OneTau", recursive=True, printInLog=True)
+        yields_TwoTaus = CutFlowReport(
+            "yields_TwoTaus", recursive=True, printInLog=True)
+
+        yields_OneL.add(noSel, title='noSel')
+        yields_TwoL.add(noSel, title='noSel')
+        yields_ZeroL.add(noSel, title='noSel')
+        yields_OneTau.add(noSel, title='noSel')
+        yields_TwoTaus.add(noSel, title='noSel')
+
+        plots.append(yields_OneL)
+        plots.append(yields_TwoL)
+        plots.append(yields_ZeroL)
+        plots.append(yields_OneTau)
+        plots.append(yields_TwoTaus)
+
+        # select photons in the detector acceptance
+        photons = op.select(t.gamma, lambda ph: op.AND(
+            op.abs(ph.eta) < 2.5, ph.pt > 25.))
+
+        # sort photons by pT
+        sort_ph = op.sort(photons, lambda ph: -ph.pt)
+
+        # select photons with loose ISO & ID
+        isoPhotons = op.select(
+            sort_ph, lambda ph: ph.isopass & (
+            1 << 0))
+        idPhotons = op.select(
+            isoPhotons, lambda ph: ph.idpass & (1 << 0))
+
+        # select electrons w loose ISO&ID and clean them
+            # w.r.t good photons
+        electrons = op.select(t.elec, lambda el: op.AND(
+            el.pt > 10., op.abs(el.eta) < 2.5))
+        sort_el = op.sort(electrons, lambda el: -el.pt)
+
+        isoElectrons = op.select(
+            clElectrons, lambda el: el.isopass & (1 << 0))
+
+        idElectrons = op.select(
+            isoElectrons, lambda el: el.idpass & (1 << 0))
+
+        clElectrons = op.select(
+            idElectrons, lambda el: op.AND(
+            op.NOT(op.rng_any(
+                idPhotons, lambda ph: op.deltaR(el.p4, ph.p4) < 0.4)),
+        ))
+
+        # select muons with tight ISO & ID and clean them
+            # w.r.t good photons and electrons
+        muons = op.select(t.muon, lambda mu: op.AND(
+            mu.pt > 10., op.abs(mu.eta) < 2.5))
+
+        sort_mu = op.sort(clMuons, lambda mu: -mu.pt)
+
+        isoMuons = op.select(idMuons, lambda mu: mu.isopass & (1 << 2))
+
+        idMuons = op.select(sort_mu, lambda mu: mu.idpass & (1 << 2))
+
+        clMuons = op.select(muons, lambda mu: op.AND(
+            op.NOT(op.rng_any(
+                idPhotons, lambda ph: op.deltaR(mu.p4, ph.p4) < 0.4)),
+            op.NOT(op.rng_any(
+                clElectrons, lambda j: op.deltaR(mu.p4, j.p4) < 0.4))))
+
+        # select taus with loose ISO and clean them
+            #  w.r.t good photons & electrons & muons
+        taus = op.sort(op.select(t.tau, lambda tau: op.AND(
+            tau.pt > 20., op.abs(tau.eta) < 2.5)), lambda tau: -tau.pt)
+
+        isoTaus = op.select(clTaus, lambda tau: tau.isopass & (1 << 2))
+
+        clTaus = op.select(taus, lambda tau: op.AND(
+            op.NOT(op.rng_any(
+                idPhotons, lambda ph: op.deltaR(tau.p4, ph.p4) < 0.2)),
+            op.NOT(op.rng_any(
+                clElectrons, lambda el: op.deltaR(tau.p4, el.p4) < 0.2)),
+            op.NOT(op.rng_any(
+                clMuons, lambda mu: op.deltaR(tau.p4, mu.p4) < 0.2))
+                                                    ))
+
+        # select jets with tight ID and clean 
+            # them w.r.t good photons & electrons & muons & taus
+        jets = op.select(t.jetpuppi, lambda jet: op.AND(
+            jet.pt > 30., op.abs(jet.eta) < 5))
+
+        sort_jets = op.sort(jets, lambda jet: -jet.pt)
+
+        clJets = op.select(sort_jets, lambda j: op.AND(
+            op.NOT(op.rng_any(
+                idPhotons, lambda ph: op.deltaR(ph.p4, j.p4) < 0.4)),
+            op.NOT(op.rng_any(
+                clElectrons, lambda el: op.deltaR(el.p4, j.p4) < 0.4)),
+            op.NOT(op.rng_any(
+                clMuons, lambda mu: op.deltaR(mu.p4, j.p4) < 0.4)),
+            op.NOT(op.rng_any(
+                clTaus,
+                   lambda tau: op.deltaR(j.p4, tau.p4) < 0.4))
+        ))
+
+        idJets = op.select(clJets, lambda j: j.idpass & (1 << 2))
+
+        # select b-jets with tight ID
+        bJets = op.select(idJets, lambda j: j.btag & (1 << 1))
+
+        # define variables for ease of use
+        # di-photon invariant mass
+        mGG = op.invariant_mass(idPhotons[0].p4, idPhotons[1].p4)
+        mTauTau = op.invariant_mass(
+            isoTaus[0].p4, isoTaus[1].p4)  # di-tau invariant mass
+        pTGG = (op.sum(idPhotons[0].p4, idPhotons[1].p4)).pt()
+        mJets = op.invariant_mass(
+            idJets[0].p4, idJets[1].p4)  # di-jet invariant mass
+        # sub-di-jet invariant mass
+        mJets_SL = op.invariant_mass(idJets[1].p4, idJets[2].p4)
+
+        # Fully leptonic FL invmasses
+        # di-electron invariant mass
+        mE = op.invariant_mass(idElectrons[0].p4, idElectrons[1].p4)
+        # di-muon invariant mass
+        mMu = op.invariant_mass(isoMuons[0].p4, isoMuons[1].p4)
+        # e-mu system invariant mass
+        mEMu = op.invariant_mass(idElectrons[0].p4, isoMuons[0].p4)
+
+        # another set of variables
+        nElec = op.rng_len(idElectrons)  # number of electrons
+        nMuon = op.rng_len(isoMuons)  # number of muons
+        nJet = op.rng_len(idJets)  # number of jets
+        nTau = op.rng_len(isoTaus)  # number of taus
+
+        pT_mGGL = op.product(idPhotons[0].pt, op.pow(mGG, -1))
+        pT_mGGSL = op.product(idPhotons[1].pt, op.pow(mGG, -1))
+        E_mGGL = op.product(idPhotons[0].p4.energy(), op.pow(mGG, -1))
+        E_mGGSL = op.product(idPhotons[1].p4.energy(), op.pow(mGG, -1))
+
+        # selections for efficiency check
+        sel1_p = noSel.refine("2Photon", cut=op.AND(
+            (op.rng_len(sort_ph) >= 2), (sort_ph[0].pt > 35.)))
+        sel2_p = sel1_p.refine("idPhoton", cut=op.AND(
+            (op.rng_len(idPhotons) >= 2), (idPhotons[0].pt > 35.)))
+
+        # selections of the events with inv mass of photons 
+            # in the 100-180 window
+        hasInvM = sel2_p.refine("hasInvM", cut=op.AND(
+            (op.in_range(100, op.invariant_mass(
+                idPhotons[0].p4, idPhotons[1].p4), 180))
+        ))
+
+        ## Categories ##
+
+        # selections for semileptonic final state
+        semiLeptonic = hasInvM.refine("semiLeptonic",
+        cut=op.OR(
+            op.AND(nElec == 1, nMuon == 0),
+            op.AND(nElec == 0, nMuon == 1)))
+        yields_OneL.add(semiLeptonic, title='semiLeptonic')
+
+        hasOneEl = hasInvM.refine(
+            "hasOneEl", cut=op.AND(nElec == 1, nMuon == 0))
+        hasOneMu = hasInvM.refine(
+            "hasOneMu", cut=op.AND(nElec == 0, nMuon == 1))
+
+        # selections for fully-leptonic final state
+        fullyLeptonic = hasInvM.refine('fullyLeptonic',
+        cut=op.AND(
+            op.OR(
+                op.AND(
+                    op.AND(nElec >= 2, nMuon == 0),
+                    idElectrons[0].charge != idElectrons[1].charge,
+                    op.NOT(
+                    op.deltaR(idElectrons[0].p4, idElectrons[1].p4) < 0.4),
+                    op.OR(mE < 80, mE > 100), op.abs(m_eg - m_Z) > 5),
+                op.AND(
+                    op.AND(nElec >= 1, nMuon == 1),
+                    idElectrons[0].charge != isoMuons[0].charge,
+                    op.NOT(op.deltaR(
+                    idElectrons[0].p4, isoMuons[0].p4) < 0.4),
+                    op.OR(mEMu < 80, mEMu > 100), op.abs(m_eg - m_Z) > 5),
+                op.AND(
+                    op.AND(nElec == 1, nMuon >= 1),
+                    idElectrons[0].charge != isoMuons[0].charge,
+                    op.NOT(op.deltaR(
+                    idElectrons[0].p4, isoMuons[0].p4) < 0.4),
+                    op.OR(mEMu < 80, mEMu > 100), op.abs(m_eg - m_Z) > 5),
+                op.AND(
+                    op.AND(nMuon >= 2, nElec == 0),
+                    isoMuons[0].charge != isoMuons[1].charge,
+                    op.NOT(op.deltaR(isoMuons[0].p4, isoMuons[1].p4) < 0.4),
+                    op.OR(mMu < 80, mMu > 100))),
+            pTGG > 91,
+            op.AND(thirdEl < 10, thirdMu < 10),
+            op.rng_len(bJets) < 1,
+            met[0].pt > 20
+        ))
+
+        ##### fully-leptonic final state variables #####
+        m_eg = op.invariant_mass(idElectrons[0].p4, idPhotons[0].p4)
+        m_Z = 91.18
+
+        thirdEl = op.switch(op.rng_len(idElectrons) < 3,
+                            op.c_float(0.), idElectrons[2].pt)
+        thirdMu = op.switch(op.rng_len(isoMuons) < 3,
+                            op.c_float(0.), isoMuons[2].pt)
+        #############################################
+
+        yields_TwoL.add(fullyLeptonic, title='fullyLeptonic')
+
+        # selections for tautau final states
+        c3 = hasInvM.refine("hasOneTauNoLept", cut=op.AND(
+            nTau == 1,
+            op.rng_len(idElectrons) == 0,
+            op.rng_len(isoMuons) == 0))
+        yields_OneTau.add(c3, "One Tau No Lept")
+
+        c4 = hasInvM.refine("hasTwoTaus", cut=op.AND(
+            nTau >= 2,
+            op.rng_len(idElectrons) == 0,
+            op.rng_len(isoMuons) == 0))
+        yields_TwoTaus.add(c4, "Two Taus")
+
+        ########## Z veto ##########
+        c4_Zveto = c4.refine("hasTwoTaus_Zveto", cut=op.NOT(
+            op.in_range(80, mTauTau, 100)))
+
+        ## End of Categories ##
+
+        # plots
+        # semiLeptonic
+        plots.append(Plot.make1D(
+            "LeadingPhotonPtOneL",
+            idPhotons[0].pt,
+            semiLeptonic,
+            EqB(30, 0., 300.),
+            title="Leading Photon pT")
+            )
+        plots.append(
+            Plot.make1D(
+                "SubLeadingPhotonPtOneL",
+                idPhotons[1].pt, semiLeptonic, EqB(
+            30, 0., 300.), title="SubLeading Photon pT"))
+        plots.append(
+            Plot.make1D(
+                "LeadingPhotonEtaOneL",
+                idPhotons[0].eta, semiLeptonic, EqB(
+            80, -4., 4.), title="Leading Photon eta"))
+        plots.append(
+            Plot.make1D(
+                "SubLeadingPhotonEtaOneL",
+                idPhotons[1].eta, semiLeptonic, EqB(
+            80, -4., 4.), title="SubLeading Photon eta"))
+        plots.append(
+            Plot.make1D(
+                "LeadingPhotonPhiOneL",
+                idPhotons[0].phi, semiLeptonic, EqB(
+            100, -3.5, 3.5), title="Leading Photon phi"))
+        plots.append(
+            Plot.make1D(
+                "SubLeadingPhotonPhiOneL",
+                idPhotons[1].phi, semiLeptonic, EqB(
+            100, -3.5, 3.5), title="SubLeading Photon phi"))
+        plots.append(
+            Plot.make1D(
+                "nElectronsOneL",
+                nElec,
+                semiLeptonic,
+                EqB(10, 0., 10.), title="Number of electrons"))
+        plots.append(
+            Plot.make1D(
+                "nMuonsOneL",
+                nMuon, semiLeptonic,
+                     EqB(10, 0., 10.), title="Number of Muons"))
+        plots.append(
+            Plot.make1D(
+                "nJetsOneL",
+                nJet, semiLeptonic,
+                     EqB(10, 0., 10.), title="Number of Jets"))
+        plots.append(
+            Plot.make1D(
+                "LeadingPhotonpT_mGGLsemiLeptonic",
+                pT_mGGL, semiLeptonic, EqB(100, 0., 5.),
+                title="Leading Photon p_{T}/m_{\gamma\gamma}"))
+        plots.append(
+            Plot.make1D(
+                "SubLeadingPhotonpT_mGGLsemiLeptonic",
+                pT_mGGSL, semiLeptonic, EqB(100, 0., 5.),
+                title="SubLeading Photon p_{T}/m_{\gamma\gamma}"))
+        plots.append(
+            Plot.make1D(
+                "LeadingPhotonE_mGGLsemiLeptonic",
+                E_mGGL, semiLeptonic, EqB(100, 0., 5.),
+            title="Leading Photon E/m_{\gamma\gamma}"))
+        plots.append(
+            Plot.make1D(
+                "SubLeadingPhotonE_mGGLsemiLeptonic",
+                E_mGGSL, semiLeptonic, EqB(100, 0., 5.),
+                title="SubLeading Photon E/m_{\gamma\gamma}"))
+        plots.append(
+            Plot.make1D(
+                "MET",
+                metPt, semiLeptonic,
+                EqB(80, 0., 800.), title="MET"))
+        plots.append(
+            Plot.make1D(
+                "Inv_mass_ggsemiLeptonic",
+                mGG, semiLeptonic,
+                EqB(80, 100., 180.), title="m_{\gamma\gamma}"))
+        plots.append(
+            Plot.make1D(
+                "Inv_mass_ggsemiLeptonic_135",
+                mGG,
+                semiLeptonic, EqB(20, 115., 135.), title="m_{\gamma\gamma}"))
+
+        # Leading electron Plots
+        plots.append(Plot.make1D(
+            "ElectronpT", idElectrons[0].pt, hasOneEl,
+            EqB(30, 0., 300.), title='Leading Electron pT'))
+        plots.append(Plot.make1D(
+            "ElectronE", idElectrons[0].p4.E(),hasOneEl,
+            EqB(50, 0., 500.), title='Leading Electron E'))
+        plots.append(Plot.make1D(
+            "ElectronEta", idElectrons[0].eta, hasOneEl,
+            EqB(80, -4., 4.), title='Leading Electron eta'))
+        plots.append(Plot.make1D(
+            "ElectronPhi", idElectrons[0].phi, hasOneEl,
+            EqB(100, -3.5, 3.5), title='Leading Electron phi'))
+
+        # Leading muon Plots
+        plots.append(Plot.make1D(
+            "MuonpT", isoMuons[0].pt, hasOneMu, EqB(
+            30, 0., 100.), title='Leading Muon pT'))
+        plots.append(Plot.make1D(
+            "MuonE", isoMuons[0].p4.E(), hasOneMu, EqB(
+            50, 0., 500.), title='Leading Muon E'))
+        plots.append(Plot.make1D(
+            "MuonEta", isoMuons[0].eta, hasOneMu, EqB(
+            80, -4., 4.), title='Leading Muon eta'))
+        plots.append(Plot.make1D(
+            "MuonPhi", isoMuons[0].phi, hasOneMu, EqB(
+            100, -3.5, 3.5), title='Leading Muon phi'))
+
+        ### DNN variables ###
+
+        semiLeptonic = hasInvM.refine("semiLeptonic", cut=op.OR(
+            op.AND(nElec == 1, nMuon == 0),
+            op.AND(nElec == 0, nMuon == 1)
+            
+            ))
+ 
+       hasOneJ = semiLeptonic.refine(
+            "semiLeptonic_hasOneJ", cut=op.rng_len(idJets) == 1)
+        hasTwoJ = semiLeptonic.refine(
+            "semiLeptonic_hasTwoJ", cut=op.rng_len(idJets) == 2)
+        hasthreeJ = semiLeptonic.refine(
+            "semiLeptonic_hasthreeJ", cut=op.rng_len(idJets) == 3)
+
+        plots.append(Plot.make1D(
+            "semiLeptonic_hasOneJ_jetpt",
+            idJets[0].pt, hasOneJ, EqB(
+            30, 0., 300.), title="Leading Jet p_T"))
+        plots.append(Plot.make1D(
+            "semiLeptonic_hasOneJ_jeteta",
+            idJets[0].eta, hasOneJ, EqB(
+            80, -5.5, 5.5), title="Leading Jet #eta"))
+        plots.append(Plot.make1D(
+            "semiLeptonic_hasOneJ_jetphi",
+            idJets[0].phi, hasOneJ, EqB(
+            100, -3.5, 3.5), title="Leading Jet #phi"))
+        plots.append(Plot.make1D(
+            "semiLeptonic_hasOneJ_jetE",
+            idJets[0].p4.E(
+        ), hasOneJ, EqB(50, 0., 500.), title="Leading Jet Energy"))
+
+        plots.append(Plot.make1D(
+            "semiLeptonic_hasTwoJ_jetpt",
+            idJets[1].pt, hasTwoJ, EqB(
+            30, 0., 300.), title="Sub-leading Jet p_T"))
+        plots.append(Plot.make1D(
+            "semiLeptonic_hasTwoJ_jeteta",
+            idJets[1].eta, hasTwoJ, EqB(
+            80, -5.5, 5.5), title="Sub-leading Jet #eta"))
+        plots.append(Plot.make1D(
+            "semiLeptonic_hasTwoJ_jetphi",
+            idJets[1].phi, hasTwoJ, EqB(
+            100, -3.5, 3.5), title="Sub-leading Jet #phi"))
+        plots.append(Plot.make1D(
+            "semiLeptonic_hasTwoJ_jetE",
+            idJets[1].p4.E(
+        ), hasTwoJ, EqB(50, 0., 500.), title="Sub-leading Jet Energy"))
+
+        plots.append(Plot.make1D(
+            "semiLeptonic_hastwoJ_mjj", op.invariant_mass(
+            idJets[0].p4, idJets[1].p4), hasTwoJ,
+            EqB(100, 0., 1000.), title="Di-jet invariant mass"))
+        plots.append(Plot.make1D(
+            "semiLeptonic_hasthreeJ_mjj", op.invariant_mass(
+            idJets[1].p4, idJets[2].p4), hasthreeJ,
+            EqB(100, 0., 1000.), title="Tri-jet invariant mass"))
+
+        c3 = hasInvM.refine("hasOneTauNoLept", cut=op.AND(
+            nTau == 1, op.rng_len(idElectrons) == 0,
+            op.rng_len(isoMuons) == 0)
+            )
+        c3_OneJ = c3.refine("c3hasOneJ", cut=op.rng_len(idJets) == 1)
+        c3_TwoJ = c3.refine("c3hasTwoJ", cut=op.rng_len(idJets) == 2)
+
+        plots.append(Plot.make1D("c3_nJet", nJet, c3, EqB(
+            10, 0., 10.), title="Number of Jets"))
+        plots.append(Plot.make1D("c3_nbJet", op.rng_len(bJets), c3,
+                     EqB(10, 0., 10.), title="Number of b-tagged Jets"))
+        plots.append(Plot.make1D(
+            "c3_met", met[0].pt, c3, EqB(
+            80, 0., 800.), title="Missing Transverse Energy"))
+        plots.append(Plot.make1D(
+            "c3_pt_mgg", pT_mGGL, c3, EqB(
+            100, 0., 5.),
+            title="Leading Photon p_{T}/m_{\gamma\gamma}"))
+        plots.append(Plot.make1D(
+            "c3_SLpt_mgg", pT_mGGSL, c3, EqB(
+            100, 0., 5.),
+            title="Sub-leading Photon p_{T}/m_{\gamma\gamma}"))
+        plots.append(Plot.make1D(
+            "c3_leadingphoton_eta", idPhotons[0].eta, c3, EqB(
+            80, -4., 4.), title="Leading Photon \eta"))
+        plots.append(Plot.make1D(
+            "c3_subleadingphoton_eta", idPhotons[1].eta, c3, EqB(
+            80, -4., 4.), title="Sub-leading Photon \eta"))
+        plots.append(Plot.make1D(
+            "c3_leadingphoton_phi", idPhotons[0].phi, c3, EqB(
+            100, -3.5, 3.5), title="Leading Photon \phi"))
+        plots.append(Plot.make1D(
+            "c3_subleadingphoton_phi", idPhotons[1].phi, c3, EqB(
+            100, -3.5, 3.5), title="Sub-leading Photon \phi"))
+        plots.append(Plot.make1D(
+            "c3_LE_mgg", E_mGGL, c3, EqB(
+            100, 0., 5.),
+            title="Leading Photon E/m_{\gamma\gamma}"))
+        plots.append(Plot.make1D(
+            "c3_SLE_mgg", E_mGGSL, c3, EqB(
+            100, 0., 5.),
+            title="Sub-leading Photon E/m_{\gamma\gamma}"))
+        plots.append(Plot.make1D(
+            "c3_leadingtau_E", isoTaus[0].p4.E(), c3, EqB(
+            50, 0., 500.), title="Leading Tau Energy"))
+        plots.append(Plot.make1D(
+            "c3_leadingtau_eta", isoTaus[0].eta, c3, EqB(
+            80, -4., 4.), title="Leading Tau \eta"))
+        plots.append(Plot.make1D(
+            "c3_leadingtau_phi", isoTaus[0].phi, c3, EqB(
+            100, -3.5, 3.5), title="Leading Tau \phi"))
+        plots.append(Plot.make1D(
+            "c3_leadingtau_pt", isoTaus[0].pt, c3, EqB(
+            50, 0., 500.), title="Leading Tau p_T"))
+        plots.append(Plot.make1D(
+            "c3_oneJet_Ljetpt", idJets[0].pt, c3_OneJ, EqB(
+            50, 0., 500.), title="Leading Jet p_T"))
+        plots.append(Plot.make1D(
+            "c3_oneJet_Ljeteta", idJets[0].eta, c3_OneJ, EqB(
+            80, -5.5, 5.5), title="Leading Jet \eta"))
+        plots.append(Plot.make1D(
+            "c3_twoJet_SLjetpt", idJets[1].pt, c3_TwoJ, EqB(
+            50, 0., 500.), title="Sub-leading Jet p_T"))
+        plots.append(Plot.make1D(
+            "c3_twoJet_SLjeteta", idJets[1].eta, c3_TwoJ, EqB(
+            80, -5.5, 5.5), title="Sub-leading Jet \eta"))
+
+        plots.append(Plot.make1D(
+            "fullyLeptonic_mgg", mGG, fullyLeptonic, EqB(
+            80, 100., 180.),
+            title="Di-photon invariant mass [GeV]"))
+        plots.append(Plot.make1D(
+            "Inv_mass_ggfullyLeptonic", mGG, fullyLeptonic,
+                     EqB(80, 100., 180.),
+                     title="m_{\gamma\gamma}"))
+        plots.append(Plot.make1D(
+            "mGG_c3", mGG, c3, EqB(80, 100, 180),
+                     title="M_{\gamma\gamma}",
+                     plotopts={"log-y": True}))
+        plots.append(Plot.make1D(
+            "mGG_c4", mGG, c4, EqB(80, 100, 180),
+                     title="M_{\gamma\gamma}",
+                     plotopts={"log-y": True}))
+
+        mvaVars_semiLeptonic = {
+            "weight": noSel.weight,
+            "Eta_ph1": idPhotons[0].eta,
+            "Phi_ph1": idPhotons[0].phi,
+            "E_mGG_ph1": E_mGGL,
+            "pT_mGG_ph1": pT_mGGL,
+            "Eta_ph2": idPhotons[1].eta,
+            "Phi_ph2": idPhotons[1].phi,
+            "E_mGG_ph2": E_mGGSL,
+            "pT_mGG_ph2": pT_mGGSL,
+            "Electron_E": op.switch(
+                op.rng_len(idElectrons) == 0,
+                op.c_float(0.), idElectrons[0].p4.E()),
+            "Electron_pT": op.switch(
+                op.rng_len(idElectrons) == 0,
+                op.c_float(0.), idElectrons[0].pt),
+            "Electron_Eta": op.switch(
+                op.rng_len(idElectrons) == 0,
+                op.c_float(0.), idElectrons[0].eta),
+            "Electron_Phi": op.switch(
+                op.rng_len(idElectrons) == 0,
+                op.c_float(0.), idElectrons[0].phi),
+            "Muon_E": op.switch(
+                op.rng_len(isoMuons) == 0,
+                op.c_float(0.), isoMuons[0].p4.E()),
+            "Muon_pT": op.switch(
+                op.rng_len(isoMuons) == 0,
+                op.c_float(0.), isoMuons[0].pt),
+            "Muon_Eta": op.switch(
+                op.rng_len(isoMuons) == 0,
+                op.c_float(0.), isoMuons[0].eta),
+            "Muon_Phi": op.switch(
+                op.rng_len(isoMuons) == 0,
+                op.c_float(0.), isoMuons[0].phi),
+            "nJets": nJet,
+            "E_jet1": op.switch(
+                op.rng_len(idJets) == 0,
+                op.c_float(0.), idJets[0].p4.E()),
+            "pT_jet1": op.switch(
+                op.rng_len(idJets) == 0,
+                op.c_float(0.), idJets[0].pt),
+            "Eta_jet1": op.switch(
+                op.rng_len(idJets) == 0,
+                op.c_float(0.), idJets[0].eta),
+            "Phi_jet1": op.switch(
+                op.rng_len(idJets) == 0,
+                op.c_float(0.), idJets[0].phi),
+            "E_jet2": op.switch(
+                op.rng_len(idJets) < 2,
+                op.c_float(0.), idJets[1].p4.E()),
+            "pT_jet2": op.switch(
+                op.rng_len(idJets) < 2,
+                op.c_float(0.), idJets[1].pt),
+            "Eta_jet2": op.switch(
+                op.rng_len(idJets) < 2,
+                op.c_float(0.), idJets[1].eta),
+            "Phi_jet2": op.switch(
+                op.rng_len(idJets) < 2,
+                op.c_float(0.), idJets[1].phi),
+            "InvM_jet": op.switch(
+                op.rng_len(idJets) < 2,
+                op.c_float(0.), mJets),
+            "InvM_jet2": op.switch(
+                op.rng_len(idJets) < 3,
+                op.c_float(0.), mJets_SL),
+            "met": metPt
+        }
+
+        mvaVars_singleTau = {
+            "weight": noSel.weight,
+            # Event level variables
+            "nJets": nJet,
+            "nBJets": op.rng_len(bJets),
+            "metPt": metPt,
+            # Photon and di-Photon variables
+            "L_pt_mGG": pT_mGGL,
+            "L_photon_eta": idPhotons[0].eta,
+            "L_photon_phi": idPhotons[0].phi,
+            "E_mGG_ph1": E_mGGL,
+            "E_mGG_ph2": E_mGGSL,
+            "SL_pt_mGG": pT_mGGSL,
+            "SL_photon_eta": idPhotons[1].eta,
+            "SL_photon_phi": idPhotons[1].phi,
+            "LTauE": isoTaus[0].p4.E(),
+            "LtauPt": isoTaus[0].pt,
+            "LtauEta": isoTaus[0].eta,
+            "LtauPhi": isoTaus[0].phi,
+            "Ljet_Pt": op.switch(
+                nJet == 0, op.c_float(0.), idJets[0].pt),
+            "Ljet_Eta": op.switch(
+                nJet == 0, op.c_float(0.), idJets[0].eta),
+            "SLjet_Pt": op.switch(
+                nJet < 2, op.c_float(0.), idJets[1].pt),
+            "SLjet_Eta": op.switch(
+                nJet < 2, op.c_float(0.), idJets[1].eta),
+        }
+
+        # save mvaVars to be retrieved later in the
+        # postprocessor and save in a parquet file
+        if self.args.mvaSkim:
+            from bamboo.plots import Skim
+            plots.append(Skim("Skim", mvaVars_semiLeptonic, semiLeptonic))
+            plots.append(Skim("c3", mvaVars_singleTau, c3))
+
+        # evaluate dnn model on data
+        if self.args.mvaEval:
+            #from IPython import embed
+            WW_DNNmodel_path_even = 
+                "~/DNN_WW/even_model_test3.onnx"
+            WW_DNNmodel_path_odd = 
+                "~/DNN_WW/odd_model_test3.onnx"
+            tt_DNNmodel_path_even = 
+                "~/DNN_Tau/even_model_test3.onnx"
+            tt_DNNmodel_path_odd = 
+                "~/DNN_Tau/odd_model_test3.onnx"
+
+            mvaVars_semiLeptonic.pop("weight", None)
+            mvaVars_singleTau.pop("weight", None)
+            mvaVars_semiLeptonic_FH.pop("weight", None)
+            from bamboo.root import loadHeader
+            loadHeader(
+                "~/WWGG/header_split.h")
+
+            split_evaluator = op.extMethod('split::Ph1_phi')
+            split = split_evaluator(idPhotons[0].phi)
+
+            if split == 0:
+                tt_model = tt_DNNmodel_path_even
+                WW_model = WW_DNNmodel_path_even
+            else:
+                tt_model = tt_DNNmodel_path_odd
+                WW_model = WW_DNNmodel_path_odd
+
+            dnn_ww = op.mvaEvaluator(
+                WW_model, mvaType="ONNXRuntime",
+                otherArgs="predictions")
+            inputs_ww = op.array(
+                'float',
+                *[op.static_cast('float', val)
+                 for val in mvaVars_semiLeptonic.values()])
+            output_ww = dnn_ww(inputs_ww)
+
+            dnn_tt = op.mvaEvaluator(
+                tt_model, mvaType="ONNXRuntime", otherArgs="predictions")
+            inputs_tt = op.array(
+                'float',
+                *[op.static_cast('float', val)
+                 for val in mvaVars_singleTau.values()])
+            output_tt = dnn_tt(inputs_tt)
+
+            ########  semiLeptonic_DNN ########
+
+            hasDNNscore1 = semiLeptonic.refine(
+                "hasDNNscore1", cut=op.in_range(0.1, output_ww[0], 0.6))
+            yields_OneL.add(hasDNNscore1, title='hasDNNscore1')
+
+            hasDNNscore2 = semiLeptonic.refine(
+                "hasDNNscore2", cut=op.in_range(0.6, output_ww[0], 0.8))
+            yields_OneL.add(hasDNNscore2, title='hasDNNscore2')
+
+            hasDNNscore3 = semiLeptonic.refine(
+                "hasDNNscore3", cut=op.in_range(0.8, output_ww[0], 0.92))
+            yields_OneL.add(hasDNNscore3, title='hasDNNscore3')
+
+            hasDNNscore4 = semiLeptonic.refine(
+                "hasDNNscore4", cut=output_ww[0] > 0.92)
+            yields_OneL.add(hasDNNscore4, title='hasDNNscore4')
+
+            ######## OneTau_DNN ########
+
+            hasDNNscore1_tt = c3.refine(
+                "hasDNNscore_tt", cut=op.in_range(0.1, output_tt[0], 0.65))
+            yields_OneTau.add(hasDNNscore1_tt, title='hasDNNscore_tt')
+
+            hasDNNscore2_tt = c3.refine(
+                "hasDNNscore2_tt", cut=output_tt[0] > 0.65)
+            yields_OneTau.add(hasDNNscore2_tt, title='hasDNNscore2_tt')
+
+            plots.append(Plot.make1D("dnn_score_ww",
+                         output_ww[0], semiLeptonic, EqB(40, 0, 1.)))
+            plots.append(Plot.make1D("dnn_score_tt",
+                         output_tt[0], c3, EqB(40, 0, 1.)))
+
+            plots.append(Plot.make1D("Inv_mass_semiLeptonic_DNN_1",
+            mGG, hasDNNscore1, EqB(
+                80, 100., 180.), title="m_{\gamma\gamma}"))
+            plots.append(Plot.make1D("Inv_mass_semiLeptonic_DNN_2",
+            mGG, hasDNNscore2, EqB(
+                80, 100., 180.), title="m_{\gamma\gamma}"))
+            plots.append(Plot.make1D("Inv_mass_semiLeptonic_DNN_3",
+            mGG, hasDNNscore3, EqB(
+                80, 100., 180.), title="m_{\gamma\gamma}"))
+            plots.append(Plot.make1D("Inv_mass_semiLeptonic_DNN_4",
+            mGG, hasDNNscore4, EqB(
+                80, 100., 180.), title="m_{\gamma\gamma}"))
+
+            plots.append(Plot.make1D("Inv_mass_singleTau_c3_DNN_1",
+            mGG, hasDNNscore1_tt, EqB(
+                80, 100., 180.), title="m_{\gamma\gamma}"))
+            plots.append(Plot.make1D("Inv_mass_singleTau_c3_DNN_2",
+            mGG, hasDNNscore2_tt, EqB(
+                80, 100., 180.), title="m_{\gamma\gamma}"))
+
+            from bamboo.plots import Skim
+
+        return plots
+
+\end{lstlisting}

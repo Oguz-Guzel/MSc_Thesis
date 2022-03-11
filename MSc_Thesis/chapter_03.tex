@@ -1,19 +1,19 @@
 \chapter{DATA ANALYSIS}\label{ch3}
 
-The first section of this chapter includes an overview of the simulation of the proton-proton collisions and the second section explains the details of the prospects for nonresonant Higgs boson pair production measurements at the HL-LHC in pp collisions with a centre-of-mass energy of $\sqrt{s}=14\;TeV$.
+The first section of this chapter includes an overview of the simulation of the proton-proton collisions and the second section explains the details of the prospects for non-resonant Higgs boson pair production measurements at the HL-LHC in pp collisions with a centre-of-mass energy of $\sqrt{s}=14\;TeV$.
 
 \section{Simulation and Reconstruction of Proton-Proton Collisions}
-Monte Carlo event generators are crucial for high energy collision simulations. These software are used by many physicists for many purposes including the anticipation of the design outcomes of colliders. Simulation of a pp collision, interesting for this thesis, starts by describing the hard interactions and moves on to hadronisation and decay. In this section, the working principles of MC simulations for pp collisions are explained.
+Monte Carlo event generators are crucial for high energy collision simulations. These software are used by many scientists for many purposes including the anticipation of the design outcomes of colliders. Simulation of a pp collision starts by describing the hard interactions and moves on to hadronisation and decay. In this section, the working principles of MC simulations, detector simulations along with reconstruction techniques are explained.
 
 \subsection{Event generation}
 
-The interactions at the level of partons as well as other subatomic particles, are not deterministic contrary to the classical physics hence the transitions from one quantum state to another is computed as probability. The transition rate $\Gamma_{i\rightarrow f}$ from an initial quantum state $i$ to a final state $f$ is given by the Fermi's Golden Rule as
+The interactions at the level of partons as well as other subatomic particles, are not deterministic contrary to the classical physics hence the transitions from one quantum state to another is computed as a probability. The transition rate $\Gamma_{i\rightarrow f}$ from an initial quantum state $i$ to a final state $f$ is given by the Fermi's Golden Rule as
 \be
 \Gamma_{i\rightarrow f} = \frac{2\pi}{\hbar}|\mathcal{M}|^2 \rho \; ,
 \ee
-where $\mathcal{M}$ is the \emph{\textbf{Matrix Element}} and is defined as $\langle f|V_i|i\rangle$ for an interaction potential $V_i$. The matrix element describes all the dynamics of the transition and is calculated by evaluating the corresponding Feynman diagrams using the Feynman rules convenient to the interaction of interest. The second ingredient in the recipe is the \emph{phase space} available, also called the \emph{density of final states}, is exclusively kinematic and depends on the masses, energies and momenta of the incident particles. The term represent the phenomenon that the interaction in question is more likely to happen given more space in the final state.
+where $\mathcal{M}$ is the \emph{\textbf{Matrix Element}} and is defined as $\langle f|V_i|i\rangle$ for an interaction potential $V_i$. The matrix element describes all the dynamics of the transition and is calculated by evaluating the corresponding Feynman diagrams using the Feynman rules convenient to the interaction of interest. The second ingredient in the recipe is the available \emph{phase space} $\rho$, also called the \emph{density of final states}, is exclusively kinematic and depends on the masses, energies and momenta of the incident particles. The term represent the phenomenon that the interaction in question is more likely to happen given more space in the final state.
 
-The Golden Rule can be used to cross sections in addition to decay rates. The lowest order term in the perturbation theory calculation for cross section has the highest contribution which is signified as \emph{Leading Order} (LO) and contains only the LO Feynman diagrams. Today, the cross sections are computed using \emph{next-to-leading order} (NLO) calculations in MC event generators which include one-loop diagrams, initial and final state radiations. However, the NLO calculations consume more processor power and time. 
+The Golden Rule can be used to calculate cross sections in addition to decay rates. The lowest order term in the perturbation theory calculation for cross section has the highest contribution which is often referred as \emph{\textbf{Leading Order}} (LO) term and contains only the LO Feynman diagrams. Today, the cross sections are computed using \emph{\textbf{next-to-leading order}} (NLO) calculations in MC event generators which include one-loop diagrams, initial and final state radiations. However, the NLO calculations consume more processor power and time. 
 
 The event generation is the first step of the simulation of the high energy collisions. The Monte Carlo techniques are used to simulate the events which happen in the actual collider experiments. The collisions between the protons at the LHC, takes place in fact between the constituents of the protons, called partons to denote the quark and gluon content. In the pp collisions, not only two partons from different protons collide, which produces an interesting event to study, but also two partons can interact but not hardly. The different types of interactions that may occur in the collisions are shown in \autoref{eventtypes}. The \emph{\textbf{hard scattering}} processes occur by the high exchange of momentum between the constituents of two colliding protons. The products of this type of interaction usually have high transverse momenta. The high energetic partons may also emit radiation in the initial and final states, creating parton showers (PS) which is a considerable effect and taken into account in the event generation process.
 
@@ -28,9 +28,9 @@ The event generation is the first step of the simulation of the high energy coll
 
 An \emph{\textbf{underlying event}} is a soft interaction that occurs between the residue of the protons which have not taken place in the hard interaction. The partons may also radiate gauge bosons before or after interacting with each other, called initial state radiation and final state radiation, respectively. Additionally, partons can emit radiation via the strong interactions which create jets close to the direction of the initial particles.
 
-At the LHC, bunches including $10^{11}$ protons are collided and pile-up processes, any type of interactions outside the hard scatterings, constitute a significant effect in the event generation. Another aspect of the pp collisions that needs to be considered in MC simulations is the hadronisation process. It is the merger process of quarks and gluons to form colourless, and seen in the final states. The hadronisation process occurs if the partons reach the energy scale of about 1 GeV. The creation of a colourless primary hadrons from partons is described in two different models. The \emph{\textbf{cluster model}} describes the forming of the colourless hadrons by the gluons that are split into quark-antiquark pairs which then combines as colourless groups. The states clustered in this manner usually possess a large invariant mass which consequently decay to lower mass states convenient to create hadrons \cite{Webber1984}. In the \emph{\textbf{string model}}, the gluons are thought to be split into quark pairs that move away from each other where a string-like configuration is formed between them. As the string is stretched, its potential energy increases lowering the kinetic energy. The string eventually breaks in two creating a quark-antiquark pair. The mechanism is repeated until there is no energy left for another quark pair to be created \cite{Andersson1983}.
+At the LHC, bunches including $10^{11}$ protons are collided and pile-up processes, any type of interactions outside the hard scatterings, constitute a significant effect in the event generation. Another aspect of the pp collisions that needs to be considered in MC simulations is the \emph{\textbf{hadronisation}} process. It is the merger process of quarks and gluons to form colourless, and seen in the final states. The hadronisation process occurs if the partons reach the energy scale of about 1 GeV. The creation of colourless primary hadrons from partons is described in two different models. The \emph{\textbf{cluster model}} describes the forming of the colourless hadrons with the gluons that are split into quark-antiquark pairs which then combines as colourless groups. The states clustered in this manner usually possess a large invariant mass which consequently decay to lower mass states convenient to create hadrons \cite{Webber1984}. In the \emph{\textbf{string model}}, the gluons are thought to be split into quark pairs that move away from each other where a string-like configuration is formed between them. As the string is stretched, its potential energy increases lowering the kinetic energy. The string eventually breaks in two creating a quark-antiquark pair. The mechanism is repeated until there is no energy left for another quark pair to be created \cite{Andersson1983}.
 
-Various theoretical, phenomenological and experimental inputs are injected in to MC simulations in order to produce a consistent description of the pp collisions. Different approaches are utilised, for example in order to describe the QCD induced processes which have varying phenomenology with the changing energy scale \cite{skands2012qcd}. The hadronic cross section $\sigma_{pp}$ is calculated using the QCD factorisation theorem, which describing it as a convolution integral of the partonic cross section $\hat\sigma_{ij}$ with the parton distribution functions $f_i(x)$:
+Various theoretical, phenomenological and experimental inputs are injected into MC simulations in order to produce a consistent description of the pp collisions. Different approaches are utilised, for example in order to describe the QCD induced processes which have varying phenomenology with the changing energy scale \cite{skands2012qcd}. The hadronic cross section $\sigma_{pp}$ is calculated using the QCD factorisation theorem, which describes it as a convolution integral of the partonic cross section $\hat\sigma_{ij}$ with the parton distribution functions $f_i(x)$:
 
 \be
 \sigma_{pp} = \int_{x_{min}}^1 f_i(x_1)f_j(x_2)\hat\sigma_{ij}(x_1p_1, x_2p_2)dx_1dx_2 \; ,
@@ -40,21 +40,21 @@ where $f_i(x)$ in the probability density that a parton of type $i$ has a fracti
 
 The overall chain of calculating a process includes;
 \begin{itemize}
-    \item the PDF, which is basically the phenomenological interpretations calculated with the information coming from the experiments
-    \item the hard scattering, calculated in perturbative orders
-    \item the parton shower process, the radiations in perturbative QCD
-    \item the hadronisation, lays out the forming of colourless hadrons from coloured partons based on phenomenological models
-    \item the decay of unstable particles treated using experimental data
+    \item the PDF, which is basically the phenomenological interpretations calculated with the information coming from the experiments,
+    \item the hard scattering, calculated in perturbative orders,
+    \item the parton shower process, the radiations in perturbative QCD,
+    \item the hadronisation, lays out the forming of colourless hadrons from coloured partons based on phenomenological models,
+    \item the decay of unstable particles treated using experimental data.
 \end{itemize}
-The first two steps are usually calculated in Matrix Elements generators, while the rest is usually calculated in parton shower software. MC techniques are used in both sides and the transition is made in a manner to avoid double counting of the QCD radiation.
+The first two steps are usually calculated in Matrix Elements generators, while the rest is usually calculated in parton shower simulations. MC techniques are used in both sides and the transition is made in a manner to avoid double counting of the QCD radiation.
 
 The types on MC generators include general-purpose MC generators which computes the hard processes and the parton shower in seperate structures. \textsc{Pythia8} and \textsc{Sherpa} are most common generators of this group. Other types include generators that compute ME+PS or NLO+PS e.g. \textsc{MadGraph5\_aMC@NLO} which is a unified framework with LO and NLO calculations, and \textsc{Powheg box} which is an ME event generator. The MC event generators used in this thesis is explained later in \autoref{samples_section}.
 
 \subsection{Detector simulation}\label{detector_sim_subsection}
 
-The detector simulation is a crucial step of the simulation of the high energy collisions. It computes the interactions between the particles and the detectors material just as in the actual detector. The final state particles simulated in MC event generators are fed into detector simulations to perform the event reconstruction. There are several detector simulations for high energy collisions. Geometry and Tracking (GEANT4) simulation software \cite{Agostinelli2003}, includes a complete and accurate description of detectors. However, the full simulation of the detector is a long task with high CPU consumption, and in order to cope with the limited computing resources and still allow th use of large samples, the LHC experiments have developed fast simulation software with novel techniques \cite{Sekmen:2242542, Lukas:2012kua} with two to three orders of magnitude faster than GEANT software. In this thesis, all signal and background samples are simulated with the Phase II upgraded CMS detector geometry using \textsc{Delphes} 3 fast simulation \cite{Selvaggi:2014mya}.
+The detector simulation is a crucial step of the simulation of the high energy collisions. It computes the interactions between the particles and the detector material just as in the actual detector. The final state particles simulated in MC event generators are fed into detector simulations to perform the event reconstruction. There are several detector simulations for high energy collisions. Geometry and Tracking (GEANT4) simulation software \cite{Agostinelli2003}, includes a complete and accurate description of detectors. However, the full simulation of the detector is a long task with high CPU consumption, and in order to cope with the limited computing resources and still allow the use of large samples, the LHC experiments have developed fast simulation software with novel techniques \cite{Sekmen:2242542, Lukas:2012kua} with two to three orders of magnitude faster than GEANT software. In this thesis, all signal and background samples are simulated with the Phase II upgraded CMS detector geometry using \textsc{Delphes} 3 fast simulation \cite{Selvaggi:2014mya}.
 
-\textsc{Delphes 3} aims at simulating multipurpose detector response which includes a track propagation system in the presence of magnetic field, calorimeters and a muon system. It uses the input from the most common event generators and mimics the detector response. In order to achieve this, long-lived particles coming from the hard scattering are propagated through the electromagnetic and hadronic calorimeters withing a uniform magnetic field parallel to the beam line. If the particle is neutral, its trajectory is defined as a straight line from the interaction point to a calorimeter cell. The user may specify the calorimeter segmentation and the magnitude of the magnetic field. After the propagation step, long-lived particles reach the calorimeters, ECAL and HCAL depositing a fixed fraction of their energy. ECAL and HCAL are overlaid and assumed to have same granularity, hence a particle reaches one ECAL and one HCAL cell. These two cells are grouped in a calorimeter tower which is computed as the geometrical centre of the cells. The photons and electrons are defined to deposit all their energy in ECAL with the fraction $f_{ECAL}$, and hadrons in HCAL with $f_{HCAL}$ although in reality hadrons deposit some energy also in ECAL. Muons, neutrinos and neutralinos leave the calorimeters intact and some other particles such as Kaons are treated in a way that they leave their energy in calorimeters instead of decaying. The ECAL and HCAL energy deposits are independently smeared by a log-normal distribution and the energy of each particle is concentrated in one single tower, with the following formula,
+\textsc{Delphes 3} aims at simulating multipurpose detector response which includes a track propagation system in the presence of magnetic field, calorimeters and a muon system. It uses the input from the most common event generators and mimics the detector response. In order to achieve this, long-lived particles coming from the hard scattering are propagated through the electromagnetic and hadronic calorimeters withing a uniform magnetic field parallel to the beam line. If the particle is neutral, its trajectory is defined as a straight line from the interaction point to a calorimeter cell. The user may specify the calorimeter segmentation and the magnitude of the magnetic field. After the propagation step, long-lived particles reach the calorimeters, ECAL and HCAL depositing a fixed fraction of their energy. ECAL and HCAL are overlaid and assumed to have same granularity, hence a particle reaches one ECAL and one HCAL cell. These two cells are grouped in a calorimeter tower which is computed as the geometrical centre of the cells. The photons and electrons are defined to deposit all their energy in ECAL with the fraction $f_{ECAL} = 1$, and hadrons in HCAL with $f_{HCAL} = 1$ although in reality hadrons deposit some energy also in ECAL. Muons, neutrinos and neutralinos leave the calorimeters intact and some other particles such as Kaons are treated in a way that they leave their energy in calorimeters instead of decaying. The ECAL and HCAL energy deposits are independently smeared by a log-normal distribution and the energy of each particle is concentrated in one single tower, with the following formula,
 \be
 E_{tower} = \sum_{particles} ln\mathcal{N} \left( f_{ECAL} \; x \; E,\sigma_{ECAL} \right) + ln\mathcal{N} \left( f_{HCAL} \; x \; E,\sigma_{HCAL} \right) \; ,
 \ee
@@ -72,25 +72,25 @@ E_{tower} = max(0, \Delta_{ECAL}) + max(0, \Delta_{HCAL})
 \label{towerenergy}
 \ee
 
-then the algorithm creates a particle flow track for each reconstructed track, and if $E_{tower} > 0$, creates a particle flow tower with $E_{tower}$. In order to illustrate the algorithm with few examples, we can think of a single photon with energy deposited in ECAL with $E_{ECAL}$. A particle flow tower is created for the photon with the deposited energy and no track is created. Another example can be a charged pion with a a track energy $E_{HCAL,trk}$ and with an energy deposit of $E_{HCAL}$. If \autoref{towerenergy} yields zero or a negative value that is $E_{HCAL}\leq E_{HCAL,trk}$, then only a particle flow track with energy $E_{HCAL,trk}$ is created. If $E_{HCAL}\geq E_{HCAL,trk}$, a particle flow track with energy $E_{HCAL,trk}$ along with a particle tower of energy $E_{HCAL}$ is created.
+then the algorithm creates a particle flow track for each reconstructed track, and if $E_{tower} > 0$, it creates a particle flow tower with $E_{tower}$. In order to illustrate the algorithm with few examples, we can think of a single photon with energy deposited in ECAL with $E_{ECAL}$. A particle flow tower is created for the photon with the deposited energy and no track is created. Another example can be a charged pion with a track energy $E_{HCAL,trk}$ and with an energy deposit of $E_{HCAL}$. If \autoref{towerenergy} yields zero or a negative value that is $E_{HCAL}\leq E_{HCAL,trk}$, then only a particle flow track with energy $E_{HCAL,trk}$ is created. If $E_{HCAL}\geq E_{HCAL,trk}$, a particle flow track with energy $E_{HCAL,trk}$ along with a particle tower of energy $E_{HCAL}$ is created.
 
 In brief, the particle flow tracks define the charged particles with a good resolution, and particle flow towers define both charged and neutral particles with no relevant tracks characterised by a lower resolution. This approach can be useful for pile-up mitigation, and providing high-resolution input for jet and MET reconstructions. Despite being very plain compared to actual experiments, the PF algorithm is shown to have a good performance at pp collisions \cite{deFavereau2014}. 
 
-\subsection{Reconstruction of physics objects}
+\subsection{Reconstruction of physics objects}\label{reconstruction}
 
 \textsc{Delphes} implements the reconstruction and identification of objects based on a set of approximations to reduce the computation time but still keeping a good efficiency.
 
 The \emph{\textbf{photon}} reconstruction depends only on the ECAL, and the final energy of the photons is calculated by using the ECAL resolution function presented in \autoref{ecalsubsection}. The photons and electrons that reach ECAL and do not have tracks, are reconstructed as photons in \textsc{Delphes}.
 
-The reconstruction of \emph{\textbf{electrons}} is usually performed with the combined information from the tracking system and the ECAL. However, \textsc{Delphes} parametrises the combined reconstruction efficiency as a function of the energy and pseudorapidity instead of dealing with the usual complex reconstruction. The electron reconstruction efficiency drops to zero outside the tracker's geometrical acceptance and below some energy threshold. The energy resolution for the electrons are computed with the combination of tracker resolution at low energies and ECAL resolution at high energies.
+The reconstruction of \emph{\textbf{electrons}} is usually performed with the combined information from the tracking system and the ECAL. However, \textsc{Delphes} parametrises the combined reconstruction efficiency as a function of the energy and pseudorapidity instead of dealing with the usual complex reconstruction. The electron reconstruction efficiency drops to zero outside the tracker's geometrical acceptance and below some energy threshold. The energy resolution for the electrons are computed with the combination of tracker resolution at low energies and with ECAL resolution at high energies.
 
-The probability for a \emph{\textbf{muon}} to be reconstructed in \textsc{Delphes} depends on the user-specified efficiency parametrisation. The probability drops to zero outside the tracker acceptance and below some momenta threshold. The final momentum is computed by a Gaussian smearing of the initial 4 momentum vector of the muon. The resolution is specified by the user as a function of transverse momentum and pseudorapidity.
+The probability for a \emph{\textbf{muon}} to be reconstructed in \textsc{Delphes} depends on the user-specified efficiency parameter. The probability drops to zero outside the tracker acceptance and below some momenta threshold. The final momentum is computed by a Gaussian smearing of the initial 4 momentum vector of the muon. The resolution is specified by the user as a function of transverse momentum and pseudorapidity.
 
 \emph{\textbf{Tau}} leptons decay before being detected, and hereafter, the lepton term is used for electrons and muons. The reconstruction of the hadronically decaying taus will be explained along with jets later.
 
 A photon, electron or muons is said to be isolated if there are small amount of particles around it. The definition of such feature is important since an isolated object is not likely to originate from a jet. Various definitions are available for the isolation of an object. \textsc{Delphes} implements a simple definition that fits well to hadron collisions. An \emph{\textbf{isolation}} variable is defined for electrons, muons and photons, as the ratio of the sum of $p_T$ above a threshold in a cone of radius $R$ around a given particle, to the $p_T$ of the particle of interest. The values close to zero signifies that the particle is \emph{isolated}. The user is set free to define parameters of the isolation; $p_T$, $R$ or a minimum isolation, where the default values are $0.1 \; GeV$, 0.5 and 0.1, respectively.
 
-\emph{\textbf{Jets}} are produced from three different input collections in \textsc{Delphes}. The \emph{generated jets} are the clusters of generator level long-lived particles after parton- shower and hadronisation. The \emph{calorimeter jets} are produced using calorimeter towers explained in \autoref{detector_sim_subsection}. Finally the \emph{particle flow jets} are the clusters produced fopm the particle flow tracks and towers defined in \autoref{pf_section}. Additionally, the user is set free to specify a minimum jet $p_T$ for the final jet collection, and a jet clustering algorithm with special parameters with The FASTJET package \cite{Cacciari2012} implemented in \textsc{Delphes}, supporting the most common jet clustering algorithms. A default reconstruction step is defined in \textsc{Delphes} that removes the jet from the event if it has been already reconstructed as a lepton or a photon assuring the double counting of objects.
+\emph{\textbf{Jets}} are produced from three different input collections in \textsc{Delphes}. The \emph{generated jets} are the clusters of generator level long-lived particles after parton-shower and hadronisation. The \emph{calorimeter jets} are produced using calorimeter towers explained in \autoref{detector_sim_subsection}. Finally the \emph{particle flow jets} are the clusters produced from the particle flow tracks and towers defined in \autoref{pf_section}. Additionally, the user is set free to specify a minimum jet $p_T$ for the final jet collection, and a jet clustering algorithm with \textsc{FastJet} package \cite{Cacciari2012} implemented in \textsc{Delphes}, supporting the most common jet clustering algorithms. A default reconstruction step is defined in \textsc{Delphes} that removes the jet from the event if it has been already reconstructed as a lepton or a photon assuring no double counting of objects.
 
 The jets originating from $\tau$ decays or from the the hadronisation of heavy quarks e.g. b or c quarks, should be identified in pp collisions. \textsc{Delphes} tags a jet as b or $\tau$ jet, if the b or $\tau$ is found within some close distance $\Delta R$ of the jet axis, respectively. The user is set free to specify the tagging efficiency which affects the probability of being identified as b or $\tau$. Additionally, a mis-tagging efficiency, that is the probability that a particle other than b or $\tau$ is identified falsely as b or $\tau$.
 
@@ -98,11 +98,11 @@ The jets originating from $\tau$ decays or from the the hadronisation of heavy q
 
 \subsection{High level corrections and validation}
 
-The reconstructed objects need to be corrected for residual effects before being used in the final analysis. \emph{\textbf{Jet energy scale correction}} (JEC) is applied in order to meet the deficit between the average momenta of the reconstructed objects and that of their generator-level equivalent. This deficiency is common for complex objects such as jets, because the total smearing is ambiguous as a result of the loss of generator-level objects such as neutrinos and muons. The JEC is applied therefore applied only on jets, where the user can specify it as a function of $\eta$ and $p_T$ of the reconstructed jet.
+The reconstructed objects need to be corrected for residual effects before being used in the final analysis. \emph{\textbf{Jet energy scale correction}} (JEC) is applied in order to meet the deficit between the average momenta of the reconstructed objects and that of their generator-level equivalent. This deficiency is common for complex objects such as jets, because the total smearing is ambiguous as a result of the loss of generator-level objects such as neutrinos and muons. The JEC is therefore applied only on jets, where the user can specify it as a function of $\eta$ and $p_T$ of the reconstructed jet.
 
-The pile-up effects are simulated using a pre-generated QCD, and randomly placed on the beamline with a number obtained from a Poisson distribution. Pile-up has direct effect on the performance of jets, $E_T^{miss}$ and isolation however pile-up mitigation on $E_T^{miss}$ is a demanding task and is not implemented in \textsc{Delphes}. Instead, \emph{\textbf{pile-up subtraction}} is applied on jets and the isolation with two methods. \emph{Charged pile-up subtraction} assumes the track reconstruction efficiency does not depend on the vertex position, and if the PF algorithm is used, the PF tracks that originate from pile-up are cleared and do not enter the jet clustering and isolation algorithms. Some other residual effects, e.g. the particles that are in close proximity of the hard interaction vertex, the charged particles that are outside the geometrical acceptance of the tracker, or the neutral particles need to be removed. In order to do this, an average contamination is defined in the \emph{residual pile-up subtraction} which then removed from the jet energies and the isolation variable.
+The pile-up effects are simulated using a pre-generated QCD, and randomly placed on the beamline with a number obtained from a Poisson distribution. Pile-up has direct effect on the performance of jets, $E_T^{miss}$ and isolation however pile-up mitigation on $E_T^{miss}$ is a demanding task and is not implemented in \textsc{Delphes}. Instead, \emph{\textbf{pile-up subtraction}} is applied on jets and the isolation with two methods. \emph{Charged pile-up subtraction} assumes that the track reconstruction efficiency does not depend on the vertex position, and if the PF algorithm is used, the PF tracks that originate from pile-up are cleared and do not enter the jet clustering and isolation algorithms. Some other residual effects, e.g. the particles that are in close proximity of the hard interaction vertex, the charged particles that are outside the geometrical acceptance of the tracker, or the neutral particles, need to be removed. In order to do this, an average contamination is defined in the \emph{residual pile-up subtraction} which is then removed from the jet energies and from the isolation variable.
 
-All in all, \textsc{Delphes} has been validated in many use cases, and is a good simulation to be used in pp collisions. \autoref{delphesvalidation} shows a validation plot using photons and electrons vs CMS performance.
+All in all, \textsc{Delphes} has been validated in many use cases, and is a good simulation to be used in pp collisions. \autoref{delphesvalidation} shows a comparison of \textsc{Delphes} and CMS detector performance using photons and electrons.
 
 \begin{figure}[ht]
 	\centering
@@ -115,9 +115,7 @@ All in all, \textsc{Delphes} has been validated in many use cases, and is a good
 
 \section{Higgs Boson Pair Analysis}
 
-This section describes the analysis steps of the prospects for non-resonant Higgs boson pair production measurements at the HL-LHC in pp collisions with a centre-of-mass energy of $\sqrt{s}=14\;TeV$ at the Phase II upgraded CMS detector. In this analysis, a Higgs boson pair search in the \ttgg channel is performed benefiting from the $H\rightarrow \gamma\gamma$ process which provides a clean an distinguishable signature. The final states of Higgs boson pair in \wwgg and \zzgg is included in the study due to overlap, which in turn increases the overall analysis sensitivity. This is the first study providing coupling parameters scan in these channels at the HL-LHC.
-
-The analysis flow is shown in \autoref{analysisflow}.
+This section describes the analysis steps of the prospects for non-resonant Higgs boson pair production measurements at the HL-LHC in pp collisions with a centre-of-mass energy of $\sqrt{s}=14\;TeV$ with the Phase II upgraded CMS detector. In this analysis, a Higgs boson pair search in the \wwgg channel is performed benefiting from the $H\rightarrow\gamma\gamma$ process which provides a clean and distinguishable signature. The final states of Higgs boson pair in \wwgg channel are included in the study due to overlap, which in turn increases the overall analysis sensitivity. A schematic flow chart describing the analysis is shown in \autoref{analysisflow}.
 
 \begin{figure}[ht]
 	\centering
@@ -129,13 +127,13 @@ The analysis flow is shown in \autoref{analysisflow}.
 
 \subsection{Signal and background samples}\label{samples_section}
 
-In this thesis, signal ($gg \rightarrow HH$) samples are generated using \textsc{Powheg v2} \cite{Nason2004, Frixione2007, Alioli2010, Heinrich2019} at next-to-leading order (NLO) in QCD including the full top mass dependence with SM parameters, and subsequent decays of the Higgs boson pairs into $\tau\tau$, $WW$ and $ZZ$ each with a photon pair is implemented using \textsc{Pythia 8.212} \cite{Sjstrand2015}. The signal samples for three separate final states of \wwgg channel are produced while a single sample including all possible decays of taus are used.
+In this thesis, signal ($gg \rightarrow HH$) samples are generated using \textsc{Powheg v2} \cite{Nason2004, Frixione2007, Alioli2010, Heinrich2019} at (NLO) calculations in QCD including the full top mass dependence with SM parameters, and subsequent decays of the Higgs boson pairs into $WW$ and $\tau\tau$ each with a photon pair is implemented using \textsc{Pythia 8.212} \cite{Sjstrand2015}. The signal samples for three separate final states of \wwgg channel are produced while a single sample including only hadronic taus are used for \ttgg channel.
 
-The analysis is overwhelmed by non-resonant backgrounds with continuum \mgg spectra and by single Higgs boson productions. The sample generation for single Higgs productions is performed via \textsc{MadGraph5\_aMC@NLO} \cite{Alwall2014, Artoisenet2013} with the FxFx merging scheme \cite{Frederix2012} for the gluon fusion (ggFH), vector boson fusion (VBFH), associated production with a vector boson (VH) and associated production with a top quark pair (ttH), while the top quark associated production  with a Higgs boson (tHq) was performed using \textsc{MadGraph} version-2.7 at LO.
+The analysis is overwhelmed by non-resonant backgrounds with continuum di-photon invariant mass \mgg spectra and by single Higgs boson productions. The sample generation for single Higgs productions is performed via \textsc{MadGraph5\_aMC@NLO} \cite{Alwall2014, Artoisenet2013} with the FxFx merging scheme \cite{Frederix2012} for the gluon fusion (ggFH), vector boson fusion (VBFH), associated production with a vector boson (VH) and associated production with a top quark pair (ttH), while the top quark associated production  with a Higgs boson (tHq) was performed using \textsc{MadGraph} version-2.7 at LO.
 
-Several SM processes contribute to the continuum background. A large portion of the dominant backgrounds across all final states comes from the $\gamma\gamma+$jets processes that are modelled with \textsc{Sherpa} v.2.2.1 generator \cite{10.21468/SciPostPhys.7.3.034} while QCD-induced processes, $\gamma+$jets and WW processes are modelled with \textsc{Pythia} 8 generator. W production in association with photons and jets, and Drell-Yan processes are modelled with \textsc{MadGraph5} version-2.7 at LO, $t\bar t$ with \textsc{Powheg} v2, and $t\bar tW$, $t\bar t\gamma$, $t\bar t\gamma\gamma$, $Z\gamma$ processes with \textsc{MadGraph5\_aMC@NLO}. A complete list of samples used in the analysis is shown in \autoref{MCSamples}.
+Several SM processes contribute to the continuum background. A large portion of the dominant backgrounds across all final states comes from the $\gamma\gamma+$jets processes that are modelled with \textsc{Sherpa} v.2.2.1 generator \cite{10.21468/SciPostPhys.7.3.034} while QCD-induced processes, $\gamma+$jets and WW processes are modelled with \textsc{Pythia} 8 generator \cite{Sjstrand2015}. W production in association with photons and jets, and Drell-Yan processes are modelled with \textsc{MadGraph5} version-2.7 at LO, $t\bar t$ with \textsc{Powheg} v2, and $t\bar tW$, $t\bar t\gamma$, $t\bar t\gamma\gamma$, $Z\gamma$ processes with \textsc{MadGraph5\_aMC@NLO}. A complete list of samples used in the analysis is shown in \autoref{MCSamples}.
 
-In this thesis, all signal and background samples are simulated with the Phase II upgraded CMS detector geometry using \textsc{Delphes} 3 fast simulation \cite{Selvaggi:2014mya} with an average pile-up of 200 interactions at $\sqrt{s}=14$ TeV. An Ntupliser is used to produce flat Ntuples using the outputs from \textsc{Delphes}, whose form is shown in \autoref{flattree}.
+In this thesis, all signal and background samples are simulated with the Phase II upgraded CMS detector geometry using \textsc{Delphes} 3 fast simulation \cite{Selvaggi:2014mya} with an average pile-up of 200 interactions at $\sqrt{s}=14$ TeV. An ntupliser is used to produce flat ntuples using the outputs from \textsc{Delphes}, whose form is shown in \autoref{flattree}.
 
 \begin{figure}[h!]
 	\centering
@@ -145,13 +143,13 @@ In this thesis, all signal and background samples are simulated with the Phase I
 	\label{flattree}
 \end{figure}
 
-For the Phase II upgraded CMS detector configuration in \textsc{Delphes} input card \cite{delphescard}, the isolation (ISO) and identification (ID) variables for photons and electrons are defined in different bit-wise working points (WP); loose, medium and tight (LMT) based on the MVA trained ID and ISO variables in full simulation of CMS (FullSim). Similar ID and ISO variables are defined for muons and taus, and a \emph{btag} value in bit-wise LMT WPs is also defined for jets. The python code that is used to define object, event selection and categorisations is given in Appendix \autoref{bamboocode}.
+For the Phase II upgraded CMS detector configuration in \textsc{Delphes} input card \cite{delphescard}, the isolation (ISO) and identification (ID) variables for photons and electrons are defined in different bit-wise working points (WP); loose, medium and tight (LMT) based on the MVA trained ID and ISO variables in full simulation of CMS (FullSim). Similar ID and ISO variables are defined for muons and taus, and a \emph{btag} value in bit-wise LMT WPs is also defined for jets.
 
 \subsection{Object selection}
 
-Photons used in this analysis are required to have a $p_T$ above 25 GeV and be in the geometrical acceptance that is $|\eta| < 2.5$. The photon with the highest \pt in the events, namely the leading photon is required to have a \pt of at least 35 GeV. The relative isolation ISO, defined as the sum of transverse momenta of all the particles within a particular size of cone divided by the \pt of the particle of interest, is required to be less than 0.3 for photon candidates. A bit-wise criteria, 1, 3, 7 for loose, medium, tight, respectively, is applied in order to select the loose-ID photons. The photons that pass all these selections are called \emph{good photons} hereafter.
+Photons used in this analysis are required to have a $p_T$ above 25 GeV and be in the geometrical acceptance $|\eta| < 2.5$. The photon with the highest \pt in the events, namely the leading photon is required to have a \pt of at least 35 GeV. The relative isolation ISO, defined in \autoref{reconstruction}, is required to be less than 0.3 for photon candidates. A bit-wise criteria; 1, 3, 7 for loose, medium, tight, respectively, is applied in order to select the loose-ID photons. The photons that pass all these selections are called \emph{good photons}.
 
-Electrons are required to have transverse momenta above 10 GeV within $|\eta|<2.5$ region. The electrons and good photons are isolated from each other with an angular separation of at least 0.4. The muons that have at least 10 GeV \pt and in $|\eta|<2.5$ have been selected and they are isolated from the good electrons and good muons with an angular separation greater than 0.2. Tau leptons with $p_T > 20$ GeV are used in $|\eta|<2.5$ and are cleaned with respect to good photons/electrons/muons. PUPPI-jets that have $p_T > 30$ GeV with $|\eta|<5$ are used with an angular separation of 0.4 with respect to good photons/electrons/muons/taus. A list of all selections is shown in \autoref{seltable}.
+Electrons are required to have transverse momenta above 10 GeV within $|\eta|<2.5$ region. The electrons and good photons are isolated from each other with an angular separation of at least 0.4. The muons that have \pt above 10 GeV and in $|\eta|<2.5$ have been selected and they are isolated from the good electrons and good muons with an angular separation greater than 0.2. Tau leptons with $p_T > 20$ GeV are selected in $|\eta|<2.5$ region and are cleaned with respect to good photons/electrons/muons. PUPPI-jets that have $p_T > 30$ GeV with $|\eta|<5$ are used with an angular separation of 0.4 with respect to good photons/electrons/muons/taus. A list of all selections is shown in \autoref{seltable}.
 
 \begin{table*}[ht]
 	{\setlength{\tabcolsep}{14pt}
@@ -175,7 +173,7 @@ Electrons are required to have transverse momenta above 10 GeV within $|\eta|<2.
 \end{table*}
 
 \subsection{Event selection and categorisation}
-
+The python code that is used to define object, event selection and categorisations is given in Appendix \autoref{bamboocode}.
 All events in the analysis are required to have the invariant mass of two good photons within $100<\mgg<180$ GeV as a preselection for all final states. The di-photon invariant mass distributions before and after this common preselection is shown in \autoref{diphotondist}. The analysis is performed in several non-overlapping (orthogonal) final states targeting the decays of the W bosons referred to as \emph{semi-leptonic} and \emph{fully-leptonic} final states for \wwgg, and 1$\tau$ and 2$\tau$ final states for \ttgg. Full hadronic final state of \wwgg is not included in this thesis due to modelling difficulties in QCD induced background samples.
 
 \textbf{Semi-leptonic Final State of $HH\rightarrow{WW\gamma\gamma}$}
@@ -301,7 +299,36 @@ A cut-based analysis is performed in this final state. The events that pass the 
 
 \subsection{Systematic uncertainties}
 
-The theoretical and experimental systematic uncertainties are shown in two different tables, \autoref{ThUncertainties2} and \autoref{expUncertainties}, respectively. The theoretical systematic uncertainties are applied on the signal samples and tthe single Higgs boson production processes and the experimental systematic uncertainties are the recommended values described in the Yellow Report for HL-LHC studies \cite{YRSystematics}.
+The uncertainty on the experiments has two components; \textbf{statistical} uncertainty and \textbf{systematical} uncertainty. The former depends on the amount of data collected while the latter arises from the inaccuracy of the experimental setup due to detector, or from theoretecal calculations. The experiment-induced systematic uncertainties are caues by the insufficient knowledge of the detector response, and the theoretical systematic uncertaities affect the modelling of signal and background processes. These systematical uncertainties are taken as nuisance parameters in the statistical analysis such as normalisation uncertainty which affect the signal/background yield, and shape uncertainties which affect the distribution of the observables.The experimental systematic uncertainties have several sources;
+\begin{itemize}
+    \item the uncertainty on the integrated luminosity which has a log-normal contribution
+    \item the lepton identification and reconstruction efficiency, with a log-normal contribution
+    \item Jet energy scale which is computed by propagating the variation of the jet energy thorugh the event reconstruction
+\end{itemize}
+The summary of the experimental systematic uncertainties is given in \autoref{expUncertainties}. 
+
+\begin{table}[htb!]
+    \centering
+    \caption{Experimental uncertainties considered in this study. The values are recommended in the Yellow Report for HL-LHC studies \cite{YRSystematics}.}
+    \begin{tabular}{ll}
+      \hline 
+      \hline
+      Uncertainty Source & Input (\%) \\
+      \hline
+      Luminosity & 1 \\ 
+      Diphoton trigger & 2 \\ 
+      \mgg resolution & 5 \\ 
+      PhotonID & 0.5/photon \\ 
+      electronID & 0.5/electron \\
+      muonID & 0.5/muon \\
+      tauID & 2.5/tau\\
+      Jet energy Scale  & 1\\
+      \hline
+    \end{tabular}
+    \label{expUncertainties}
+\end{table}
+
+The theoretical uncertainties comes from the choice of the PDF set, the uncertainty on the $_alpha_S$, and the renormalisation and factorisation QCD scale. These uncertainties affect both the signal and background processes. Additionally, an uncertainty related to missing top quark mass effects has a contribution for the double Higgs signal process. A summary of the theoretical uncertainties is given in \autoref{ThUncertainties}.
 
 \begin{table}[htb!]
     \centering
@@ -324,27 +351,5 @@ The theoretical and experimental systematic uncertainties are shown in two diffe
       ttH & +6/-9.2  &  $\pm$ 3.5 & - \\
       tHq & +6.4/-14.7  & $\pm$ 3.6 & - \\
     \end{tabular}
-    \label{ThUncertainties2}
-\end{table}
-
-
-\begin{table}[htb!]
-    \centering
-    \caption{Experimental uncertainties considered in this study.}
-    \begin{tabular}{ll}
-      \hline 
-      \hline
-      Uncertainty Source & Input (\%) \\
-      \hline
-      Luminosity & 1 \\ 
-      Diphoton trigger & 2 \\ 
-      \mgg resolution & 5 \\ 
-      PhotonID & 0.5/photon \\ 
-      electronID & 0.5/electron \\
-      muonID & 0.5/muon \\
-      tauID & 2.5/tau\\
-      Jet energy Scale  & 1\\
-      \hline
-    \end{tabular}
-    \label{expUncertainties}
+    \label{ThUncertainties}
 \end{table}

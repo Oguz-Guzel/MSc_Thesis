@@ -60,7 +60,7 @@ E_{tower} = \sum_{particles} ln\mathcal{N} \left( f_{ECAL} \; x \; E,\sigma_{ECA
 \ee
 where $ln\mathcal{N}\left(m,s\right)$ is the log-normal distribution with mean $m$ and variance $s$, and the parameters $\sigma_{ECAL}$ and $\sigma_{HCAL}$ are the ECAL and HCAL resolutions given in \autoref{res_eq_ecal}, respectively. The energy of each particle is summed over for a given single tower. High level objects such as jets and missing transverse energy is computed either from the calorimeter deposits or by the particle flow (PF).
 
-\subsection{Particle Flow algorithm}\label{pf_section}
+\subsection{Particle flow algorithm}\label{pf_section}
 
 The PF reconstruction, whose philosophy is to use a maximum amount of information obtained from the sub-detectors, is adopted for some experiments including CMS \cite{CMS-PAS-PFT-09-001} and ALEPH \cite{ALEPH:1994ayc}, and is implemented in \textsc{Delphes} with a basic approach based on the tracker and the calorimeter information. In the experiments, the tracker provides a higher resolution than the calorimeters up to some energy scale, therefore \textsc{Delphes} uses the tracker information to calculate the charged particle momenta. The PF algorithm creates two set of 4-vectors; \emph{particle flow tracks} and {particle flow towers. For each calorimeter tower, the algorithm sums the energy deposited in ECAL and HCAL, denoted $E_{ECAL}$ and $E_{HCAL}$ respectively. The total energy deposited by the charged particles for which the tracks have been reconstructed, $E_{ECAL,trk}$ and $E_{HCAL,trk}$ are used in the algorithm to define,
 
